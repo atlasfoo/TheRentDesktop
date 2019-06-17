@@ -1,0 +1,6 @@
+Esta aplicación debe respetar el esquema de desarrollo MVC en JavaFX
+Main: Aplicacón JavaFX, metodos de apertura de ventanas (stages)
+view: en este paquete deben estar todos los archivos de escena FXML y sus respectivos controladores particulares,
+así como los archivos CSS que vayan a ser necesarios
+control: controlador de envio y recepción de datos
+model: conexion Hibernate
