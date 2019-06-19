@@ -1,6 +1,6 @@
-create database Rentacar;
+create database bemorsa1qiar4u96lent;
 
-use rentacar;
+use bemorsa1qiar4u96lent;
 
 create table Cliente
 (
@@ -99,16 +99,19 @@ contraseña varchar(20),
 rol varchar(30) 
 );
 
-create table estado_entrega(
-	Id_Estado integer primary key not null auto_increment,
+create table Estado_Entrega(
+	Id_Estado_Entrega integer primary key not null auto_increment,
     Id_Detalle_Renta integer not null,
     kilometraje long not null,
-    nivel_combustible float not null
+    nivel_combustible float not null,
+    descripcion_daño varchar(500)
 );
 
-create table detalle_entrega(
-	id_detalle_entrega integer primary key not null auto_increment,
-    Id_Estado integer not null,
+create table Estado_Recibido(
+	Id_Estado_Recibido integer primary key not null auto_increment,
+    Id_Detalle_Renta integer not null,
+    kilometraje long not null,
+    nivel_combustible float not null,
     descripcion_daño varchar(500)
 );
 
@@ -154,9 +157,9 @@ ALTER TABLE Estado_Entrega
 add foreign key(Id_Detalle_Renta)
 references Detalle_Renta(Id_Detalle_Renta);
 
-ALTER TABLE Detalle_Entrega
-add foreign key(Id_Estado)
-references Estado_Entrega(Id_Estado);
+ALTER TABLE Estado_Recibido
+add foreign key(Id_Detalle_Renta)
+references Detalle_Renta(Id_Detalle_Renta);
 
 #constraints
 
