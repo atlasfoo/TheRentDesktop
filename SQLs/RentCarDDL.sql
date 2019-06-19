@@ -41,22 +41,22 @@ create table Detalle_Renta
 Id_Detalle_Renta integer primary key not null auto_increment,
 Id_Renta int not null,
 Id_Auto int not null,
-Id_Conductor int not null,
+Id_Empleado int not null,
 Fecha_Entrega datetime,
 Fecha_Recibido datetime,
 Costo double
 );
 
-create table Conductor
+create table Empleado
 (
-Id_Conductor integer primary key not null auto_increment,
+Id_Empleado integer primary key not null auto_increment,
 Primer_Nombre varchar(20),
 Segundo_Nombre varchar(20),
 Primer_Apellido varchar(20),
 Segundo_Apellido varchar(20),
 Dirreccion varchar(100),
-Cedula varchar(20),
-Tipo_Licencia varchar(30)
+Cedula varchar(16),
+Puesto varchar(20)
 );
 
 create table Auto
@@ -66,7 +66,7 @@ Placa varchar(10),
 No_Chasis integer,
 Vin varchar(30),
 Color varchar(30),
-Transmición varchar(20),
+Transmisión varchar(20),
 Id_Modelo int not null,
 Estado varchar(20)
 );
@@ -78,7 +78,7 @@ Marca varchar(30),
 Modelo varchar(20),
 Motorizacion varchar(20),
 Combustible varchar(20),
-Tipo_Categoria varchar(20),
+Tipo_Carroceria varchar(20),
 Id_Categoria int not null
 );
 
@@ -93,10 +93,26 @@ Costo_Por_Hora double
 create table sysuser
 (
 Id_sysuser integer primary key not null auto_increment,
+Id_Empleado integer not null,
 user_name varchar(30),
 contraseña varchar(20),
 rol varchar(30) 
 );
+
+create table estado_entrega(
+	Id_Estado integer primary key not null auto_increment,
+    Id_Detalle_Renta integer not null,
+    kilometraje long not null,
+    nivel_combustible float not null
+);
+
+create table detalle_entrega(
+	id_detalle_entrega integer primary key not null auto_increment,
+    Id_Estado integer not null,
+    descripcion_daño varchar(500)
+);
+
+#foreign keys
 
 Alter table Cliente_Telefono 
 add foreign key(Id_Cliente)
@@ -115,8 +131,8 @@ add foreign key(Id_Renta)
 references Renta(Id_Renta);
 
 Alter table Detalle_Renta 
-add foreign key(Id_Conductor)
-references Conductor(Id_Conductor);
+add foreign key(Id_Empleado)
+references Empleado(Id_Empleado);
 
 Alter table Detalle_Renta 
 add foreign key(Id_Auto)
@@ -130,8 +146,20 @@ Alter table Modelo_Auto
 add foreign key(Id_Categoria)
 references Categoria(Id_Categoria);
 
+ALTER TABLE sysuser
+add foreign key(Id_Empleado)
+references Empleado(Id_empleado);
 
+ALTER TABLE Estado_Entrega
+add foreign key(Id_Detalle_Renta)
+references Detalle_Renta(Id_Detalle_Renta);
 
+ALTER TABLE Detalle_Entrega
+add foreign key(Id_Estado)
+references Estado_Entrega(Id_Estado);
 
+#constraints
 
-
+ALTER TABLE Estado_Entrega
+add constraint CK_nivel_combustible
+check(nivel_combustible<=1 and nivel_combustible>0);
