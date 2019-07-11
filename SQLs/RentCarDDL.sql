@@ -1,7 +1,6 @@
-create database bemorsa1qiar4u96lent;
-
 use bemorsa1qiar4u96lent;
 
+#tables
 create table Cliente
 (
 Id_Cliente integer primary key not null auto_increment,
@@ -42,8 +41,8 @@ Id_Detalle_Renta integer primary key not null auto_increment,
 Id_Renta int not null,
 Id_Auto int not null,
 Id_Empleado int not null,
-Fecha_Entrega datetime,
-Fecha_Recibido datetime,
+Fecha_Entrega date,
+Fecha_Recibo date,
 Costo double
 );
 
@@ -54,9 +53,10 @@ Primer_Nombre varchar(20),
 Segundo_Nombre varchar(20),
 Primer_Apellido varchar(20),
 Segundo_Apellido varchar(20),
-Dirreccion varchar(100),
+Direccion varchar(100),
 Cedula varchar(16),
-Puesto varchar(20)
+Telefono varchar(15),
+Correo varchar(50)
 );
 
 create table Auto
@@ -87,8 +87,17 @@ create table Categoria
 Id_Categoria integer primary key not null auto_increment,
 Nombre varchar(30),
 Descripcion varchar(50),
-Costo_Por_Hora double
+Costo_dia float
 );
+
+create table Mantenimiento(
+	id_mantenimientio integer primary key not null auto_increment,
+    id_auto integer not null,
+    fecha_inicio date,
+    fecha_fin date,
+    descripcion varchar(100)
+);
+
 
 create table sysuser
 (
@@ -102,18 +111,14 @@ rol varchar(30)
 create table Estado_Entrega(
 	Id_Estado_Entrega integer primary key not null auto_increment,
     Id_Detalle_Renta integer not null,
+    fecha_reg date,
     kilometraje long not null,
     nivel_combustible float not null,
-    descripcion_daño varchar(500)
+    descripcion_daño varchar(500),
+    tipo_estado VARCHAR(20)
 );
 
-create table Estado_Recibido(
-	Id_Estado_Recibido integer primary key not null auto_increment,
-    Id_Detalle_Renta integer not null,
-    kilometraje long not null,
-    nivel_combustible float not null,
-    descripcion_daño varchar(500)
-);
+
 
 #foreign keys
 
@@ -145,6 +150,10 @@ Alter table Auto
 add foreign key(Id_Modelo)
 references Modelo_Auto(Id_Modelo);
 
+ALTER TABLE Mantenimiento
+add foreign key(id_auto)
+references Auto(Id_Auto);
+
 Alter table Modelo_Auto
 add foreign key(Id_Categoria)
 references Categoria(Id_Categoria);
@@ -157,11 +166,27 @@ ALTER TABLE Estado_Entrega
 add foreign key(Id_Detalle_Renta)
 references Detalle_Renta(Id_Detalle_Renta);
 
-ALTER TABLE Estado_Recibido
-add foreign key(Id_Detalle_Renta)
-references Detalle_Renta(Id_Detalle_Renta);
-
 #constraints
+
+ALTER TABLE Cliente
+add constraint CK_cliente_stat
+check(Estado='ACTIVO' OR Estado='INACTIVO');
+
+ALTER TABLE Renta
+add constraint CK_renta_stat
+check(Estado='RESERVADO' OR Estado='CANCELADO' OR Estado='PAGADO');
+
+ALTER TABLE Auto
+add constraint CK_auto_stat
+check(Estado='RENTADO' OR Estado='DISPONIBLE' OR Estado='EN MANTENIMIENTO');
+
+ALTER TABLE sysuser
+add constraint CK_sysusr_role
+check(rol='SYSADMIN' OR rol='PROPIETARIO' OR rol='VENDEDOR' OR rol='ENTREGA');
+
+ALTER TABLE Estado_Entrega
+add constraint CK_entrega_stat
+check(tipo_estado='ENTRADA' OR tipo_estado='SALIDA');
 
 ALTER TABLE Estado_Entrega
 add constraint CK_nivel_combustible
