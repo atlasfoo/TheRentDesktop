@@ -188,6 +188,14 @@ ALTER TABLE Estado_Entrega
 add constraint CK_entrega_stat
 check(tipo_estado='ENTRADA' OR tipo_estado='SALIDA');
 
+ALTER TABLE Modelo_Auto
+add constraint CK_combustible
+check(Combustible='DIESEL' or Combustible='GASOLINA' or Combustible='HIBRIDO');
+
+ALTER TABLE Auto
+add constraint CK_transmision
+check(Transmisión='MANUAL' or Transmisión='AUTOMATICO');
+
 ALTER TABLE Estado_Entrega
 add constraint CK_nivel_combustible
 check(nivel_combustible<=1 and nivel_combustible>0);
