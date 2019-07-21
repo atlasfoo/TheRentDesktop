@@ -33,4 +33,19 @@ call sp_new_modelo('Mitsubishi', 'L200', '2.5 TDi', 2, 'PickUp', 20);
 call sp_new_modelo('Toyota', 'Corolla', '1.8 VVTi', 1, 'Sedan', 17);
 call sp_new_modelo('Nissan', 'Frontier NP-300', '3.0 TDi', 2, 'PickUp', 19);
 
+select * from Modelo_Auto;
 #auto
+
+call sp_new_auto('M255055', '3GNAL2E0K9ES651801', '3GNAL2EK9ES651801', 'Rojo', 1, 1);
+call sp_new_auto('M305479', '3GNAL2E0K9ES651801', '3GNAL2EK9ES651801', 'Blanco', 1, 1);
+call sp_new_auto('M289877', '3GNAL2E0K9ES651801', '3GNAL2EK9ES651801', 'Blanco', 2, 2);
+call sp_new_auto('M315023', '3GNAL2E0K9ES651801', '3GNAL2EK9ES651801', 'Blanco', 1, 4);
+call sp_new_auto('M284758', '3GNAL2E0K9ES651801', '3GNAL2EK9ES651801', 'Rojo', 1, 3);
+call sp_new_auto('M299701', '3GNAL2E0K9ES651801', '3GNAL2EK9ES651801', 'Azul', 2, 7);
+call sp_new_auto('M270040', '3GNAL2E0K9ES651801', '3GNAL2EK9ES651801', 'Blanco', 1, 5);
+call sp_new_auto('M299999', '3GNAL2E0K9ES651801', '3GNAL2EK9ES651801', 'Rojo', 2, 6);
+
+
+select ma.Marca, ma.Modelo, ma.Tipo_Carroceria, a.Placa, a.Color, a.Transmisión, a.Estado from Auto a 
+inner join Modelo_Auto ma on a.Id_Modelo=ma.Id_Modelo;
+
