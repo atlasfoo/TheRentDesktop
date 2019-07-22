@@ -123,6 +123,25 @@ BEGIN
 	insert into Cliente_Telefono values(idCliente,Numero);
 END
 
+CREATE DEFINER=`uuvywdmg2p2x5tad`@`%` PROCEDURE `sp_buscar_Cliente`(in Dato varchar(20))
+BEGIN
+ Select
+ c.Primer_Nombre,
+ c.Segundo_Nombre,
+ c.Primer_Apellido,
+ c.Segundo_Apellido,
+ c.Cedula as Cédula,
+ c.Dirreccion as Dirección,
+ c.Tipo_Cliente,
+ c.Estado as Estado
+ from Cliente c
+ where c.Primer_Nombre like CONCAT(Dato,'%')
+ or  c.Segundo_Nombre like CONCAT(Dato,'%') 
+ or  c.Primer_Apellido like CONCAT(Dato,'%') 
+ or  c.Segundo_Apellido like CONCAT(Dato,'%')
+ or  c.Cedula like CONCAT(Dato,'%');
+END
+
 
 /*procedimiento para popular las tablas*/
 
