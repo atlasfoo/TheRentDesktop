@@ -199,3 +199,20 @@ check(Transmisión='MANUAL' or Transmisión='AUTOMATICO');
 ALTER TABLE Estado_Entrega
 add constraint CK_nivel_combustible
 check(nivel_combustible<=1 and nivel_combustible>0);
+
+alter table Cliente
+add constraint CK_Cliente_Cedula
+check (Cedula  like '[0-9][0-9][0-9][-][0-9][0-9][0-9][0-9][0-9][0-9][-][0-9][0-9][0-9][0-9][a-z]')
+
+alter table Cliente_Telefono
+add constraint CK_Telefono
+check (Telefono  like '[0-9][0-9][-][0-9][0-9][0-9][-][0-9][0-9][0-9]')
+
+alter table Cliente
+add constraint CK_Tipo_Cliente
+check (Tipo_Cliente = 'Convencional' or Tipo_Cliente = 'Turista' or 
+Tipo_Cliente = 'Ejecutivo')
+
+alter table Cliente
+add constraint CK_Estado
+check (Estado = 'Habilitado' or Estado = 'Deshabilitado')

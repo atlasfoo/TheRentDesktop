@@ -84,3 +84,33 @@ begin
 	end if;
     insert into Auto(Placa, Vin, Color, Transmisión, Id_Modelo, Estado, No_Chasis) values(placa, vin, color, transm, id_mod, 'DISPONIBLE', no_c);
 end//
+
+CREATE DEFINER=`uuvywdmg2p2x5tad`@`%` PROCEDURE `sp_new_cliente`(  in primernombre varchar(20),
+	in segundonombre varchar(20),
+	in primerapellido varchar(20),
+	in segundoapellido varchar(20),
+	in cedula varchar(20),
+	in direccion varchar(100),
+	in tipocliente int)
+BEGIN
+declare tip varchar(20);
+		
+		if tipocliente=1 then
+		 set tip='Convencional';
+		
+		elseif tipocliente=2 then
+		 set tip='Turista';
+		
+		else 
+		 set tip='Ejecutivo';
+		
+		end if;
+		
+		insert into Cliente(Primer_Nombre,Segundo_Nombre,Primer_Apellido
+		,Segundo_Apellido,Cedula,Dirreccion,Tipo_Cliente,Estado)
+		values (primernombre,segundonombre,primerapellido,segundoapellido,cedula,direccion,tip,'Habilitado');
+END
+
+
+
+
