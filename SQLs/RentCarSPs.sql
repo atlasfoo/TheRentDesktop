@@ -111,6 +111,31 @@ declare tip varchar(20);
 		values (primernombre,segundonombre,primerapellido,segundoapellido,cedula,direccion,tip,'Habilitado');
 END
 
+/*procedimiento para popular las tablas*/
 
+/*popular tabla Renta*/
+delimiter //
+create PROCEDURE sp_new_renta(
+in id_client int,
+in fecha_2 date,
+in estado_2 varchar(20))
+begin
+	insert into Renta(Id_Cliente,Fecha,Estado) values(id_client,fecha_2,estado_2);
+end //;
+
+/*Popular tabla detalle renta*/
+delimiter //
+create procedure sp_new_detalle_renta(
+in id_rent int, 
+in id_car int,
+in id_employees int,
+in date_of_delivery date, 
+in date_of_receipt date,
+in cost double
+)
+begin
+	insert into Detalle_Renta(Id_Renta,Id_Auto,Id_Empleado,Fecha_Entrega,Fecha_Recibo,Costo) 
+					   values(id_rent,id_car,id_employees,date_of_delivery,date_of_receipt,cost);
+end //;
 
 
