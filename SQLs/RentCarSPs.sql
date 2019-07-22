@@ -84,6 +84,7 @@ begin
 	end if;
     insert into Auto(Placa, Vin, Color, Transmisión, Id_Modelo, Estado, No_Chasis) values(placa, vin, color, transm, id_mod, 'DISPONIBLE', no_c);
 end//
+#Cliente
 
 CREATE DEFINER=`uuvywdmg2p2x5tad`@`%` PROCEDURE `sp_new_cliente`(  in primernombre varchar(20),
 	in segundonombre varchar(20),
@@ -110,6 +111,18 @@ declare tip varchar(20);
 		,Segundo_Apellido,Cedula,Dirreccion,Tipo_Cliente,Estado)
 		values (primernombre,segundonombre,primerapellido,segundoapellido,cedula,direccion,tip,'Habilitado');
 END
+
+
+CREATE DEFINER=`uuvywdmg2p2x5tad`@`%` PROCEDURE `sp_new_cliente_email`(in idCliente int, in email varchar(40))
+BEGIN
+	insert into Cliente_Email values (idCliente,email);
+END
+
+CREATE DEFINER=`uuvywdmg2p2x5tad`@`%` PROCEDURE `sp_new_cliente_telefono`(in idCliente int, in Numero int(11))
+BEGIN
+	insert into Cliente_Telefono values(idCliente,Numero);
+END
+
 
 /*procedimiento para popular las tablas*/
 
