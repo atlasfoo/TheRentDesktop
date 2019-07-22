@@ -76,4 +76,16 @@ call sp_new_detalle_renta(8,17,1,'2019-07-28','2019-07-29',1500);
 
 select * from Detalle_Renta;
 
+#Cliente
+
+call sp_new_cliente ('Francisco','Javier','Sandoval','Maldonado','06-1200-1011H','(Tipitapa) Cohetera San Rafael 1C 1/2 arriba','Convencional','Habilitado');
+call sp_new_cliente ('Omar','Josue','Flores','Castillo','001-132002-1021G','(Tipitapa) del cementerio central 2c arriba','Convencional','Habilitado');
+call sp_new_cliente ('Kevin','Alejandro','Castro','Centeno','001-182004-1011F','VI.Reconciliacion, Semaforos mercado mayoreo 3C','Convencional','Habilitado');
+call sp_new_cliente ('Carla','Vanessa	Rivas','Davila','002-061993-0001J','Del Arbolito de Santa Ana 3c Al norte','Turista','Habilitado');
+call sp_new_cliente ('Candida','Rosa','Orozco','Vargas','011-201977-1001C','De la rolter km 4.5 2c al sur 1c al norte','Convencional','Habilitado');
+call sp_new_cliente ('Betzayda','Marbelly','Balmaceda','Moreno','011-131997-000M','Del gancho de camino 5c al sur 1 al norte','Ejecutivo','Habilitado');
+call sp_new_cliente ('Emiliano','Francisco','Arauz','Ortiz','000-041960-000F''(Tipitapa) Cohetera leo 1c al sur','Turista','Habilitado');
+call sp_new_cliente ('Reyna','Marbelly','Silva','Rojas','002-041970-001R','Del Hospital Aleman, 2C al norte , 1/2c al sur','Ejecutivo','Habilitado');
+
+
 
