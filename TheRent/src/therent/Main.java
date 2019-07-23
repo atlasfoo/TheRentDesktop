@@ -13,7 +13,8 @@ public class Main extends Application {
     Stage primaryStage;
     @Override
     public void start(Stage primaryStage) throws Exception{
-        //TODO: implementar start
+        this.primaryStage=primaryStage;
+        primaryStage.setTitle("TheRent Link System");
         showLogin();
     }
     private void showLogin(){
