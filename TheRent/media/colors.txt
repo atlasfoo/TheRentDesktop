@@ -1,0 +1,18 @@
+Principal(azul)
+#01579b; forecolor #fff
+
+    P — Light
+    #4f83cc; forecolor #000
+
+    P — Dark
+    #002f6c; forecolor #fff
+
+Secundario
+#26c6da; forecolor #000
+
+
+    S — Light
+    #6ff9ff; forecolor #000
+
+    S — Dark
+    #0095a8; forecolor #000
