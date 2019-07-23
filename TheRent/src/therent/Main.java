@@ -59,7 +59,7 @@ public class Main extends Application {
     }
     /*TODO:
        1: implementar el resto de las funcionalidades, cada quien en su rama
-    *  issue 1: Verificar la carga de imagenes
+    *  issue 1: RESUELTO
     *  issue 2: investigar como crear una pantalla de carga, ya que el servidor bd
     *  remoto toma tiempo en responder*/
 

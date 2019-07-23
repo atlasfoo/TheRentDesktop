@@ -40,7 +40,7 @@
                         <Insets bottom="10.0" />
                      </BorderPane.margin>
                      <image>
-                        <Image url="@../../../media/img/car.png" />
+                        <Image url="file:media/img/car.png" />
                      </image>
                   </ImageView>
                </center>
@@ -62,7 +62,7 @@
                         <Insets bottom="10.0" />
                      </BorderPane.margin>
                      <image>
-                        <Image url="@../../../media/img/reservation.png" />
+                        <Image url="file:media/img/reservation.png" />
                      </image>
                   </ImageView>
                </center>
@@ -81,7 +81,7 @@
                         <Insets bottom="10.0" />
                      </BorderPane.margin>
                      <image>
-                        <Image url="@../../../media/img/boss.png" />
+                        <Image url="file:media/img/boss.png" />
                      </image>
                   </ImageView>
                </center>
@@ -100,7 +100,7 @@
                         <Insets bottom="10.0" />
                      </BorderPane.margin>
                      <image>
-                        <Image url="@../../../media/img/key.png" />
+                        <Image url="file:media/img/key.png" />
                      </image>
                   </ImageView>
                </center>
