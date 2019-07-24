@@ -153,7 +153,7 @@ in fecha_2 date,
 in estado_2 varchar(20))
 begin
 	insert into Renta(Id_Cliente,Fecha,Estado) values(id_client,fecha_2,estado_2);
-end //;
+end //
 
 /*Popular tabla detalle renta*/
 delimiter //
@@ -168,6 +168,60 @@ in cost double
 begin
 	insert into Detalle_Renta(Id_Renta,Id_Auto,Id_Empleado,Fecha_Entrega,Fecha_Recibo,Costo) 
 					   values(id_rent,id_car,id_employees,date_of_delivery,date_of_receipt,cost);
-end //;
+end //
+
+#procedimiento de visualizacion de reservas
+delimiter //
+create procedure sp_visualizacion_reservas()
+begin
+select 
+concat(c.Primer_Nombre , ' ' , c.Segundo_Nombre)  as 'Nombres',
+concat(c.Primer_Apellido , ' ' , c.Segundo_Apellido) as 'Apellidos',
+dr.Fecha_Entrega as 'Fecha de Entrega', 
+dr.Fecha_Recibo as 'Fecha de Recibido',
+MA.Marca as 'Marca del Auto',
+MA.Modelo as 'Modelo del Auto',
+dr.Costo as 'Costo de la Renta'
+from Renta r
+inner join Detalle_Renta dr
+on dr.Id_Renta = r.Id_Renta
+inner join Auto a
+on a.Id_Auto = dr.Id_Auto
+inner join Modelo_Auto MA
+on MA.Id_Modelo = a.Id_Modelo
+inner join Cliente c
+on c.Id_Cliente = r.Id_Cliente
+group by r.Id_Renta;
+end //
+
+#procedimiento de busqueda de reservas
+
+/*busqueda de las reservas disponibles*/
+delimiter //
+create procedure sp_buscar_reservas(in dato_cliente Varchar(50))
+begin
+ select 
+concat(c.Primer_Nombre , ' ' , c.Segundo_Nombre)  as 'Nombres',
+concat(c.Primer_Apellido , ' ' , c.Segundo_Apellido) as 'Apellidos',
+dr.Fecha_Entrega as 'Fecha de Entrega', 
+dr.Fecha_Recibo as 'Fecha de Recibido',
+MA.Marca as 'Marca del Auto',
+MA.Modelo as 'Modelo del Auto',
+dr.Costo as 'Costo de la Renta'
+from Renta r
+inner join Detalle_Renta dr
+on dr.Id_Renta = r.Id_Renta
+inner join Auto a
+on a.Id_Auto = dr.Id_Auto
+inner join Modelo_Auto MA
+on MA.Id_Modelo = a.Id_Modelo
+inner join Cliente c
+on c.Id_Cliente = r.Id_Cliente
+where c.Primer_Nombre like CONCAT(Dato_cliente,'%')
+or  c.Segundo_Nombre like CONCAT(Dato_cliente,'%') 
+or  c.Primer_Apellido like CONCAT(Dato_cliente,'%') 
+or  c.Segundo_Apellido like CONCAT(Dato_cliente,'%');
+end //
+
 
 
