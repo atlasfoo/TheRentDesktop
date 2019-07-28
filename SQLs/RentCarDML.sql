@@ -51,14 +51,15 @@ inner join Modelo_Auto ma on a.Id_Modelo=ma.Id_Modelo;
 
 #Renta
 /*ejecutar el procedimiento*/
-call sp_new_renta(2,'2019-07-21','RESERVADO');
-call sp_new_renta(3,'2019-07-22','CANCELADO');
-call sp_new_renta(4,'2019-07-23','RESERVADO');
-call sp_new_renta(5,'2019-07-24','PAGADO');
-call sp_new_renta(6,'2019-07-21','RESERVADO');
-call sp_new_renta(7,'2019-07-22','RESERVADO');
-call sp_new_renta(8,'2019-07-23','PAGADO');
-call sp_new_renta(9,'2019-07-21','CANCELADO');
+call sp_new_renta(2,1);
+call sp_new_renta(3,2);
+call sp_new_renta(4,1);
+call sp_new_renta(5,3);
+call sp_new_renta(6,1);
+call sp_new_renta(7,1);
+call sp_new_renta(8,3);
+call sp_new_renta(9,2);
+call sp_new_renta(6,2);
 
 select * from Renta;
 
@@ -72,7 +73,7 @@ call sp_new_detalle_renta(5,14,1,'2019-07-25','2019-07-27',3000);
 call sp_new_detalle_renta(6,15,1,'2019-07-26','2019-07-29',4500);
 call sp_new_detalle_renta(7,16,1,'2019-07-25','2019-07-26',1500);
 call sp_new_detalle_renta(8,17,1,'2019-07-28','2019-07-29',1500);
-
+call sp_new_detalle_renta(9,12,1,'2019-07-28','2019-07-29',1500);
 
 select * from Detalle_Renta;
 

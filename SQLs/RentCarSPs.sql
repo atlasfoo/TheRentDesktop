@@ -149,10 +149,17 @@ END
 delimiter //
 create PROCEDURE sp_new_renta(
 in id_client int,
-in fecha_2 date,
-in estado_2 varchar(20))
+in estados int)
 begin
-	insert into Renta(Id_Cliente,Fecha,Estado) values(id_client,fecha_2,estado_2);
+	declare combstat varchar(20);
+	if estados=1 then
+		set combstat = 'RESERVADO';
+	elseif estados=2 then
+		set combstat = 'CANCELADO';
+	elseif estados=3 then
+		set combstat = 'PAGADO';
+	end if;
+    insert into Renta(Id_Cliente,Fecha,Estado) values(id_client,now(),combstat);
 end //
 
 /*Popular tabla detalle renta*/
@@ -170,7 +177,9 @@ begin
 					   values(id_rent,id_car,id_employees,date_of_delivery,date_of_receipt,cost);
 end //
 
-#procedimiento de visualizacion de reservas
+#procedimiento para la Reserva Interfaz
+
+#visualizacion de todas las reservas
 delimiter //
 create procedure sp_visualizacion_reservas()
 begin
@@ -194,9 +203,9 @@ on c.Id_Cliente = r.Id_Cliente
 group by r.Id_Renta;
 end //
 
-#procedimiento de busqueda de reservas
+call sp_visualizacion_reservas();
 
-/*busqueda de las reservas disponibles*/
+/*busqueda de las reservas*/
 delimiter //
 create procedure sp_buscar_reservas(in dato_cliente Varchar(50))
 begin
@@ -221,6 +230,33 @@ where c.Primer_Nombre like CONCAT(Dato_cliente,'%')
 or  c.Segundo_Nombre like CONCAT(Dato_cliente,'%') 
 or  c.Primer_Apellido like CONCAT(Dato_cliente,'%') 
 or  c.Segundo_Apellido like CONCAT(Dato_cliente,'%');
+end //
+
+/*Procedimiento almacenado para agregar la reserva*/
+delimiter //
+create procedure sp_agregar_reserva(
+/*renta*/
+in id_client int,
+in estados int,
+/*detalle renta*/
+in id_car int,
+in id_employees int,
+in date_of_delivery date, 
+in date_of_receipt date,
+in cost double
+)
+begin
+	declare combstat varchar(20);
+    if estados=1 then
+		set combstat = 'RESERVADO';
+	elseif estados=2 then
+		set combstat = 'CANCELADO';
+	elseif estados=3 then
+		set combstat = 'PAGADO';
+	end if;
+    insert into Renta(Id_Cliente,Fecha,Estado) values(id_client,now(),combstat);
+	insert into Detalle_Renta(Id_Renta,Id_Auto,Id_Empleado,Fecha_Entrega,Fecha_Recibo,Costo) 
+					   values((select count(distinct Id_Renta)from Renta),id_car,id_employees,date_of_delivery,date_of_receipt,cost);
 end //
 
 

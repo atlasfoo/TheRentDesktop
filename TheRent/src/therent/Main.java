@@ -18,7 +18,8 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         this.primaryStage=primaryStage;
         primaryStage.setTitle("TheRent Link System");
-        showLogin();
+        showReservationFrame();
+        //showLogin();
     }
 
     public void showMainFrame(String role){
@@ -57,7 +58,43 @@ public class Main extends Application {
             e.printStackTrace();
         }
     }
-    /*TODO:
+
+
+
+
+    public void showReservationFrame(){
+        FXMLLoader loader=new FXMLLoader();
+        loader.setLocation(Main.class.getResource("view/ReservaWindow.fxml"));
+        try {
+            AnchorPane root=loader.load();
+            primaryStage.setScene(new Scene(root));
+            //primaryStage.setMaximized(true);
+            //MainFrameControl ctrl=loader.getController();
+            //ctrl.setRole(role);
+            primaryStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        /*try
+        {
+            Ventana("view/ReservaWindow.fxml");
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }*/
+    }
+
+    public void Ventana(String ruta) throws IOException
+    {
+        Stage stage_2 = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource(ruta));
+        stage_2.initModality(Modality.APPLICATION_MODAL);
+        stage_2.setScene(new Scene(root));
+        //stage_2.show();
+        stage_2.showAndWait();
+    }
+/*TODO:
        1: implementar el resto de las funcionalidades, cada quien en su rama
     *  issue 1: RESUELTO
     *  issue 2: investigar como crear una pantalla de carga, ya que el servidor bd
