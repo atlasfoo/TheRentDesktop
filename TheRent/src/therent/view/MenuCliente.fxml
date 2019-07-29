@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXDrawer?>
+<?import com.jfoenix.controls.JFXHamburger?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="687.0" prefWidth="1095.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="therent.view.control_MenuCliente">
+   <children>
+      <BorderPane layoutX="14.0" layoutY="14.0" prefHeight="687.0" prefWidth="1095.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <top>
+            <HBox prefHeight="53.0" prefWidth="1095.0" spacing="50.0">
+               <children>
+                  <JFXHamburger fx:id="menu" cache="true" prefHeight="129.0" prefWidth="97.0">
+                     <HBox.margin>
+                        <Insets left="5.0" />
+                     </HBox.margin>
+                  </JFXHamburger>
+                  <JFXDrawer fx:id="plegable" direction="TOP" prefHeight="54.0" prefWidth="462.0" />
+                  <JFXDrawer fx:id="plegable1" direction="TOP" prefHeight="53.0" prefWidth="449.0" />
+               </children>
+            </HBox>
+         </top>
+         <left>
+            <Pane prefHeight="634.0" prefWidth="318.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
+               <effect>
+                  <DropShadow />
+               </effect>
+               <children>
+                  <JFXButton fx:id="idGuardar" buttonType="RAISED" layoutX="125.0" layoutY="509.0" onAction="#AgregandoCliente" prefHeight="34.0" prefWidth="90.0" ripplerFill="WHITE" style="-fx-background-color: #2196F3;" text="Guardar" textFill="WHITE" />
+                  <JFXTextField fx:id="idPNombre" alignment="CENTER" labelFloat="true" layoutX="81.0" layoutY="20.0" prefHeight="40.0" prefWidth="190.0" promptText="Primer Nombre" />
+                  <JFXTextField fx:id="idSNombre" alignment="CENTER" labelFloat="true" layoutX="81.0" layoutY="82.0" prefHeight="40.0" prefWidth="190.0" promptText="Segundo Nombre" />
+                  <JFXTextField fx:id="idPApellido" alignment="CENTER" labelFloat="true" layoutX="81.0" layoutY="146.0" prefHeight="40.0" prefWidth="190.0" promptText="Primer Apellido" />
+                  <JFXTextField fx:id="idSApellido" alignment="CENTER" labelFloat="true" layoutX="81.0" layoutY="213.0" prefHeight="40.0" prefWidth="190.0" promptText="Segundo Apellido" />
+                  <JFXTextField fx:id="idCedula" alignment="CENTER" labelFloat="true" layoutX="81.0" layoutY="280.0" prefHeight="40.0" prefWidth="190.0" promptText="Cédula" />
+                  <JFXTextField fx:id="idDireccion" alignment="CENTER" labelFloat="true" layoutX="81.0" layoutY="345.0" prefHeight="40.0" prefWidth="190.0" promptText="Dirección" />
+                  <JFXComboBox fx:id="idTipoCliente" labelFloat="true" layoutX="81.0" layoutY="414.0" prefHeight="40.0" prefWidth="190.0" promptText="                   Tipo De Cliente" />
+                  <Text fx:id="idTextoMensaje" layoutX="33.0" layoutY="578.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="164.13671875" />
+               </children>
+            </Pane>
+         </left>
+         <center>
+            <TableView fx:id="TablaDatos" prefHeight="480.0" prefWidth="662.0" BorderPane.alignment="CENTER">
+               <columns>
+                  <TableColumn fx:id="cNombre" prefWidth="139.0" text="Nombre" />
+                  <TableColumn fx:id="cApellido" prefWidth="130.0" text="Apellido" />
+                  <TableColumn fx:id="cCedula" prefWidth="169.0" text="Cédula" />
+                  <TableColumn fx:id="cDireccion" prefWidth="157.0" text="Dirección" />
+                  <TableColumn fx:id="cTipoCliente" prefWidth="181.0" text="Tipo De Cliente" />
+                  <TableColumn fx:id="cEstado" prefWidth="181.0" text="Estado" />
+               </columns>
+            </TableView>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>
