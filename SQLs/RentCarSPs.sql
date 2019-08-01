@@ -38,7 +38,8 @@ CREATE PROCEDURE sp_new_sysuser (in id_empleado int, in usrname varchar(50), in 
         select rol into roln from sysuser where Id_Empleado=id_empleado;
 	END    
 //
-
+call sp_login_sysuser('admin','admin.123',@m);
+select @m;
 ALTER TABLE sysuser convert to character set utf8mb4
 drop procedure sp_login_sysuser;
 DELIMITER //
@@ -84,6 +85,39 @@ begin
 	end if;
     insert into Auto(Placa, Vin, Color, Transmisión, Id_Modelo, Estado, No_Chasis) values(placa, vin, color, transm, id_mod, 'DISPONIBLE', no_c);
 end//
+
+drop procedure sp_auto_all
+
+UPDATE Auto SET año=2017;
+
+SELECT * FROM Categoria
+
+UPDATE Categoria SET deposito=200 WHERE Id_Categoria<19;
+
+UPDATE Categoria SET deposito=300 WHERE Id_Categoria>=19;
+
+DELIMITER //
+CREATE PROCEDURE sp_auto_all()
+begin
+	SELECT a.Id_Auto as IDAuto,
+	ma.Marca as Marca,
+	ma.Modelo as Modelo,
+   a.Color as Color,
+   a.año AS Año,
+	a.Transmisión as Transmisión,
+	ma.Tipo_Carroceria as Carrocería,
+	ma.Combustible as Combustible,
+	a.Placa as Placa,
+	a.Vin as VIN,
+	c.Descripcion as Categoría,
+	c.Costo_dia as Precio,
+	c.Deposito AS Depsósito,
+	a.Estado as Estado FROM Auto a 
+	INNER JOIN Modelo_Auto ma ON a.Id_Modelo=ma.Id_Modelo
+	INNER JOIN Categoria c ON c.Id_Categoria=ma.Id_Categoria;
+end //
+
+call sp_auto_all
 #Cliente
 
 CREATE DEFINER=`uuvywdmg2p2x5tad`@`%` PROCEDURE `sp_new_cliente`(  in primernombre varchar(20),
@@ -153,7 +187,7 @@ in fecha_2 date,
 in estado_2 varchar(20))
 begin
 	insert into Renta(Id_Cliente,Fecha,Estado) values(id_client,fecha_2,estado_2);
-end //
+end //;
 
 /*Popular tabla detalle renta*/
 delimiter //
@@ -168,60 +202,6 @@ in cost double
 begin
 	insert into Detalle_Renta(Id_Renta,Id_Auto,Id_Empleado,Fecha_Entrega,Fecha_Recibo,Costo) 
 					   values(id_rent,id_car,id_employees,date_of_delivery,date_of_receipt,cost);
-end //
-
-#procedimiento de visualizacion de reservas
-delimiter //
-create procedure sp_visualizacion_reservas()
-begin
-select 
-concat(c.Primer_Nombre , ' ' , c.Segundo_Nombre)  as 'Nombres',
-concat(c.Primer_Apellido , ' ' , c.Segundo_Apellido) as 'Apellidos',
-dr.Fecha_Entrega as 'Fecha de Entrega', 
-dr.Fecha_Recibo as 'Fecha de Recibido',
-MA.Marca as 'Marca del Auto',
-MA.Modelo as 'Modelo del Auto',
-dr.Costo as 'Costo de la Renta'
-from Renta r
-inner join Detalle_Renta dr
-on dr.Id_Renta = r.Id_Renta
-inner join Auto a
-on a.Id_Auto = dr.Id_Auto
-inner join Modelo_Auto MA
-on MA.Id_Modelo = a.Id_Modelo
-inner join Cliente c
-on c.Id_Cliente = r.Id_Cliente
-group by r.Id_Renta;
-end //
-
-#procedimiento de busqueda de reservas
-
-/*busqueda de las reservas disponibles*/
-delimiter //
-create procedure sp_buscar_reservas(in dato_cliente Varchar(50))
-begin
- select 
-concat(c.Primer_Nombre , ' ' , c.Segundo_Nombre)  as 'Nombres',
-concat(c.Primer_Apellido , ' ' , c.Segundo_Apellido) as 'Apellidos',
-dr.Fecha_Entrega as 'Fecha de Entrega', 
-dr.Fecha_Recibo as 'Fecha de Recibido',
-MA.Marca as 'Marca del Auto',
-MA.Modelo as 'Modelo del Auto',
-dr.Costo as 'Costo de la Renta'
-from Renta r
-inner join Detalle_Renta dr
-on dr.Id_Renta = r.Id_Renta
-inner join Auto a
-on a.Id_Auto = dr.Id_Auto
-inner join Modelo_Auto MA
-on MA.Id_Modelo = a.Id_Modelo
-inner join Cliente c
-on c.Id_Cliente = r.Id_Cliente
-where c.Primer_Nombre like CONCAT(Dato_cliente,'%')
-or  c.Segundo_Nombre like CONCAT(Dato_cliente,'%') 
-or  c.Primer_Apellido like CONCAT(Dato_cliente,'%') 
-or  c.Segundo_Apellido like CONCAT(Dato_cliente,'%');
-end //
-
+end //;
 
 
