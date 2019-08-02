@@ -17,13 +17,14 @@ public class Auto {
     private FloatProperty precio;
     private FloatProperty deposito;
     private StringProperty estado;
+    private StringProperty isenabled;
 
     //constructor vacío
     public Auto() {
     }
 
     //constructor completo
-    public Auto(int IDAuto, String marca, String modelo, String color, int anho, String transmision, String carrocerria, String combustible, String placa, String VIN, String categoria, float precio, float deposito, String estado) {
+    public Auto(int IDAuto, String marca, String modelo, String color, int anho, String transmision, String carrocerria, String combustible, String placa, String VIN, String categoria, float precio, float deposito, String estado, String y_n) {
         this.IDAuto = new SimpleIntegerProperty(IDAuto);
         this.marca = new SimpleStringProperty( marca);
         this.modelo = new SimpleStringProperty( modelo);
@@ -38,6 +39,7 @@ public class Auto {
         this.precio = new SimpleFloatProperty( precio);
         this.deposito = new SimpleFloatProperty( deposito);
         this.estado = new SimpleStringProperty( estado);
+        this.isenabled=new SimpleStringProperty(y_n);
     }
     //getters y setters
 
@@ -207,6 +209,18 @@ public class Auto {
 
     public void setEstado(String estado) {
         this.estado.set(estado);
+    }
+
+    public String getIsenabled() {
+        return isenabled.get();
+    }
+
+    public StringProperty isenabledProperty() {
+        return isenabled;
+    }
+
+    public void setIsenabled(String isenabled) {
+        this.isenabled.set(isenabled);
     }
 }
 
