@@ -96,6 +96,15 @@ UPDATE Categoria SET deposito=200 WHERE Id_Categoria<19;
 
 UPDATE Categoria SET deposito=300 WHERE Id_Categoria>=19;
 
+ALTER TABLE Auto
+ADD COLUMN is_enabled VARCHAR(20);
+
+ALTER TABLE Auto
+ADD CONSTRAINT ck_auto_enabled
+CHECK(is_enabled='SI' OR is_enabled='NO');
+
+UPDATE Auto SET is_enabled='SI';
+
 DELIMITER //
 CREATE PROCEDURE sp_auto_all()
 begin
@@ -112,10 +121,12 @@ begin
 	c.Descripcion as Categoría,
 	c.Costo_dia as Precio,
 	c.Deposito AS Depsósito,
+	a.is_enabled AS Habilitado,
 	a.Estado as Estado FROM Auto a 
 	INNER JOIN Modelo_Auto ma ON a.Id_Modelo=ma.Id_Modelo
 	INNER JOIN Categoria c ON c.Id_Categoria=ma.Id_Categoria;
 end //
+
 
 call sp_auto_all
 #Cliente

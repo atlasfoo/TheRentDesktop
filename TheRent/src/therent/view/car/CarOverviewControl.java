@@ -1,9 +1,13 @@
 package therent.view.car;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import therent.control.CAuto;
 import therent.model.beans.Auto;
 
 import java.util.List;
@@ -47,6 +51,9 @@ public class CarOverviewControl {
     private Label placLbl;
 
     @FXML
+    private Label carrLbl;
+
+    @FXML
     private Label vinLbl;
 
     @FXML
@@ -64,14 +71,79 @@ public class CarOverviewControl {
     @FXML
     private Label ishabLbl;
 
-    private List<Auto> autos;
+    private ObservableList<Auto> autos;
 
     public void setAutos(List<Auto> autos) {
-        this.autos = autos;
+        this.autos = FXCollections.observableArrayList(autos);
     }
 
     public void initialize(){
+        refreshAutos();
+        marcColumn.setCellValueFactory(cellData->cellData.getValue().marcaProperty());
+        modColumn.setCellValueFactory(cellData->cellData.getValue().modeloProperty());
+        yrColumn.setCellValueFactory(cellData->cellData.getValue().anhoProperty().asObject());
+        colorColumn.setCellValueFactory(cellData->cellData.getValue().colorProperty());
+        // Limpiar vista de detalles
+        carOverview(null);
+        carTable.getSelectionModel().selectedItemProperty().addListener(
+                ((observable, oldvalue, newvalue) -> carOverview(newvalue)
+        ));
+    }
 
+    private void refreshAutos(){
+        try {
+            this.autos = FXCollections.observableArrayList(CAuto.getAutos());
+        }catch (Exception ex){
+            msgerr(ex.getMessage());
+        }finally {
+            carTable.setItems(this.autos);
+        }
+    }
+
+
+
+    private void carOverview(Auto auto){
+        if(auto==null){
+            marcaLbl.setText("---");
+            modLbl.setText("---");
+            colLbl.setText("---");
+            yrLbl.setText(("---"));
+            transLbl.setText("---");
+            combLbl.setText("---");
+            placLbl.setText("---");
+            vinLbl.setText("---");
+            catLbl.setText("---");
+            carrLbl.setText("---");
+            precLbl.setText(("---"));
+            depoLbl.setText(("---"));
+            ishabLbl.setText("---");
+            estLbl.setText("---");
+            return;
+        }
+
+        marcaLbl.setText(auto.getMarca());
+        modLbl.setText(auto.getModelo());
+        colLbl.setText(auto.getColor());
+        yrLbl.setText(Integer.toString(auto.getAnho()));
+        transLbl.setText(auto.getTransmision());
+        combLbl.setText(auto.getCombustible());
+        placLbl.setText(auto.getPlaca());
+        vinLbl.setText(auto.getVIN());
+        catLbl.setText(auto.getCategoria());
+        carrLbl.setText(auto.getCarrocerria());
+        precLbl.setText(Float.toString(auto.getPrecio()));
+        depoLbl.setText(Float.toString(auto.getDeposito()));
+        ishabLbl.setText(auto.getIsenabled());
+        estLbl.setText(auto.getEstado());
+    }
+
+    @FXML
+    public void msgerr(String msg){
+        Alert al=new Alert(Alert.AlertType.ERROR);
+        al.setTitle("TheRent Link System");
+        al.setHeaderText("ERROR");
+        al.setContentText(msg);
+        al.showAndWait();
     }
 }
 

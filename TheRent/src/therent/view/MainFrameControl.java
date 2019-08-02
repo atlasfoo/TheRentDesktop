@@ -2,6 +2,7 @@ package therent.view;
 
 import com.jfoenix.controls.JFXButton;
 import javafx.fxml.FXML;
+import therent.Main;
 
 public class MainFrameControl {
 
@@ -18,6 +19,12 @@ public class MainFrameControl {
     private JFXButton deliverbtn;
 
     private String role;
+
+    private Main main;
+
+    public void setMain(Main main) {
+        this.main = main;
+    }
 
     public void setRole(String role) {
         this.role = role;
@@ -42,5 +49,8 @@ public class MainFrameControl {
     public void initialize(){
         //void
     }
-
+    @FXML
+    public void handleAdminAutoBtn(){
+        main.showCar();
+    }
 }

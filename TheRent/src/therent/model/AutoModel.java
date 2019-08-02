@@ -33,9 +33,12 @@ public class AutoModel {
             String cat=rs.getString("Categoría");
             float prec=rs.getFloat("Precio");
             float depo=rs.getFloat("Depsósito");
+            String ishab=rs.getString("Habilitado");
             String est=rs.getString("Estado");
-            autos.add(new Auto(id, marc, mod, col, yr, trans, carr, comb, plac, vin, cat, prec, depo, est));
+
+            autos.add(new Auto(id, marc, mod, col, yr, trans, carr, comb, plac, vin, cat, prec, depo, est, ishab));
         }
+        conn.close();
         return autos;
     }
 }
