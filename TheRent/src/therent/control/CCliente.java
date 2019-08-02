@@ -3,7 +3,6 @@ package therent.control;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 import therent.model.Cliente;
-
 import java.util.concurrent.ExecutionException;
 
 public class CCliente {
@@ -24,4 +23,15 @@ public class CCliente {
 
         return cli;
     }
+
+    public static ObservableList<Cliente> BuscarDato(String a)
+    {
+        Cliente cliente = new Cliente();
+        ObservableList<Cliente> cli;
+
+        cli = cliente.BuscarRegistro(a);
+
+        return cli;
+    }
+
 }

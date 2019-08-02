@@ -1,8 +1,10 @@
 
-package therent.view;
+package therent.view.Cliente;
 
 import com.jfoenix.controls.*;
 import com.jfoenix.transitions.hamburger.HamburgerNextArrowBasicTransition;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -19,7 +21,11 @@ import javafx.scene.text.Text;
 import therent.control.CCliente;
 import therent.model.Cliente;
 
+import javax.xml.transform.sax.SAXSource;
+import java.awt.event.*;
 import java.net.URL;
+import java.security.Key;
+import java.util.EventListener;
 import java.util.ResourceBundle;
 
 public class control_MenuCliente implements Initializable {
@@ -90,6 +96,7 @@ public class control_MenuCliente implements Initializable {
             initHamburger();
 
             MostrandoDatos();
+
         }catch (Exception e){msgerr(e.getMessage());}
 
 
@@ -138,15 +145,19 @@ public class control_MenuCliente implements Initializable {
                     {
                         switch (ob.getAccessibleText()) {
                             case "agregar":
+                                Bloqueobotones(false,"agregar");
                                 break;
                             case "buscar":
+                                Bloqueobotones(true,"buscar");
                                 CargandoHboxBusqueda();
                                 break;
-                            case "mostrartodo":
-                                break;
                             case "modificar":
+                                Bloqueobotones(false,"modificar");
                                 break;
                             case "deshabilitar":
+                                Bloqueobotones(true,"deshabilitar");
+                                idGuardar.setText("Deshabilitar");
+                                idGuardar.setDisable(false);
 
                                 break;
 
@@ -155,6 +166,28 @@ public class control_MenuCliente implements Initializable {
                 }
             }
     }
+    //metodo para bloquear los campos de texto de acorde al boton seleccionado
+    public void Bloqueobotones(boolean b, String m)
+    {
+        if(m.equals("modificar")) {
+            idPNombre.setDisable(b);
+            idSNombre.setDisable(b);
+            idPApellido.setDisable(b);
+            idSApellido.setDisable(b);
+            idDireccion.setDisable(b);
+            idGuardar.setDisable(b);
+        }
+        else{
+        idPNombre.setDisable(b);
+        idSNombre.setDisable(b);
+        idPApellido.setDisable(b);
+        idSApellido.setDisable(b);
+        idCedula.setDisable(b);
+        idDireccion.setDisable(b);
+        idGuardar.setDisable(b);
+        idTipoCliente.setDisable(b);
+        }
+    }
 
     //Cargando la barra de busqueda al tocar la opcion Buscar.
     public void CargandoHboxBusqueda()
@@ -162,25 +195,44 @@ public class control_MenuCliente implements Initializable {
         HBox box1;
         try {
             if (plegable1.isOpened())
+            {
                 plegable1.close();
+            }
             else
+                {
                 plegable1.open();
-
 
             box1 = FXMLLoader.load(getClass().getResource("HboxBusqueda.fxml"));
             plegable1.setSidePane(box1);
+            /* -------------------------*/
+            for (Node ob : box1.getChildren()) {
+                if (ob.getAccessibleText() != null) {
+                    ob.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) ->
+                    {
+                        switch (ob.getAccessibleText()) {
+                            case "BuscarRegistro":
+                                System.out.println(text);
+                                     MostrandoDatosBuscados(text);
+                                break;
+                        }
+                    });
+                }
+            }
+                }
+            /* -------------------------*/
         }catch (Exception E){msgerr(E.getMessage());}
     }
     //Evento de boton para agregar un cliente
     @FXML
      void AgregandoCliente()
     {
-        String estado ;
-        try {
-              CCliente.IngresarCliente(idPNombre.getText(), idSNombre.getText(), idPApellido.getText(), idSApellido.getText()
-                      , idCedula.getText(), idDireccion.getText(),idTipoCliente.getValue());
-           // msgerr(idTipoCliente.getValue());
-        }catch (Exception E){msgerr(E.getMessage());}
+            try {
+                    CCliente.IngresarCliente(idPNombre.getText(), idSNombre.getText(), idPApellido.getText(), idSApellido.getText()
+                            , idCedula.getText(), idDireccion.getText(),idTipoCliente.getValue());
+                    MostrandoDatos();
+                    // msgerr(idTipoCliente.getValue());
+                }catch (Exception E){msgerr(E.getMessage());}
+
     }
     // Metodo para enviar los datos a la tabla
     public void MostrandoDatos()
@@ -190,9 +242,28 @@ public class control_MenuCliente implements Initializable {
         cApellido.setCellValueFactory(new PropertyValueFactory<Cliente,String>("apellido1"));
         cCedula.setCellValueFactory(new PropertyValueFactory<Cliente,String>("cedula"));
         cDireccion.setCellValueFactory(new PropertyValueFactory<Cliente,String>("direccion"));
-        cTipoCliente.setCellValueFactory(new PropertyValueFactory<Cliente,String>("tipocliente"));
         cEstado.setCellValueFactory(new PropertyValueFactory<Cliente,String>("estado"));
+        cTipoCliente.setCellValueFactory(new PropertyValueFactory<>("tipoCliente"));
         TablaDatos.setItems(CCliente.MostrarDatos());
+        //Cuando se da click mostrar los registros en sus respectivos campos
+        GestionEvento();
+    }
+
+    //Metodo para mostrar los datos buscados.
+    public void MostrandoDatosBuscados(String a)
+    {
+
+        // control_HboxBusqueda c = new control_HboxBusqueda();
+        //columnas
+        cNombre.setCellValueFactory(new PropertyValueFactory<Cliente,String>("nombre1"));
+        cApellido.setCellValueFactory(new PropertyValueFactory<Cliente,String>("apellido1"));
+        cCedula.setCellValueFactory(new PropertyValueFactory<Cliente,String>("cedula"));
+        cDireccion.setCellValueFactory(new PropertyValueFactory<Cliente,String>("direccion"));
+        cEstado.setCellValueFactory(new PropertyValueFactory<Cliente,String>("estado"));
+        cTipoCliente.setCellValueFactory(new PropertyValueFactory<>("tipoCliente"));
+        TablaDatos.setItems(CCliente.BuscarDato(a));
+        //Cuando se da click mostrar los registros en sus respectivos campos
+        GestionEvento();
     }
 
 
@@ -204,5 +275,25 @@ public class control_MenuCliente implements Initializable {
         al.setContentText(msg);
         al.showAndWait();
     }
+
+    //Metodo que gestiona el metodo change, para cuando se selecciona una fila de la tabla se ballan los registros de las tablas a los campos
+    public void GestionEvento()
+    {
+        TablaDatos.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Cliente>() {
+            @Override
+            public void changed(ObservableValue<? extends Cliente> observable, Cliente oldValue, Cliente newValue) {
+                idPNombre.setText(newValue.getNombre1());
+                idSNombre.setText(newValue.getNombre2());
+                idPApellido.setText(newValue.getApellido1());
+                idSApellido.setText(newValue.getApellido2() );
+                idCedula.setText(newValue.getCedula());
+                idDireccion.setText(newValue.getDireccion());
+                idTipoCliente.setValue(newValue.gettipocliente());
+            }
+        });
+    }
+
+    public static String text;
+
 }
 

@@ -3,12 +3,26 @@
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TheRent/therent/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TheRent/therent/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TheRent/therent/view/MainFrame.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TheRent/therent/view/MainFrame.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TheRent/therent/control/CCliente.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TheRent/therent/control/CCliente.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TheRent/therent/model/Cliente.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TheRent/therent/model/Cliente.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TheRent/therent/util/JDBCUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TheRent/therent/util/JDBCUtil.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TheRent/therent/view/HboxBusqueda.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TheRent/therent/view/HboxOpciones.fxml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/TheRent/therent/view/MainFrameControl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TheRent/therent/view/MainFrameControl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/therent/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/therent/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/therent/view/MainFrame.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/therent/view/MainFrame.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TheRent/therent/view/MenuCliente.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TheRent/therent/view/control_HboxBusqueda.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TheRent/therent/view/control_HboxOpciones.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TheRent/therent/view/control_MenuCliente.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/therent/control/CCliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/therent/control/CCliente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/therent/model/Cliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/therent/model/Cliente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/therent/util/JDBCUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/therent/util/JDBCUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/therent/view/HboxBusqueda.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/therent/view/Cliente/HboxBusqueda.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/therent/view/HboxOpciones.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/therent/view/Cliente/HboxOpciones.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/therent/view/MainFrameControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/therent/view/MainFrameControl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/therent/view/MenuCliente.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/therent/view/Cliente/MenuCliente.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/therent/view/control_HboxBusqueda.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/therent/view/Cliente/control_HboxBusqueda.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/therent/view/control_HboxOpciones.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/therent/view/Cliente/control_HboxOpciones.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/therent/view/control_MenuCliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/therent/view/Cliente/control_MenuCliente.java" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -83,19 +97,29 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/therent/view/control_MenuCliente.java">
+        <entry file="file://$PROJECT_DIR$/src/therent/view/Cliente/control_MenuCliente.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="765">
-              <caret line="64" selection-start-line="64" selection-end-line="64" />
+            <state relative-caret-position="400">
+              <caret line="230" column="23" lean-forward="true" selection-start-line="230" selection-start-column="23" selection-end-line="230" selection-end-column="23" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="method#initialize#0;class#control_MenuCliente#0" />
                 <element signature="method#initHamburger#0;class#control_MenuCliente#0" />
-                <element signature="method#CargaMenu#0;class#control_MenuCliente#0" />
-                <element signature="method#CargandoHboxBusqueda#0;class#control_MenuCliente#0" />
-                <element signature="method#AgregandoCliente#0;class#control_MenuCliente#0" />
+                <element signature="method#Bloqueobotones#0;class#control_MenuCliente#0" />
                 <element signature="method#MostrandoDatos#0;class#control_MenuCliente#0" />
                 <element signature="method#msgerr#0;class#control_MenuCliente#0" />
+                <element signature="method#GestionEvento#0;class#control_MenuCliente#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/therent/view/Cliente/control_HboxBusqueda.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="10" column="9" lean-forward="true" selection-start-line="10" selection-start-column="9" selection-end-line="10" selection-end-column="9" />
+              <folding>
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -104,43 +128,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/therent/control/CCliente.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="27" selection-start-line="27" selection-end-line="27" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/therent/view/MenuCliente.fxml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="205">
-              <caret line="28" column="25" lean-forward="true" selection-start-line="28" selection-start-column="25" selection-end-line="28" selection-end-column="25" />
-            </state>
-          </provider>
-          <provider editor-type-id="JavaFX-Scene-Builder" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/therent/view/MainFrameControl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="35" column="13" selection-start-line="35" selection-start-column="13" selection-end-line="35" selection-end-column="13" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="method#setRole#0;class#MainFrameControl#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/therent/Main.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="230">
-              <caret line="26" column="43" lean-forward="true" selection-start-line="26" selection-start-column="43" selection-end-line="26" selection-end-column="43" />
+            <state relative-caret-position="170">
+              <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -151,12 +140,45 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/therent/model/Cliente.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2108">
-              <caret line="193" column="25" selection-start-line="193" selection-start-column="25" selection-end-line="193" selection-end-column="25" />
+            <state relative-caret-position="162">
+              <caret line="233" lean-forward="true" selection-start-line="233" selection-end-line="233" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="method#Cliente#0;class#Cliente#0" />
-                <element signature="method#IngresarCliente#0;class#Cliente#0" />
+                <element signature="e#1896#1897#0" expanded="true" />
+                <element signature="e#1933#1934#0" expanded="true" />
+                <element signature="e#1983#1984#0" expanded="true" />
+                <element signature="e#2047#2048#0" expanded="true" />
+                <element signature="e#2085#2086#0" expanded="true" />
+                <element signature="e#2122#2123#0" expanded="true" />
+                <element signature="e#2172#2173#0" expanded="true" />
+                <element signature="e#2236#2237#0" expanded="true" />
+                <element signature="e#2276#2277#0" expanded="true" />
+                <element signature="e#2315#2316#0" expanded="true" />
+                <element signature="e#2369#2370#0" expanded="true" />
+                <element signature="e#2437#2438#0" expanded="true" />
+                <element signature="e#2477#2478#0" expanded="true" />
+                <element signature="e#2516#2517#0" expanded="true" />
+                <element signature="e#2570#2571#0" expanded="true" />
+                <element signature="e#2638#2639#0" expanded="true" />
+                <element signature="e#2675#2676#0" expanded="true" />
+                <element signature="e#2710#2711#0" expanded="true" />
+                <element signature="e#2758#2759#0" expanded="true" />
+                <element signature="e#2820#2821#0" expanded="true" />
+                <element signature="e#2860#2861#0" expanded="true" />
+                <element signature="e#2899#2900#0" expanded="true" />
+                <element signature="e#2953#2954#0" expanded="true" />
+                <element signature="e#3021#3022#0" expanded="true" />
+                <element signature="e#3063#3064#0" expanded="true" />
+                <element signature="e#3104#3105#0" expanded="true" />
+                <element signature="e#3163#3164#0" expanded="true" />
+                <element signature="e#3235#3236#0" expanded="true" />
+                <element signature="e#3471#3472#0" expanded="true" />
+                <element signature="e#3501#3502#0" expanded="true" />
+                <element signature="e#3552#3553#0" expanded="true" />
+                <element signature="e#3582#3583#0" expanded="true" />
+                <element signature="method#msgerr#0;class#Cliente#0" />
+                <element signature="method#EscribirArchivoAux#0;class#Cliente#0" />
+                <element signature="method#LeerArchivoAux#0;class#Cliente#0" />
               </folding>
             </state>
           </provider>
@@ -187,18 +209,24 @@
         <option value="$PROJECT_DIR$/src/therent/CLIMain.java" />
         <option value="$PROJECT_DIR$/media/colors.txt" />
         <option value="$PROJECT_DIR$/src/therent/view/LogWindowControl.java" />
-        <option value="$PROJECT_DIR$/src/therent/util/JDBCUtil.java" />
         <option value="$PROJECT_DIR$/src/therent/model/LoginModel.java" />
         <option value="$PROJECT_DIR$/src/therent/control/CLogin.java" />
         <option value="$PROJECT_DIR$/src/therent/view/LogWindow.fxml" />
         <option value="$PROJECT_DIR$/src/therent/view/MainFrame.fxml" />
         <option value="$PROJECT_DIR$/src/therent/view/HboxOpciones.fxml" />
         <option value="$PROJECT_DIR$/src/therent/view/MenuCliente.fxml" />
+        <option value="$PROJECT_DIR$/src/therent/Main.java" />
+        <option value="$PROJECT_DIR$/src/therent/util/JDBCUtil.java" />
+        <option value="$PROJECT_DIR$/src/therent/view/control_MenuCliente.java" />
+        <option value="$PROJECT_DIR$/src/therent/view/Cliente/MenuCliente.fxml" />
+        <option value="$PROJECT_DIR$/src/therent/view/MainFrameControl.java" />
+        <option value="$PROJECT_DIR$/src/therent/view/Cliente/HboxOpciones.fxml" />
+        <option value="$PROJECT_DIR$/src/therent/view/Cliente/control_HboxOpciones.java" />
+        <option value="$PROJECT_DIR$/src/therent/view/Cliente/HboxBusqueda.fxml" />
         <option value="$PROJECT_DIR$/src/therent/control/CCliente.java" />
         <option value="$PROJECT_DIR$/src/therent/model/Cliente.java" />
-        <option value="$PROJECT_DIR$/src/therent/view/control_MenuCliente.java" />
-        <option value="$PROJECT_DIR$/src/therent/view/MainFrameControl.java" />
-        <option value="$PROJECT_DIR$/src/therent/Main.java" />
+        <option value="$PROJECT_DIR$/src/therent/view/Cliente/control_HboxBusqueda.java" />
+        <option value="$PROJECT_DIR$/src/therent/view/Cliente/control_MenuCliente.java" />
       </list>
     </option>
   </component>
@@ -209,7 +237,7 @@
     </treeState>
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-8" />
     <option name="width" value="1612" />
     <option name="height" value="867" />
@@ -279,6 +307,14 @@
             </path>
             <path>
               <item name="TheRent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TheRent" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="therent" type="462c0819:PsiDirectoryNode" />
+              <item name="view" type="462c0819:PsiDirectoryNode" />
+              <item name="Cliente" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TheRent" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
             </path>
           </expand>
@@ -303,28 +339,29 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1564416753870" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1564774375966" />
     <property name="dynamic.classpath" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../ProyectoPracticaMysql" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="recentsLimit" value="5" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\franc\Desktop\Proyecto de BD2\TheRentDesktop\TheRent\src\therent\view" />
-      <recent name="D:\Repos\Java\TheRentDesktop\TheRent\src\therent\view" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\franc\Desktop\Proyecto de BD2\TheRentDesktop\TheRent\src\therent\view\Cliente" />
       <recent name="D:\Repos\Java\TheRentDesktop\TheRent\src" />
-      <recent name="D:\Repos\Java\TheRentDesktop\TheRent\media\img" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="therent.model" />
       <recent name="therent.control" />
       <recent name="therent.view" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\franc\Desktop\Proyecto de BD2\TheRentDesktop\TheRent\src\therent\view" />
+      <recent name="D:\Repos\Java\TheRentDesktop\TheRent\src\therent\view" />
       <recent name="D:\Repos\Java\TheRentDesktop\TheRent\src" />
+      <recent name="D:\Repos\Java\TheRentDesktop\TheRent\media\img" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -464,10 +501,9 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1616" height="876" extended-state="7" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.29562983" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.1651671" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" />
       <window_info id="Designer" order="3" />
@@ -476,7 +512,7 @@
       <window_info id="UI Designer" order="6" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32839838" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32839838" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -514,27 +550,47 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/therent/model/Cliente.java</url>
-          <line>197</line>
-          <properties class="therent.model.Cliente" method="MostrarRegistros">
-            <option name="EMULATED" value="true" />
-          </properties>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/therent/view/control_MenuCliente.java</url>
-          <line>185</line>
-          <properties class="therent.view.control_MenuCliente" method="MostrandoDatos">
-            <option name="EMULATED" value="true" />
-          </properties>
-          <option name="timeStamp" value="7" />
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/therent/view/Cliente/control_HboxBusqueda.java</url>
+          <line>15</line>
+          <properties />
+          <option name="timeStamp" value="17" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/therent/Main.java</url>
-          <line>21</line>
+          <url>file://$PROJECT_DIR$/src/therent/view/Cliente/control_MenuCliente.java</url>
+          <line>134</line>
           <properties />
-          <option name="timeStamp" value="10" />
+          <option name="timeStamp" value="22" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/therent/view/Cliente/control_MenuCliente.java</url>
+          <line>206</line>
+          <properties />
+          <option name="timeStamp" value="23" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/therent/view/Cliente/control_MenuCliente.java</url>
+          <line>252</line>
+          <properties class="therent.view.Cliente.control_MenuCliente" method="MostrandoDatosBuscados">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/therent/model/Cliente.java</url>
+          <line>234</line>
+          <properties class="therent.model.Cliente" method="BuscarRegistro">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="20" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/therent/control/CCliente.java</url>
+          <line>26</line>
+          <properties class="therent.control.CCliente" method="BuscarDato">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="21" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -559,31 +615,6 @@
           <caret line="16" column="12" selection-start-line="16" selection-start-column="12" selection-end-line="16" selection-end-column="12" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/therent/util/JDBCUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-          <folding>
-            <element signature="e#342#343#0" expanded="true" />
-            <element signature="e#377#378#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/therent/view/HboxOpciones.fxml">
-      <provider selected="true" editor-type-id="text-editor" />
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/therent/view/HboxBusqueda.fxml">
-      <provider selected="true" editor-type-id="text-editor" />
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/therent/view/control_HboxBusqueda.java">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/therent/view/control_HboxOpciones.java">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/therent/model/LoginModel.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -631,37 +662,31 @@
       </provider>
       <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/therent/view/control_MenuCliente.java">
+    <entry file="file://$PROJECT_DIR$/src/therent/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="765">
-          <caret line="64" selection-start-line="64" selection-end-line="64" />
+        <state relative-caret-position="442">
+          <caret line="26" column="43" selection-start-line="26" selection-start-column="43" selection-end-line="26" selection-end-column="43" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#initialize#0;class#control_MenuCliente#0" />
-            <element signature="method#initHamburger#0;class#control_MenuCliente#0" />
-            <element signature="method#CargaMenu#0;class#control_MenuCliente#0" />
-            <element signature="method#CargandoHboxBusqueda#0;class#control_MenuCliente#0" />
-            <element signature="method#AgregandoCliente#0;class#control_MenuCliente#0" />
-            <element signature="method#MostrandoDatos#0;class#control_MenuCliente#0" />
-            <element signature="method#msgerr#0;class#control_MenuCliente#0" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/therent/control/CCliente.java">
+    <entry file="file://$PROJECT_DIR$/src/therent/util/JDBCUtil.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="27" selection-start-line="27" selection-end-line="27" />
+        <state relative-caret-position="85">
+          <caret line="5" column="181" lean-forward="true" selection-start-line="5" selection-start-column="181" selection-end-line="5" selection-end-column="181" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#342#343#0" expanded="true" />
+            <element signature="e#377#378#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/therent/view/MainFrameControl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="35" column="13" selection-start-line="35" selection-start-column="13" selection-end-line="35" selection-end-column="13" />
+        <state relative-caret-position="226">
+          <caret line="40" column="35" lean-forward="true" selection-start-line="40" selection-start-column="35" selection-end-line="40" selection-end-column="35" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#setRole#0;class#MainFrameControl#0" />
@@ -669,35 +694,119 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/therent/view/Cliente/control_HboxOpciones.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/therent/model/Cliente.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2108">
-          <caret line="193" column="25" selection-start-line="193" selection-start-column="25" selection-end-line="193" selection-end-column="25" />
+        <state relative-caret-position="162">
+          <caret line="233" lean-forward="true" selection-start-line="233" selection-end-line="233" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#Cliente#0;class#Cliente#0" />
-            <element signature="method#IngresarCliente#0;class#Cliente#0" />
+            <element signature="e#1896#1897#0" expanded="true" />
+            <element signature="e#1933#1934#0" expanded="true" />
+            <element signature="e#1983#1984#0" expanded="true" />
+            <element signature="e#2047#2048#0" expanded="true" />
+            <element signature="e#2085#2086#0" expanded="true" />
+            <element signature="e#2122#2123#0" expanded="true" />
+            <element signature="e#2172#2173#0" expanded="true" />
+            <element signature="e#2236#2237#0" expanded="true" />
+            <element signature="e#2276#2277#0" expanded="true" />
+            <element signature="e#2315#2316#0" expanded="true" />
+            <element signature="e#2369#2370#0" expanded="true" />
+            <element signature="e#2437#2438#0" expanded="true" />
+            <element signature="e#2477#2478#0" expanded="true" />
+            <element signature="e#2516#2517#0" expanded="true" />
+            <element signature="e#2570#2571#0" expanded="true" />
+            <element signature="e#2638#2639#0" expanded="true" />
+            <element signature="e#2675#2676#0" expanded="true" />
+            <element signature="e#2710#2711#0" expanded="true" />
+            <element signature="e#2758#2759#0" expanded="true" />
+            <element signature="e#2820#2821#0" expanded="true" />
+            <element signature="e#2860#2861#0" expanded="true" />
+            <element signature="e#2899#2900#0" expanded="true" />
+            <element signature="e#2953#2954#0" expanded="true" />
+            <element signature="e#3021#3022#0" expanded="true" />
+            <element signature="e#3063#3064#0" expanded="true" />
+            <element signature="e#3104#3105#0" expanded="true" />
+            <element signature="e#3163#3164#0" expanded="true" />
+            <element signature="e#3235#3236#0" expanded="true" />
+            <element signature="e#3471#3472#0" expanded="true" />
+            <element signature="e#3501#3502#0" expanded="true" />
+            <element signature="e#3552#3553#0" expanded="true" />
+            <element signature="e#3582#3583#0" expanded="true" />
+            <element signature="method#msgerr#0;class#Cliente#0" />
+            <element signature="method#EscribirArchivoAux#0;class#Cliente#0" />
+            <element signature="method#LeerArchivoAux#0;class#Cliente#0" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/therent/Main.java">
+    <entry file="file://$PROJECT_DIR$/src/therent/view/Cliente/HboxOpciones.fxml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="26" column="43" lean-forward="true" selection-start-line="26" selection-start-column="43" selection-end-line="26" selection-end-column="43" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/therent/view/MenuCliente.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="205">
-          <caret line="28" column="25" lean-forward="true" selection-start-line="28" selection-start-column="25" selection-end-line="28" selection-end-column="25" />
+        <state relative-caret-position="187">
+          <caret line="11" column="14" selection-start-line="11" selection-start-column="14" selection-end-line="11" selection-end-column="14" />
         </state>
       </provider>
       <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/therent/view/Cliente/MenuCliente.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="222">
+          <caret line="56" column="43" lean-forward="true" selection-start-line="56" selection-start-column="43" selection-end-line="56" selection-end-column="43" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/therent/control/CCliente.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/therent/view/Cliente/HboxBusqueda.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="19" lean-forward="true" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/therent/view/Cliente/control_MenuCliente.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="400">
+          <caret line="230" column="23" lean-forward="true" selection-start-line="230" selection-start-column="23" selection-end-line="230" selection-end-column="23" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#initHamburger#0;class#control_MenuCliente#0" />
+            <element signature="method#Bloqueobotones#0;class#control_MenuCliente#0" />
+            <element signature="method#MostrandoDatos#0;class#control_MenuCliente#0" />
+            <element signature="method#msgerr#0;class#control_MenuCliente#0" />
+            <element signature="method#GestionEvento#0;class#control_MenuCliente#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/therent/view/Cliente/control_HboxBusqueda.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="9" lean-forward="true" selection-start-line="10" selection-start-column="9" selection-end-line="10" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
     </entry>
   </component>
   <component name="masterDetails">

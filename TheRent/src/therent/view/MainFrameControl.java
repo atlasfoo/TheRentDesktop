@@ -32,7 +32,7 @@ public class MainFrameControl {
     void abrirCliente() {
 
         FXMLLoader loader=new FXMLLoader();
-        loader.setLocation(Main.class.getResource("view/MenuCliente.fxml"));
+        loader.setLocation(Main.class.getResource("view/Cliente/MenuCliente.fxml"));
         try {
             AnchorPane root=loader.load();
             Stage dlgStage=new Stage();

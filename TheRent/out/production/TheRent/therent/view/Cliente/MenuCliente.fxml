@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="687.0" prefWidth="1095.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="therent.view.control_MenuCliente">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="693.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="therent.view.Cliente.control_MenuCliente">
    <children>
       <BorderPane layoutX="14.0" layoutY="14.0" prefHeight="687.0" prefWidth="1095.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
@@ -56,8 +56,8 @@
                   <TableColumn fx:id="cApellido" prefWidth="130.0" text="Apellido" />
                   <TableColumn fx:id="cCedula" prefWidth="169.0" text="Cédula" />
                   <TableColumn fx:id="cDireccion" prefWidth="157.0" text="Dirección" />
-                  <TableColumn fx:id="cTipoCliente" prefWidth="181.0" text="Tipo De Cliente" />
                   <TableColumn fx:id="cEstado" prefWidth="181.0" text="Estado" />
+                  <TableColumn fx:id="cTipoCliente" prefWidth="181.0" text="Tipo de Cliente" />
                </columns>
             </TableView>
          </center>

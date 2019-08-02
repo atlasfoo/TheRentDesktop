@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="53.0" prefWidth="449.0" spacing="20.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="therent.view.Cliente.control_HboxBusqueda">
+   <children>
+      <AnchorPane prefHeight="53.0" prefWidth="356.0" style="-fx-background-color: #ffff;">
+         <children>
+            <JFXTextField fx:id="tfBuscar" alignment="CENTER" layoutX="6.0" layoutY="2.0" prefHeight="25.0" prefWidth="367.0" promptText="Buscar" unFocusColor="WHITE" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="77.0" AnchorPane.topAnchor="10.0" />
+         </children>
+      </AnchorPane>
+      <JFXButton fx:id="btnBuscar" accessibleText="BuscarRegistro" onAction="#texto" prefHeight="25.0" prefWidth="84.0" text="Buscar" />
+   </children>
+</HBox>

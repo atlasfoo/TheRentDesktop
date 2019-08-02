@@ -7,6 +7,8 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 import therent.util.JDBCUtil;
 
+import javax.annotation.processing.Filer;
+import java.io.*;
 import java.sql.*;
 
 public class Cliente {
@@ -17,10 +19,10 @@ public class Cliente {
     private StringProperty apellido2;
     private StringProperty cedula ;
     private StringProperty direccion;
-    private StringProperty tipocliente;
+    private StringProperty tipoCliente;
     private StringProperty estado;
 
-    public Cliente(String nombre1, String nombre2, String apellido1, String apellido2, String cedula, String direccion, String tipocliente)
+   public Cliente(String nombre1, String nombre2, String apellido1, String apellido2, String cedula, String direccion, String tipocliente)
     {
         this.nombre1 = new SimpleStringProperty(nombre1);
         this.nombre2 = new SimpleStringProperty(nombre2);
@@ -28,7 +30,7 @@ public class Cliente {
         this.apellido2 = new SimpleStringProperty(apellido2);
         this.cedula = new SimpleStringProperty(cedula);
         this.direccion = new SimpleStringProperty(direccion);
-        this.tipocliente = new SimpleStringProperty(tipocliente);
+        this.tipoCliente = new SimpleStringProperty(tipocliente);
     }
 
     public Cliente(String nombre1, String nombre2, String apellido1, String apellido2, String cedula, String direccion, String tipocliente, String estado)
@@ -39,7 +41,7 @@ public class Cliente {
         this.apellido2 = new SimpleStringProperty(apellido2);
         this.cedula = new SimpleStringProperty(cedula);
         this.direccion = new SimpleStringProperty(direccion);
-        this.tipocliente = new SimpleStringProperty(tipocliente);
+        this.tipoCliente = new SimpleStringProperty(tipocliente);
         this.estado = new SimpleStringProperty(estado);
     }
 
@@ -107,12 +109,12 @@ public class Cliente {
 
     public String gettipocliente()
     {
-        return  tipocliente.get();
+        return  tipoCliente.get();
     }
 
     public void setTipocliente(String  tipocliente)
     {
-        this.tipocliente = new SimpleStringProperty(tipocliente);
+        this.tipoCliente = new SimpleStringProperty(tipocliente);
     }
 
     public String getEstado() { return estado.get(); }
@@ -158,7 +160,7 @@ public class Cliente {
 
     public StringProperty tipoClienteProperty() {
 
-        return tipocliente;
+        return tipoCliente;
 
     }
 
@@ -219,6 +221,7 @@ public class Cliente {
                                 resultado.getString("Dirreccion"),
                                 resultado.getString("Tipo_Cliente"),
                                 resultado.getString("Estado")
+
                               ));
             }
 
@@ -226,5 +229,68 @@ public class Cliente {
 
         return  listaCliente;
     }
+
+    //Metodo para BuscarRegistro
+
+    public ObservableList<Cliente> BuscarRegistro(String a)
+    {
+        //Declaracion de variables
+        ObservableList<Cliente> listaCliente;
+        //Inicializando el observablelist
+        listaCliente = FXCollections.observableArrayList();
+
+        try {
+            Connection conn= DriverManager.getConnection(JDBCUtil.getDatabaseUri());
+            CallableStatement cs = conn.prepareCall("{CALL sp_buscar_Cliente (?)}");
+            cs.setString(1,a);
+            ResultSet resultado = cs.executeQuery();
+
+            while (resultado.next())
+            {
+                listaCliente.add(new Cliente
+                        (
+                                resultado.getString("Primer_Nombre"),
+                                resultado.getString("Segundo_Nombre"),
+                                resultado.getString("Primer_Apellido"),
+                                resultado.getString("Segundo_Apellido"),
+                                resultado.getString("Cedula"),
+                                resultado.getString("Dirreccion"),
+                                resultado.getString("Tipo_Cliente"),
+                                resultado.getString("Estado")
+
+                        ));
+            }
+
+        }catch (Exception e){}
+
+        return  listaCliente;
+    }
+/*
+    public void EscribirArchivoAux(String a)
+    {
+        try{
+
+            FileWriter escribir = new FileWriter("buscar.txt");
+            escribir.write(a);
+            escribir.close();
+        }catch (IOException e){}
+    }
+    public String LeerArchivoAux()
+    {
+        String tex = null;
+        try {
+            FileReader entrada = new FileReader("buscar.txt");
+            BufferedReader fr = new BufferedReader(entrada);
+
+            tex  = fr.readLine();
+
+            entrada.close();
+
+
+        }catch (IOException e){}
+
+        return  tex;
+    }
+*/
 
 }
