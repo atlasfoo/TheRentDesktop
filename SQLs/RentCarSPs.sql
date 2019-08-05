@@ -72,6 +72,21 @@ end//
 alter table Auto
 add column No_Chasis varchar(30);
 
+DROP PROCEDURE sp_model_all
+
+DELIMITER //
+CREATE PROCEDURE sp_model_all()
+BEGIN
+	SELECT ma.Id_Modelo AS ID,
+	ma.Marca AS Marca,
+	ma.Modelo AS Modelo,
+	c.Nombre AS Categoria,
+	c.Costo_dia AS Costo FROM Modelo_Auto ma 
+	INNER JOIN Categoria c ON ma.Id_Categoria=c.Id_Categoria;
+END	//
+
+CALL sp_model_all()
+
 DELIMITER //
 CREATE PROCEDURE sp_new_auto(in placa varchar(10), in no_c varchar(30), in vin varchar(30), in color varchar(30), in trans int, in id_mod int)
 begin
@@ -127,8 +142,29 @@ begin
 	INNER JOIN Categoria c ON c.Id_Categoria=ma.Id_Categoria;
 end //
 
+DROP PROCEDURE sp_enable_car
 
-call sp_auto_all
+DELIMITER //
+CREATE PROCEDURE sp_enable_car(IN id_aut INT)
+BEGIN
+	IF(SELECT is_enabled FROM Auto WHERE Id_Auto=id_aut)='SI' THEN
+		UPDATE Auto SET is_enabled='NO' WHERE Id_Auto=id_aut;
+	ELSE 
+		UPDATE Auto SET is_enabled='SI' WHERE Id_Auto=id_aut;
+	END if;
+END //
+
+SELECT * FROM Auto
+
+CALL sp_enable_car(17);
+
+DELIMITER //
+
+CREATE PROCEDURE sp_edit_auto(IN id INT,IN plac VARCHAR(20), IN col VARCHAR(50))
+BEGIN	
+	UPDATE Auto SET Placa=plac, Color=col WHERE Id_Auto=id;
+END //
+
 #Cliente
 
 CREATE DEFINER=`uuvywdmg2p2x5tad`@`%` PROCEDURE `sp_new_cliente`(  in primernombre varchar(20),

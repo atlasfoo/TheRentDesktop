@@ -48,4 +48,6 @@ public class RootLayoutControl {
         main.redirectMain();
     }
 
+    public void handleNewCar() { main.showNewCar(this);}
+
 }

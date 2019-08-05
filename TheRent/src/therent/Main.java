@@ -10,6 +10,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import therent.view.LogWindowControl;
 import therent.view.MainFrameControl;
+import therent.view.car.CarAddEditControl;
 import therent.view.car.CarOverviewControl;
 import therent.view.car.RootLayoutControl;
 
@@ -114,7 +115,20 @@ public class Main extends Application {
         }
     }
 
-
+    public void showNewCar(RootLayoutControl ctrl){
+        FXMLLoader loader=new FXMLLoader();
+        loader.setLocation(Main.class.getResource("view/car/CarAddEditScene.fxml"));
+        try{
+            BorderPane root=loader.load();
+            CarAddEditControl ct=loader.getController();
+            ct.setMain(this);
+            ct.setCtrl(ctrl);
+            ct.setEdit(false);
+            ctrl.getSidepane().setCenter(root);
+        }catch (IOException ex){
+            ex.printStackTrace();
+        }
+    }
 
     /*TODO:
        1: implementar el resto de las funcionalidades, cada quien en su rama

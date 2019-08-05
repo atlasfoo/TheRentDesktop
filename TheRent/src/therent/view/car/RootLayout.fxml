@@ -19,9 +19,7 @@
                            <children>
                               <VBox alignment="TOP_CENTER" layoutX="48.0" layoutY="56.0" prefHeight="372.0" prefWidth="173.0" spacing="25.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
-                                    <JFXButton fx:id="newbtn" text="Nuevo" />
-                                    <JFXButton fx:id="editbtn" text="Editar" />
-                                    <JFXButton fx:id="enablebtn" text="Habilitar/Deshabilitar" />
+                                    <JFXButton fx:id="newbtn" onAction="#handleNewCar" text="Nuevo" />
                                     <JFXButton fx:id="newmodbtn" text="Nuevo Modelo" />
                                     <JFXButton fx:id="mantbtn" text="Agregar Mantenimiento" />
                                     <JFXButton fx:id="BackBtn" onAction="#handlebackmn" text="Atrás" />
