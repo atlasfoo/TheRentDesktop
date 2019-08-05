@@ -13,6 +13,7 @@ public class AutoModel {
     public List<Auto> getAllAutos() throws SQLException {
         // Crear conexión
         Connection conn= DriverManager.getConnection(JDBCUtil.getDatabaseUri());
+        //Statement convencional ya que no se retorna nada
         Statement s=conn.createStatement();
         ResultSet rs=s.executeQuery("CALL sp_auto_all();");
         if(rs==null){
@@ -41,4 +42,19 @@ public class AutoModel {
         conn.close();
         return autos;
     }
+    public boolean newAuto(String plac, int yr, String chasis, String vin, String color, int trans, int id_mod) throws SQLException {
+        Connection conn= DriverManager.getConnection(JDBCUtil.getDatabaseUri());
+        CallableStatement cs=conn.prepareCall("{sp_new_auto(?,?,?,?,?,?,?)}");
+        cs.setString(1, plac);
+        cs.setInt(2, yr);
+        cs.setString(3, chasis);
+        cs.setString(4, vin);
+        cs.setString(5, color);
+        cs.setInt(6, trans);
+        cs.setInt(7, id_mod);
+        boolean r=cs.execute();
+        conn.close();
+        return r;
+    }
+
 }

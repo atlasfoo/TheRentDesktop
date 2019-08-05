@@ -7,7 +7,7 @@ public class ModelConverter extends StringConverter<ModeloAuto> {
 
     @Override
     public String toString(ModeloAuto obj) {
-        return obj == null ? null : (obj.getMarca()+" "+obj.getModelo()+" | "+obj.getCategoria()+" | "+obj.getPrecio()+"$");
+        return obj == null ? null : (obj.getMarca()+" "+obj.getModelo()+" | "+obj.getCategoria()+" | "+obj.getPrecio()+" $");
     }
 
     @Override
