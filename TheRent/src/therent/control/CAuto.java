@@ -24,4 +24,11 @@ public class CAuto {
         new AutoModel().editAuto(id, plac, col);
     }
 
+    public static void enable_disable_auto(int id) throws Exception {
+        if(id<1){
+            throw new Exception("Por favor seleccione un auto");
+        }
+        new AutoModel().enable_disable(id);
+    }
+
 }

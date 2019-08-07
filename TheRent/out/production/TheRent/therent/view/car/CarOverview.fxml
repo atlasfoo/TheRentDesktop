@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="therent.view.car.CarOverviewControl">
    <children>
@@ -32,8 +35,14 @@
             </AnchorPane>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="300.0" styleClass="background">
                <children>
-                  <Label layoutX="36.0" layoutY="14.0" styleClass="label-header" text="Detalles del auto" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0" />
-                  <GridPane layoutY="36.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="25.0">
+                  <Label layoutX="36.0" layoutY="14.0" styleClass="label-header" text="Detalles del auto" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0">
+                     <padding>
+                        <Insets bottom="5.0" />
+                     </padding>
+                     <font>
+                        <Font name="System Bold Italic" size="14.0" />
+                     </font></Label>
+                  <GridPane layoutY="36.0" style="-fx-background-color: #fff;" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="30.0">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -55,40 +64,88 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <Label text="Marca" />
-                        <Label text="Modelo" GridPane.rowIndex="1" />
-                        <Label text="Color" GridPane.rowIndex="2" />
-                        <Label text="Año" GridPane.rowIndex="3" />
-                        <Label text="Transmisión" GridPane.rowIndex="4" />
-                        <Label text="Combustible" GridPane.rowIndex="5" />
+                        <Label text="Marca">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font></Label>
+                        <Label text="Modelo" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font></Label>
+                        <Label text="Color" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font></Label>
+                        <Label text="Año" GridPane.rowIndex="3">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font></Label>
+                        <Label text="Transmisión" GridPane.rowIndex="4">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font></Label>
+                        <Label text="Combustible" GridPane.rowIndex="5">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font></Label>
                         <Label fx:id="marcaLbl" styleClass="label-bright" text="Label" GridPane.columnIndex="1" />
                         <Label fx:id="modLbl" styleClass="label-bright" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <Label fx:id="colLbl" styleClass="label-bright" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                         <Label fx:id="yrLbl" styleClass="label-bright" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                         <Label fx:id="transLbl" styleClass="label-bright" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                         <Label fx:id="combLbl" styleClass="label-bright" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                        <Label text="Placa" GridPane.rowIndex="6" />
-                        <Label text="VIN" GridPane.rowIndex="8" />
-                        <Label text="Categoría" GridPane.rowIndex="9" />
-                        <Label text="Precio" GridPane.rowIndex="10" />
-                        <Label text="Depósito" GridPane.rowIndex="11" />
-                        <Label text="Habilitado" GridPane.rowIndex="13" />
+                        <Label text="Placa" GridPane.rowIndex="6">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font></Label>
+                        <Label text="VIN" GridPane.rowIndex="8">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font></Label>
+                        <Label text="Categoría" GridPane.rowIndex="9">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font></Label>
+                        <Label text="Precio" GridPane.rowIndex="10">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font></Label>
+                        <Label text="Depósito" GridPane.rowIndex="11">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font></Label>
+                        <Label text="Habilitado" GridPane.rowIndex="13">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font></Label>
                         <Label fx:id="placLbl" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                         <Label fx:id="vinLbl" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="8" />
                         <Label fx:id="catLbl" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="9" />
                         <Label fx:id="precLbl" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="10" />
                         <Label fx:id="depoLbl" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="11" />
                         <Label fx:id="estLbl" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="12" />
-                        <Label text="Estado" GridPane.rowIndex="12" />
+                        <Label text="Estado" GridPane.rowIndex="12">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font></Label>
                         <Label fx:id="ishabLbl" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="13" />
-                        <Label text="Carrocería" GridPane.rowIndex="7" />
+                        <Label text="Carrocería" GridPane.rowIndex="7">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font></Label>
                         <Label fx:id="carrLbl" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                      </children>
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                     <padding>
+                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                     </padding>
                   </GridPane>
                   <HBox alignment="CENTER" layoutX="169.0" layoutY="484.0" prefHeight="28.0" prefWidth="233.0" spacing="10.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0">
                      <children>
                         <JFXButton fx:id="editBtn" buttonType="RAISED" onAction="#handleEdit" style="-fx-background-color: #4f83cc;" text="Editar" />
-                        <JFXButton buttonType="RAISED" style="-fx-background-color: #4f83cc;" text="Habilitar/Deshabilitar" />
+                        <JFXButton fx:id="enableBtn" buttonType="RAISED" onAction="#handleEnableDisable" style="-fx-background-color: #4f83cc;" text="Habilitar/Deshabilitar" />
                      </children>
                   </HBox>
                </children>

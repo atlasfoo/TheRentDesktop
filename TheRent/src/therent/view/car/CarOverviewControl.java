@@ -4,10 +4,7 @@ import com.jfoenix.controls.JFXButton;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import therent.Main;
 import therent.control.CAuto;
@@ -76,6 +73,9 @@ public class CarOverviewControl {
 
     @FXML
     private JFXButton editBtn;
+
+    @FXML
+    private JFXButton enableBtn;
 
     private BorderPane parentPane;
 
@@ -158,10 +158,29 @@ public class CarOverviewControl {
     private void handleEdit(){
         Auto selected=carTable.getSelectionModel().getSelectedItem();
         if(selected==null){
-            msgerr("Por favor seleccione un vehiculo para editar!");
+            msgerr("Por favor seleccione un vehiculo para editar.");
             return;
         }
         main.showEditCar(parentPane,selected);
+    }
+
+    @FXML
+    private void handleEnableDisable(){
+        Auto selected=carTable.getSelectionModel().getSelectedItem();
+        if(selected==null){
+            msgerr("Por favor seleccione un vehículo de la lista");
+            return;
+        }
+        try {
+            CAuto.enable_disable_auto(selected.getIDAuto());
+        } catch (Exception e) {
+            msgerr(e.getMessage());
+            return;
+        }finally {
+            refreshAutos();
+        }
+        msgconf("Hecho");
+
     }
 
     @FXML
@@ -170,6 +189,16 @@ public class CarOverviewControl {
         al.setTitle("TheRent Link System");
         al.setHeaderText("ERROR");
         al.setContentText(msg);
+        al.showAndWait();
+    }
+
+    @FXML
+    public void msgconf(String msg){
+        Alert al=new Alert(Alert.AlertType.CONFIRMATION);
+        al.setTitle("TheRent Link System");
+        al.setHeaderText("INFORMACIÓN");
+        al.setContentText(msg);
+        al.getButtonTypes().setAll(ButtonType.OK);
         al.showAndWait();
     }
 }

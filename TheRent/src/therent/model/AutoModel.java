@@ -66,4 +66,12 @@ public class AutoModel {
         cs.execute();
         conn.close();
     }
+    public void enable_disable(int id) throws SQLException {
+        Connection conn= DriverManager.getConnection(JDBCUtil.getDatabaseUri());
+        CallableStatement cs=conn.prepareCall("{call sp_enable_car(?)}");
+        cs.setInt(1,id);
+        cs.execute();
+        conn.close();
+    }
+
 }
