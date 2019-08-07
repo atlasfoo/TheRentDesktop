@@ -3,22 +3,19 @@ package therent.view.car;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
-import javafx.beans.property.IntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.ComboBox;
 import javafx.scene.layout.BorderPane;
+
 import therent.Main;
 import therent.control.CAuto;
 import therent.control.CModeloAuto;
 import therent.model.beans.Auto;
 import therent.model.beans.ModeloAuto;
-import therent.util.ModelConverter;
-
-import java.util.List;
+import therent.util.converters.ModeloAutoConverter;
 
 public class CarAddEditControl {
 
@@ -99,7 +96,7 @@ public class CarAddEditControl {
         transCmb.getItems().addAll("Manual", "Automático");
         try {
             modelos= FXCollections.observableArrayList(CModeloAuto.getAllModelos());
-            ModCmb.setConverter(new ModelConverter());
+            ModCmb.setConverter(new ModeloAutoConverter());
             ModCmb.setItems(modelos);
         } catch (Exception e) {
             msgerr(e.getMessage());
@@ -129,7 +126,7 @@ public class CarAddEditControl {
     }
 
     @FXML
-    public void msgerr(String msg){
+    private void msgerr(String msg){
         Alert al=new Alert(Alert.AlertType.ERROR);
         al.setTitle("TheRent Link System");
         al.setHeaderText("ERROR");
@@ -138,7 +135,7 @@ public class CarAddEditControl {
     }
 
     @FXML
-    public void msgconf(String msg){
+    private void msgconf(String msg){
         Alert al=new Alert(Alert.AlertType.CONFIRMATION);
         al.setTitle("TheRent Link System");
         al.setHeaderText("INFORMACIÓN");
