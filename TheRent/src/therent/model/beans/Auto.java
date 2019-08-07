@@ -13,6 +13,7 @@ public class Auto {
     private StringProperty combustible;
     private StringProperty placa;
     private StringProperty VIN;
+    private StringProperty chasis;
     private StringProperty categoria;
     private FloatProperty precio;
     private FloatProperty deposito;
@@ -24,7 +25,7 @@ public class Auto {
     }
 
     //constructor completo
-    public Auto(int IDAuto, String marca, String modelo, String color, int anho, String transmision, String carrocerria, String combustible, String placa, String VIN, String categoria, float precio, float deposito, String estado, String y_n) {
+    public Auto(int IDAuto, String marca, String modelo, String color, int anho, String transmision, String carrocerria, String combustible, String placa, String VIN, String chasis, String categoria, float precio, float deposito, String estado, String y_n) {
         this.IDAuto = new SimpleIntegerProperty(IDAuto);
         this.marca = new SimpleStringProperty( marca);
         this.modelo = new SimpleStringProperty( modelo);
@@ -35,6 +36,7 @@ public class Auto {
         this.combustible = new SimpleStringProperty( combustible);
         this.placa = new SimpleStringProperty( placa);
         this.VIN = new SimpleStringProperty( VIN);
+        this.chasis=new SimpleStringProperty(chasis);
         this.categoria = new SimpleStringProperty( categoria);
         this.precio = new SimpleFloatProperty( precio);
         this.deposito = new SimpleFloatProperty( deposito);
@@ -221,6 +223,18 @@ public class Auto {
 
     public void setIsenabled(String isenabled) {
         this.isenabled.set(isenabled);
+    }
+
+    public String getChasis() {
+        return chasis.get();
+    }
+
+    public StringProperty chasisProperty() {
+        return chasis;
+    }
+
+    public void setChasis(String chasis) {
+        this.chasis.set(chasis);
     }
 }
 

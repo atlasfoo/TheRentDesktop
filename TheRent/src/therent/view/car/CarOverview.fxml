@@ -87,7 +87,7 @@
                   </GridPane>
                   <HBox alignment="CENTER" layoutX="169.0" layoutY="484.0" prefHeight="28.0" prefWidth="233.0" spacing="10.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0">
                      <children>
-                        <JFXButton buttonType="RAISED" style="-fx-background-color: #4f83cc;" text="Editar" />
+                        <JFXButton fx:id="editBtn" buttonType="RAISED" onAction="#handleEdit" style="-fx-background-color: #4f83cc;" text="Editar" />
                         <JFXButton buttonType="RAISED" style="-fx-background-color: #4f83cc;" text="Habilitar/Deshabilitar" />
                      </children>
                   </HBox>

@@ -8,6 +8,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import therent.model.beans.Auto;
 import therent.view.LogWindowControl;
 import therent.view.MainFrameControl;
 import therent.view.car.CarAddEditControl;
@@ -109,23 +110,41 @@ public class Main extends Application {
         try {
             AnchorPane root=loader.load();
             sidepane.setCenter(root);
+            CarOverviewControl ctrl=loader.getController();
+            ctrl.setMain(this);
+            ctrl.setParentPane(sidepane);
             //CarOverviewControl ctrl=loader.getController();
 
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
-    public void showNewCar(RootLayoutControl ctrl){
+    //para auto nuevo
+    public void showNewCar(BorderPane parentPane){
         FXMLLoader loader=new FXMLLoader();
         loader.setLocation(Main.class.getResource("view/car/CarAddEditScene.fxml"));
         try{
             BorderPane root=loader.load();
             CarAddEditControl ct=loader.getController();
             ct.setMain(this);
-            ct.setCtrl(ctrl);
+            ct.setParentPane(parentPane);
             ct.setEdit(false);
-            ctrl.getSidepane().setCenter(root);
+            parentPane.setCenter(root);
+        }catch (IOException ex){
+            ex.printStackTrace();
+        }
+    }
+    public void showEditCar(BorderPane parentPane, Auto a){
+        FXMLLoader loader=new FXMLLoader();
+        loader.setLocation(Main.class.getResource("view/car/CarAddEditScene.fxml"));
+        try{
+            BorderPane root=loader.load();
+            CarAddEditControl ct=loader.getController();
+            ct.setMain(this);
+            ct.setParentPane(parentPane);
+            ct.setEdit(true);
+            ct.setAut(a);
+            parentPane.setCenter(root);
         }catch (IOException ex){
             ex.printStackTrace();
         }

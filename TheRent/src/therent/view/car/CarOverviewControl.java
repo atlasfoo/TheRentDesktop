@@ -1,5 +1,6 @@
 package therent.view.car;
 
+import com.jfoenix.controls.JFXButton;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -8,6 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.BorderPane;
+import therent.Main;
 import therent.control.CAuto;
 import therent.model.beans.Auto;
 
@@ -72,7 +74,12 @@ public class CarOverviewControl {
     @FXML
     private Label ishabLbl;
 
+    @FXML
+    private JFXButton editBtn;
+
     private BorderPane parentPane;
+
+    private Main main;
 
     private ObservableList<Auto> autos;
 
@@ -84,33 +91,36 @@ public class CarOverviewControl {
         this.parentPane = parentPane;
     }
 
-    public void initialize(){
+    public void setMain(Main main) {
+        this.main = main;
+    }
+
+    public void initialize() {
         refreshAutos();
-        marcColumn.setCellValueFactory(cellData->cellData.getValue().marcaProperty());
-        modColumn.setCellValueFactory(cellData->cellData.getValue().modeloProperty());
-        yrColumn.setCellValueFactory(cellData->cellData.getValue().anhoProperty().asObject());
-        colorColumn.setCellValueFactory(cellData->cellData.getValue().colorProperty());
+        marcColumn.setCellValueFactory(cellData -> cellData.getValue().marcaProperty());
+        modColumn.setCellValueFactory(cellData -> cellData.getValue().modeloProperty());
+        yrColumn.setCellValueFactory(cellData -> cellData.getValue().anhoProperty().asObject());
+        colorColumn.setCellValueFactory(cellData -> cellData.getValue().colorProperty());
         // Limpiar vista de detalles
         carOverview(null);
         carTable.getSelectionModel().selectedItemProperty().addListener(
                 ((observable, oldvalue, newvalue) -> carOverview(newvalue)
-        ));
+                ));
     }
 
-    private void refreshAutos(){
+    private void refreshAutos() {
         try {
             this.autos = FXCollections.observableArrayList(CAuto.getAutos());
-        }catch (Exception ex){
+        } catch (Exception ex) {
             msgerr(ex.getMessage());
-        }finally {
+        } finally {
             carTable.setItems(this.autos);
         }
     }
 
 
-
-    private void carOverview(Auto auto){
-        if(auto==null){
+    private void carOverview(Auto auto) {
+        if (auto == null) {
             marcaLbl.setText("---");
             modLbl.setText("---");
             colLbl.setText("---");
@@ -142,6 +152,16 @@ public class CarOverviewControl {
         depoLbl.setText(Float.toString(auto.getDeposito()));
         ishabLbl.setText(auto.getIsenabled());
         estLbl.setText(auto.getEstado());
+    }
+
+    @FXML
+    private void handleEdit(){
+        Auto selected=carTable.getSelectionModel().getSelectedItem();
+        if(selected==null){
+            msgerr("Por favor seleccione un vehiculo para editar!");
+            return;
+        }
+        main.showEditCar(parentPane,selected);
     }
 
     @FXML

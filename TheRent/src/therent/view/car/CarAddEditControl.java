@@ -9,6 +9,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
+import javafx.scene.layout.BorderPane;
 import therent.Main;
 import therent.control.CAuto;
 import therent.control.CModeloAuto;
@@ -54,7 +55,7 @@ public class CarAddEditControl {
 
     private Auto aut;
 
-    private RootLayoutControl ctrl;
+    private BorderPane parentPane;
 
     private ObservableList<ModeloAuto> modelos;
 
@@ -64,18 +65,33 @@ public class CarAddEditControl {
 
     public void setEdit(boolean edit) {
         isEdit = edit;
+        if(!edit){
+            return;
+        }
+        vinTxt.setDisable(true);
+        chasisTxt.setDisable(true);
+        ModCmb.setDisable(true);
+        transCmb.setDisable(true);
+        yrTxt.setDisable(true);
     }
 
     public void setAut(Auto aut) {
         this.aut = aut;
+        vinTxt.setText(aut.getVIN());
+        chasisTxt.setText(aut.getChasis());
+        colorTxt.setText(aut.getColor());
+        placaTxt.setText(aut.getPlaca());
+        yrTxt.setText(Integer.toString(aut.getAnho()));
+        transCmb.setValue(aut.getTransmision());
+        ModCmb.setValue(new ModeloAuto(-1, aut.getMarca(), aut.getModelo(), aut.getCategoria(), aut.getPrecio()));
     }
 
     public void setModelos(ObservableList<ModeloAuto> modelos) {
         this.modelos = modelos;
     }
 
-    public void setCtrl(RootLayoutControl ctrl) {
-        this.ctrl = ctrl;
+    public void setParentPane(BorderPane parentPane) {
+        this.parentPane = parentPane;
     }
 
     public void initialize(){
@@ -101,12 +117,12 @@ public class CarAddEditControl {
         }
 
         msgconf("Se ha ingresado el auto correctamente");
-        main.showCarOverview(ctrl.getSidepane());
+        main.showCarOverview(parentPane);
     }
 
     @FXML
     public void handleBack(){
-        main.showCarOverview(ctrl.getSidepane());
+        main.showCarOverview(parentPane);
     }
 
     @FXML

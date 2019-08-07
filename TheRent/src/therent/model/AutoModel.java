@@ -31,13 +31,14 @@ public class AutoModel {
             String comb=rs.getString("Combustible");
             String plac=rs.getString("Placa");
             String vin=rs.getString("VIN");
+            String chas=rs.getString("Chasis");
             String cat=rs.getString("Categoría");
             float prec=rs.getFloat("Precio");
             float depo=rs.getFloat("Depsósito");
             String ishab=rs.getString("Habilitado");
             String est=rs.getString("Estado");
 
-            autos.add(new Auto(id, marc, mod, col, yr, trans, carr, comb, plac, vin, cat, prec, depo, est, ishab));
+            autos.add(new Auto(id, marc, mod, col, yr, trans, carr, comb, plac, vin, chas, cat, prec, depo, est, ishab));
         }
         conn.close();
         return autos;

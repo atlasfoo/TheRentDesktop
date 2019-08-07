@@ -41,7 +41,7 @@
       <HBox alignment="CENTER" prefHeight="51.0" prefWidth="600.0" spacing="20.0" BorderPane.alignment="CENTER">
          <children>
             <JFXButton fx:id="submitBtn" alignment="CENTER" buttonType="RAISED" onAction="#handleSubmit" prefHeight="25.0" prefWidth="210.0" style="-fx-background-color: #6ff9ff;" text="Guardar" HBox.hgrow="ALWAYS" />
-            <JFXButton fx:id="backBtn" alignment="CENTER" buttonType="RAISED" onAction="#handleSubmit" prefHeight="25.0" prefWidth="210.0" style="-fx-background-color: #6ff9ff;" text="Cancelar" HBox.hgrow="ALWAYS" />
+            <JFXButton fx:id="backBtn" alignment="CENTER" buttonType="RAISED" onAction="#handleBack" prefHeight="25.0" prefWidth="210.0" style="-fx-background-color: #6ff9ff;" text="Cancelar" HBox.hgrow="ALWAYS" />
          </children>
       </HBox>
    </bottom>
