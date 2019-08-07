@@ -57,5 +57,13 @@ public class AutoModel {
         conn.close();
         return r;
     }
-
+    public void editAuto(int id, String plac, String col) throws SQLException {
+        Connection conn= DriverManager.getConnection(JDBCUtil.getDatabaseUri());
+        CallableStatement cs=conn.prepareCall("{call sp_edit_auto(?,?,?)}");
+        cs.setInt(1, id);
+        cs.setString(2, plac);
+        cs.setString(3,col);
+        cs.execute();
+        conn.close();
+    }
 }

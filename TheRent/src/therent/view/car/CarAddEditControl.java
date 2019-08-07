@@ -8,6 +8,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.layout.BorderPane;
 import therent.Main;
@@ -109,14 +110,16 @@ public class CarAddEditControl {
 
     @FXML
     public void handleSubmit(){
-        try {
-            CAuto.addAuto(placaTxt.getText(), Integer.parseInt(yrTxt.getText()), chasisTxt.getText(), vinTxt.getText(), colorTxt.getText(), transCmb.getSelectionModel().getSelectedIndex(), ModCmb.getValue().getId_modelo());
-        } catch (Exception e) {
-            msgerr(e.getMessage());
-            return;
+        //Si algo sale mal no se saldra de la ventana
+        if(isEdit){
+            if(!editCar()){
+                return;
+            }
+        }else{
+            if(!newCar()){
+                return;
+            }
         }
-
-        msgconf("Se ha ingresado el auto correctamente");
         main.showCarOverview(parentPane);
     }
 
@@ -140,7 +143,30 @@ public class CarAddEditControl {
         al.setTitle("TheRent Link System");
         al.setHeaderText("INFORMACIÓN");
         al.setContentText(msg);
+        al.getButtonTypes().setAll(ButtonType.OK);
         al.showAndWait();
+    }
+
+    private boolean newCar(){
+        try {
+            CAuto.addAuto(placaTxt.getText(), Integer.parseInt(yrTxt.getText()), chasisTxt.getText(), vinTxt.getText(), colorTxt.getText(), transCmb.getSelectionModel().getSelectedIndex(), ModCmb.getValue().getId_modelo());
+        } catch (Exception e) {
+            msgerr(e.getMessage());
+            return false;
+        }
+        msgconf("Se ha ingresado el auto correctamente");
+        return true;
+    }
+
+    private boolean editCar(){
+        try {
+            CAuto.editAuto(aut.getIDAuto(), placaTxt.getText(), colorTxt.getText());
+        } catch (Exception e) {
+            msgerr(e.getMessage());
+            return false;
+        }
+        msgconf("Se ha editado el auto correctamente");
+        return true;
     }
 }
 
