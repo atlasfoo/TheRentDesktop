@@ -29,7 +29,7 @@
             <JFXTextField fx:id="vinTxt" focusColor="#26c6da" labelFloat="true" promptText="VIN" GridPane.rowIndex="1" />
             <JFXTextField fx:id="colorTxt" focusColor="#26c6da" labelFloat="true" promptText="Color" GridPane.columnIndex="1" />
             <JFXComboBox fx:id="transCmb" focusColor="#26c6da" promptText="Transmisión" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-            <JFXComboBox fx:id="ModCmb" focusColor="#26c6da" promptText="Modelo" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+            <JFXComboBox fx:id="ModCmb" focusColor="#26c6da" prefHeight="25.0" prefWidth="222.0" promptText="Modelo" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
             <JFXTextField fx:id="yrTxt" focusColor="#26c6da" labelFloat="true" prefHeight="25.0" prefWidth="345.0" promptText="Año" GridPane.rowIndex="2" />
          </children>
          <padding>

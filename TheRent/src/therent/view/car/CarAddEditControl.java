@@ -93,14 +93,14 @@ public class CarAddEditControl {
 
     @FXML
     public void handleSubmit(){
-        boolean r=false;
         try {
-            r=CAuto.addAuto(placaTxt.getText(), Integer.parseInt(yrTxt.getText()), chasisTxt.getText(), vinTxt.getText(), colorTxt.getText(), transCmb.getSelectionModel().getSelectedIndex(), ModCmb.getValue().getId_modelo());
+            CAuto.addAuto(placaTxt.getText(), Integer.parseInt(yrTxt.getText()), chasisTxt.getText(), vinTxt.getText(), colorTxt.getText(), transCmb.getSelectionModel().getSelectedIndex(), ModCmb.getValue().getId_modelo());
         } catch (Exception e) {
             msgerr(e.getMessage());
+            return;
         }
 
-
+        msgconf("Se ha ingresado el auto correctamente");
         main.showCarOverview(ctrl.getSidepane());
     }
 

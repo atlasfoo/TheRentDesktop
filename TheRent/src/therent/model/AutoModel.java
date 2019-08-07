@@ -44,7 +44,7 @@ public class AutoModel {
     }
     public boolean newAuto(String plac, int yr, String chasis, String vin, String color, int trans, int id_mod) throws SQLException {
         Connection conn= DriverManager.getConnection(JDBCUtil.getDatabaseUri());
-        CallableStatement cs=conn.prepareCall("{sp_new_auto(?,?,?,?,?,?,?)}");
+        CallableStatement cs=conn.prepareCall("{CALL sp_new_auto(?,?,?,?,?,?,?)}");
         cs.setString(1, plac);
         cs.setInt(2, yr);
         cs.setString(3, chasis);

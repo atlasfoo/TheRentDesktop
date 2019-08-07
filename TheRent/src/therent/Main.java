@@ -76,6 +76,7 @@ public class Main extends Application {
         }
     }
 
+    //Evento para mostrar el carOverview Automaticamente dentro de root layout auto
     public void showCar(){
         BorderPane sidepane=showCarRootL();
         if(sidepane==null){

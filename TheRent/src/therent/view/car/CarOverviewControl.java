@@ -7,6 +7,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.layout.BorderPane;
 import therent.control.CAuto;
 import therent.model.beans.Auto;
 
@@ -71,10 +72,16 @@ public class CarOverviewControl {
     @FXML
     private Label ishabLbl;
 
+    private BorderPane parentPane;
+
     private ObservableList<Auto> autos;
 
     public void setAutos(List<Auto> autos) {
         this.autos = FXCollections.observableArrayList(autos);
+    }
+
+    public void setParentPane(BorderPane parentPane) {
+        this.parentPane = parentPane;
     }
 
     public void initialize(){
