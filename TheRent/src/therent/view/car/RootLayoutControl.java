@@ -50,4 +50,6 @@ public class RootLayoutControl {
 
     public void handleNewCar() { main.showNewCar(this.sidepane);}
 
+    public void handleNewModel(){main.showNewModel(this.sidepane);}
+
 }

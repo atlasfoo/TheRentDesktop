@@ -13,6 +13,7 @@ import therent.view.LogWindowControl;
 import therent.view.MainFrameControl;
 import therent.view.car.CarAddEditControl;
 import therent.view.car.CarOverviewControl;
+import therent.view.car.ModelSceneControl;
 import therent.view.car.RootLayoutControl;
 
 import java.io.IOException;
@@ -134,6 +135,7 @@ public class Main extends Application {
             ex.printStackTrace();
         }
     }
+    //Mostrar ventana de editar auto
     public void showEditCar(BorderPane parentPane, Auto a){
         FXMLLoader loader=new FXMLLoader();
         loader.setLocation(Main.class.getResource("view/car/CarAddEditScene.fxml"));
@@ -149,6 +151,22 @@ public class Main extends Application {
             ex.printStackTrace();
         }
     }
+
+    //Mostrar ventana de ingresar modelo
+    public void showNewModel(BorderPane parentPane){
+        FXMLLoader loader=new FXMLLoader();
+        loader.setLocation(Main.class.getResource("view/car/ModelScene.fxml"));
+        try {
+            BorderPane root=loader.load();
+            ModelSceneControl ctrl=loader.getController();
+            ctrl.setMain(this);
+            ctrl.setParentPane(parentPane);
+            parentPane.setCenter(root);
+        }catch (IOException ex){
+            ex.printStackTrace();
+        }
+    }
+
 
     /*TODO:
        1: implementar el resto de las funcionalidades, cada quien en su rama

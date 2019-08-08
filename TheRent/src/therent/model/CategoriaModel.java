@@ -13,7 +13,7 @@ public class CategoriaModel {
         Connection conn= DriverManager.getConnection(JDBCUtil.getDatabaseUri());
         //Statement convencional ya que no se retorna nada
         Statement s=conn.createStatement();
-        ResultSet rs=s.executeQuery("CALL sp_auto_all();");
+        ResultSet rs=s.executeQuery("CALL sp_categoria_all();");
         if(rs==null){
             conn.close();
             return null;
@@ -23,7 +23,7 @@ public class CategoriaModel {
             int id=rs.getInt("ID");
             String cat=rs.getString("Categoría");
             String descr=rs.getString("Descripción");
-            float prec=rs.getFloat("Precio");
+            float prec=rs.getFloat("Costo");
             float depo=rs.getFloat("Depósito");
             cats.add(new Categoria(id, cat, descr,prec, depo));
         }
