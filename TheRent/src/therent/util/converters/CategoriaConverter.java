@@ -6,8 +6,8 @@ import therent.model.beans.Categoria;
 public class CategoriaConverter extends StringConverter<Categoria> {
 
     @Override
-    public String toString(Categoria object) {
-        return null;
+    public String toString(Categoria o) {
+        return o==null? null : ("Categoría "+o.getCategoria()+": "+o.getDescr()+" | "+o.getPrecio()+"$");
     }
 
     @Override

@@ -38,10 +38,7 @@ CREATE PROCEDURE sp_new_sysuser (in id_empleado int, in usrname varchar(50), in 
         select rol into roln from sysuser where Id_Empleado=id_empleado;
 	END    
 //
-call sp_login_sysuser('admin','admin.123',@m);
-select @m;
-ALTER TABLE sysuser convert to character set utf8mb4
-drop procedure sp_login_sysuser;
+
 DELIMITER //
 CREATE PROCEDURE sp_login_sysuser(in usrname varchar(50), in ipswd varchar(100), out roln varchar(15))
 begin
@@ -51,6 +48,18 @@ begin
 	end if;
 end //
 
+CALL sp_categoria_all();
+
+#categoría
+DELIMITER //
+CREATE PROCEDURE sp_categoria_all()
+BEGIN	
+	SELECT Id_Categoria AS ID,
+	Nombre AS Categoría,
+	Descripcion AS Descripción,
+	Costo_dia AS Costo,
+	deposito AS Depósito FROM Categoria;
+END //
 #modelo de auto
 
 DELIMITER //
@@ -69,10 +78,6 @@ begin
     insert into Modelo_Auto(Marca, Modelo, Motorizacion, Combustible, Tipo_Carroceria, Id_Categoria) values(marca, modelo, mot, combs, tipo_carroceria, id_cat);
 end//
 
-alter table Auto
-add column No_Chasis varchar(30);
-
-DROP PROCEDURE sp_model_all
 
 DELIMITER //
 CREATE PROCEDURE sp_model_all()
@@ -84,10 +89,6 @@ BEGIN
 	c.Costo_dia AS Costo FROM Modelo_Auto ma 
 	INNER JOIN Categoria c ON ma.Id_Categoria=c.Id_Categoria;
 END	//
-
-CALL sp_model_all()
-
-DROP PROCEDURE sp_new_auto
 
 DELIMITER //
 CREATE PROCEDURE sp_new_auto(in placa varchar(10), IN yr INT , in no_c varchar(30), in vin varchar(30), in color varchar(30), in trans int, in id_mod int)
@@ -103,24 +104,6 @@ begin
     insert into Auto(Placa, Vin, Color, Transmisión, Id_Modelo, Estado, No_Chasis, año, is_enabled) values(placa, vin, color, transm, id_mod, 'DISPONIBLE', no_c, yr, 'SI');
 end//
 
-drop procedure sp_auto_all
-
-UPDATE Auto SET año=2017;
-
-SELECT * FROM Categoria
-
-UPDATE Categoria SET deposito=200 WHERE Id_Categoria<19;
-
-UPDATE Categoria SET deposito=300 WHERE Id_Categoria>=19;
-
-ALTER TABLE Auto
-ADD COLUMN is_enabled VARCHAR(20);
-
-ALTER TABLE Auto
-ADD CONSTRAINT ck_auto_enabled
-CHECK(is_enabled='SI' OR is_enabled='NO');
-
-UPDATE Auto SET is_enabled='SI';
 
 DELIMITER //
 CREATE PROCEDURE sp_auto_all()
@@ -135,6 +118,7 @@ begin
 	ma.Combustible as Combustible,
 	a.Placa as Placa,
 	a.Vin as VIN,
+	a.No_Chasis AS Chasis,
 	c.Descripcion as Categoría,
 	c.Costo_dia as Precio,
 	c.Deposito AS Depsósito,
@@ -144,7 +128,7 @@ begin
 	INNER JOIN Categoria c ON c.Id_Categoria=ma.Id_Categoria;
 end //
 
-DROP PROCEDURE sp_enable_car
+CALL sp_auto_all
 
 DELIMITER //
 CREATE PROCEDURE sp_enable_car(IN id_aut INT)
@@ -156,9 +140,6 @@ BEGIN
 	END if;
 END //
 
-SELECT * FROM Auto
-
-CALL sp_enable_car(17);
 
 DELIMITER //
 
@@ -166,6 +147,12 @@ CREATE PROCEDURE sp_edit_auto(IN id INT,IN plac VARCHAR(20), IN col VARCHAR(50))
 BEGIN	
 	UPDATE Auto SET Placa=plac, Color=col WHERE Id_Auto=id;
 END //
+
+
+
+
+
+
 
 #Cliente
 
