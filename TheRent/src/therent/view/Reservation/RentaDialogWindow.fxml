@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="therent.view.Reservation.RentaDialogWindow">
+   <children>
+      <VBox layoutX="411.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="580.0" prefWidth="479.0" spacing="35.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="411.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+         <children>
+            <Pane maxHeight="143.0" prefHeight="143.0" prefWidth="469.0">
+               <children>
+                  <Label layoutX="164.0" layoutY="14.0" text="Datos de la Renta" />
+                  <JFXTextField fx:id="fx_nombre_cliente" labelFloat="true" layoutX="21.0" layoutY="57.0" prefHeight="25.0" prefWidth="190.0" promptText="Nombre del Cliente" />
+                  <JFXComboBox fx:id="fx_estado" labelFloat="true" layoutX="222.0" layoutY="57.0" prefHeight="25.0" prefWidth="190.0" promptText="Estado" />
+               </children>
+            </Pane>
+            <Pane maxHeight="275.0" prefHeight="275.0" prefWidth="465.0">
+               <children>
+                  <JFXTextField fx:id="fx_costo_renta" labelFloat="true" layoutX="22.0" layoutY="123.0" prefHeight="25.0" prefWidth="190.0" promptText="Costo de la Renta" />
+                  <JFXButton fx:id="btn_guardar_renta" buttonType="RAISED" layoutX="322.0" layoutY="216.0" onAction="#SaveNewReserva" prefHeight="28.0" prefWidth="104.0" style="-fx-border-color: #0095a8;" text="GUARDAR" />
+                  <JFXDatePicker fx:id="fx_fecha_entrega" layoutX="236.0" layoutY="121.0" prefHeight="28.0" prefWidth="190.0" promptText="Fecha Entrega" />
+                  <JFXDatePicker fx:id="fx_fecha_recibo" layoutX="236.0" layoutY="46.0" prefHeight="28.0" prefWidth="190.0" promptText="Fecha Recibo" />
+                  <JFXTextField fx:id="fx_auto" labelFloat="true" layoutX="22.0" layoutY="48.0" prefHeight="25.0" prefWidth="190.0" promptText="Auto" />
+               </children>
+            </Pane>
+         </children>
+      </VBox>
+      <TableView fx:id="tabla_auto" layoutX="19.0" layoutY="239.0" prefHeight="252.0" prefWidth="360.0">
+        <columns>
+          <TableColumn fx:id="column_id_auto" minWidth="0.0" prefWidth="0.0" text="Id_Auto" />
+            <TableColumn fx:id="column_marca" prefWidth="180.0" text="Marca" />
+            <TableColumn fx:id="column_modelo" prefWidth="180.0" text="Modelo" />
+        </columns>
+      </TableView>
+      <JFXTextField fx:id="id_cliente" editable="false" focusColor="WHITE" layoutX="95.0" layoutY="441.0" prefHeight="11.0" prefWidth="25.0" unFocusColor="WHITE" />
+      <JFXTextField fx:id="id_auto" editable="false" focusColor="WHITE" layoutX="39.0" layoutY="441.0" prefHeight="2.0" prefWidth="25.0" unFocusColor="WHITE" />
+      <TableView fx:id="tabla_cliente" layoutX="20.0" layoutY="14.0" prefHeight="200.0" prefWidth="360.0">
+        <columns>
+          <TableColumn fx:id="column_id_cliente" minWidth="0.0" prefWidth="0.0" text="Id_Cliente" />
+          <TableColumn fx:id="column_primer_nombre" prefWidth="180.0" text="Nombre" />
+            <TableColumn fx:id="column_primer_apellido" prefWidth="180.0" text="Apellido" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

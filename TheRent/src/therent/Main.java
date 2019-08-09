@@ -5,10 +5,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import therent.view.LogWindowControl;
 import therent.view.MainFrameControl;
+import therent.view.Reservation.ReservaWindowControl;
 
 import java.io.IOException;
 
@@ -18,8 +20,8 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         this.primaryStage=primaryStage;
         primaryStage.setTitle("TheRent Link System");
-        showReservationFrame();
         //showLogin();
+        showReservation();
     }
 
     public void showMainFrame(String role){
@@ -59,41 +61,32 @@ public class Main extends Application {
         }
     }
 
+    public void showReservation(){
+        BorderPane sidepane = ShowReservationFrame();
+        if(sidepane==null){
+            return;
+        }
+    }
 
-
-
-    public void showReservationFrame(){
+    //mostrar ventana principal para abrir reserva
+    public BorderPane ShowReservationFrame(){
         FXMLLoader loader=new FXMLLoader();
-        loader.setLocation(Main.class.getResource("view/ReservaWindow.fxml"));
+        loader.setLocation(Main.class.getResource("view/Reservation/ReservaWindow.fxml"));
         try {
             AnchorPane root=loader.load();
+            ReservaWindowControl ctrl=loader.getController();
+            ctrl.setMain(this);
+            //primaryStage.setMaximized(false);
             primaryStage.setScene(new Scene(root));
-            //primaryStage.setMaximized(true);
-            //MainFrameControl ctrl=loader.getController();
-            //ctrl.setRole(role);
+            primaryStage.setMaximized(true);
             primaryStage.show();
+            //return ctrl.getSidepane();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        /*try
-        {
-            Ventana("view/ReservaWindow.fxml");
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }*/
+        return null;
     }
 
-    public void Ventana(String ruta) throws IOException
-    {
-        Stage stage_2 = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource(ruta));
-        stage_2.initModality(Modality.APPLICATION_MODAL);
-        stage_2.setScene(new Scene(root));
-        //stage_2.show();
-        stage_2.showAndWait();
-    }
 /*TODO:
        1: implementar el resto de las funcionalidades, cada quien en su rama
     *  issue 1: RESUELTO

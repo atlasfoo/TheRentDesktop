@@ -179,33 +179,8 @@ end //
 
 #procedimiento para la Reserva Interfaz
 
-#visualizacion de todas las reservas
-delimiter //
-create procedure sp_visualizacion_reservas()
-begin
-select 
-concat(c.Primer_Nombre , ' ' , c.Segundo_Nombre)  as 'Nombres',
-concat(c.Primer_Apellido , ' ' , c.Segundo_Apellido) as 'Apellidos',
-dr.Fecha_Entrega as 'Fecha de Entrega', 
-dr.Fecha_Recibo as 'Fecha de Recibido',
-MA.Marca as 'Marca del Auto',
-MA.Modelo as 'Modelo del Auto',
-dr.Costo as 'Costo de la Renta'
-from Renta r
-inner join Detalle_Renta dr
-on dr.Id_Renta = r.Id_Renta
-inner join Auto a
-on a.Id_Auto = dr.Id_Auto
-inner join Modelo_Auto MA
-on MA.Id_Modelo = a.Id_Modelo
-inner join Cliente c
-on c.Id_Cliente = r.Id_Cliente
-group by r.Id_Renta;
-end //
 
-call sp_visualizacion_reservas();
-
-/*busqueda de las reservas*/
+/*busqueda de las reservas le falta esta en proceso*/
 delimiter //
 create procedure sp_buscar_reservas(in dato_cliente Varchar(50))
 begin
@@ -240,7 +215,6 @@ in id_client int,
 in estados int,
 /*detalle renta*/
 in id_car int,
-in id_employees int,
 in date_of_delivery date, 
 in date_of_receipt date,
 in cost double
@@ -256,8 +230,21 @@ begin
 	end if;
     insert into Renta(Id_Cliente,Fecha,Estado) values(id_client,now(),combstat);
 	insert into Detalle_Renta(Id_Renta,Id_Auto,Id_Empleado,Fecha_Entrega,Fecha_Recibo,Costo) 
-					   values((select count(distinct Id_Renta)from Renta),id_car,id_employees,date_of_delivery,date_of_receipt,cost);
+					   values((select count(distinct Id_Renta)from Renta),id_car,(select count(distinct Id_Empleado)from Empleado),date_of_delivery,date_of_receipt,cost);
+end //
+
+#visualizar en mi ventana los clientes
+delimiter //
+create procedure sp_cliente_vista()
+begin
+select c.Id_Cliente, c.Primer_Nombre , c.Primer_Apellido from Cliente c;
 end //
 
 
+#visualizar en mi ventana los autos
+delimiter //
+create procedure sp_auto_vista()
+begin
+select a.Id_Auto, ma.Marca, ma.Modelo from Auto a inner join Modelo_Auto ma on ma.Id_Modelo = a.Id_Modelo;
+end //
 
