@@ -11,10 +11,7 @@ import javafx.stage.Stage;
 import therent.model.beans.Auto;
 import therent.view.LogWindowControl;
 import therent.view.MainFrameControl;
-import therent.view.car.CarAddEditControl;
-import therent.view.car.CarOverviewControl;
-import therent.view.car.ModelSceneControl;
-import therent.view.car.RootLayoutControl;
+import therent.view.car.*;
 
 import java.io.IOException;
 
@@ -167,6 +164,20 @@ public class Main extends Application {
         }
     }
 
+    //Mostrar ventana de ingresar mantenimiento
+    public void showManteniance(BorderPane parentPane){
+        FXMLLoader loader=new FXMLLoader();
+        loader.setLocation(this.getClass().getResource("view/car/AddMantScene.fxml"));
+        try {
+            AnchorPane root=loader.load();
+            AddMantControl ctrl=loader.getController();
+            ctrl.setMain(this);
+            ctrl.setParentPane(parentPane);
+            parentPane.setCenter(root);
+        }catch (IOException ex){
+            ex.printStackTrace();
+        }
+    }
 
     /*TODO:
        1: implementar el resto de las funcionalidades, cada quien en su rama

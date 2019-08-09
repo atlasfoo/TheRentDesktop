@@ -11,6 +11,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.layout.BorderPane;
 import therent.Main;
 import therent.control.CCategoria;
+import therent.control.CModeloAuto;
 import therent.model.beans.Categoria;
 import therent.util.converters.CategoriaConverter;
 
@@ -69,6 +70,19 @@ public class ModelSceneControl {
         } catch (Exception e) {
             msgerr(e.getMessage());
         }
+    }
+
+    @FXML
+    private void handleSumbit(){
+        try {
+            CModeloAuto.newModelo(marcaTxt.getText(),modeloTxt.getText(),motorTxt.getText(),carrCmb.getSelectionModel().getSelectedItem(),combCmb.getSelectionModel().getSelectedIndex(),catCmb.getSelectionModel().getSelectedItem().getId_categoria());
+        } catch (Exception e) {
+            msgerr(e.getMessage());
+            return;
+        }
+        msgconf("Se ha agregado el modelo correctamente");
+        main.showCarOverview(parentPane);
+
     }
 
     @FXML

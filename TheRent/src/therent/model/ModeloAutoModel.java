@@ -30,5 +30,16 @@ public class ModeloAutoModel {
         conn.close();
         return modelos;
     }
-
+    public void addModelo(String marca, String modelo, String motor, String carr, int combustible, int id_cat) throws SQLException {
+        Connection conn = DriverManager.getConnection(JDBCUtil.getDatabaseUri());
+        CallableStatement cs= conn.prepareCall("{call sp_new_modelo(?,?,?,?,?,?)}");
+        cs.setString(1, marca);
+        cs.setString(2, modelo);
+        cs.setString(3, motor);
+        cs.setInt(4, combustible);
+        cs.setString(5, carr);
+        cs.setInt(6, id_cat);
+        cs.execute();
+        conn.close();
+    }
 }
