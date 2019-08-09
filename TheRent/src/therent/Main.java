@@ -77,15 +77,6 @@ public class Main extends Application {
 
     //Evento para mostrar el carOverview Automaticamente dentro de root layout auto
     public void showCar(){
-        BorderPane sidepane=showCarRootL();
-        if(sidepane==null){
-            return;
-        }
-        showCarOverview(sidepane);
-    }
-
-    //Mostrar ventana principal de auto
-    public BorderPane showCarRootL(){
         FXMLLoader loader=new FXMLLoader();
         loader.setLocation(Main.class.getResource("view/car/RootLayout.fxml"));
         try {
@@ -95,12 +86,13 @@ public class Main extends Application {
             primaryStage.setMaximized(false);
             primaryStage.setScene(new Scene(root));
             primaryStage.setMaximized(true);
-            return ctrl.getSidepane();
+            showCarOverview(ctrl.getSidepane());
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return null;
+
     }
+
 
     public void showCarOverview(BorderPane sidepane){
         FXMLLoader loader=new FXMLLoader();

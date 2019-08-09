@@ -15,6 +15,8 @@ public class MantenimientoModel {
         cs.setDate(2, Date.valueOf(f_out));
         cs.setString(3, descr);
         cs.setInt(4, id_auto);
+        cs.execute();
+        conn.close();
     }
 
 }
