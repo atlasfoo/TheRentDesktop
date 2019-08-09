@@ -20,12 +20,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import therent.control.CCliente;
 import therent.model.Cliente;
-
-import javax.xml.transform.sax.SAXSource;
-import java.awt.event.*;
 import java.net.URL;
-import java.security.Key;
-import java.util.EventListener;
 import java.util.ResourceBundle;
 
 public class control_MenuCliente implements Initializable {
@@ -231,24 +226,25 @@ public class control_MenuCliente implements Initializable {
     @FXML
      void BotonCliente()
     {
-        switch (idGuardar.getText())
-        {
-            case "Guardar":
-                AgregarClient();
-                break;
-            case "Deshabilitar":
-                idCedula.setDisable(true);
-                String aux = idCedula.getText();
-                estadoCliente(aux);
-                MostrandoDatos();
-                break;
-            case "Guardar Cambios":
-                idCedula.setDisable(true);
-                String a = idCedula.getText();
-                ModificarDatos(a,idPNombre.getText(), idSNombre.getText(), idDireccion.getText());
-                MostrandoDatos();
-                break;
-        }
+        try {
+            switch (idGuardar.getText()) {
+                case "Guardar":
+                    AgregarClient();
+                    break;
+                case "Deshabilitar":
+                    idCedula.setDisable(true);
+                    String aux = idCedula.getText();
+                    estadoCliente(aux);
+                    MostrandoDatos();
+                    break;
+                case "Guardar Cambios":
+                    idCedula.setDisable(true);
+                    String a = idCedula.getText();
+                    ModificarDatos(a, idPNombre.getText(), idSNombre.getText(), idDireccion.getText());
+                    MostrandoDatos();
+                    break;
+            }
+        }catch (Exception e){}
     }
   //Metodo que conecta con ccliente para agregar un registro
     public void AgregarClient()
