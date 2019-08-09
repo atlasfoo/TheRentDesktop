@@ -1,17 +1,18 @@
 package therent.model;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
+import org.omg.Messaging.SYNC_WITH_TRANSPORT;
 import therent.util.JDBCUtil;
-
-import javax.annotation.processing.Filer;
-import java.io.*;
 import java.sql.*;
 
 public class Cliente {
+
 
     private StringProperty nombre1;
     private StringProperty nombre2;
@@ -21,6 +22,8 @@ public class Cliente {
     private StringProperty direccion;
     private StringProperty tipoCliente;
     private StringProperty estado;
+    private IntegerProperty id;
+
 
    public Cliente(String nombre1, String nombre2, String apellido1, String apellido2, String cedula, String direccion, String tipocliente)
     {
@@ -45,7 +48,12 @@ public class Cliente {
         this.estado = new SimpleStringProperty(estado);
     }
 
+
     public  Cliente(){}
+
+    public Integer getId(){return id.get();}
+
+    public void setId(Integer id){this.id =  new SimpleIntegerProperty(id);}
 
     public String getNombre1()
     {
@@ -124,6 +132,8 @@ public class Cliente {
 
     //Metodos get y set property
 
+    public IntegerProperty idproperty(){return  id;}
+
     public StringProperty nombre1property()
     {
         return nombre1;
@@ -185,6 +195,7 @@ public class Cliente {
         cs.execute();
 
         msgerr("Correcto");
+        conn.close();
     }
 
     //Metodo para mandar mensajes
@@ -211,6 +222,8 @@ public class Cliente {
 
             while (resultado.next())
             {
+                /*aqui se llena la coleccion con objetos de tipo cliente*/
+                /*el resultado.getSting(parametro) se caputra el valor que general el proceso almacenado*/
                 listaCliente.add(new Cliente
                         (
                                 resultado.getString("Primer_Nombre"),
@@ -224,14 +237,12 @@ public class Cliente {
 
                               ));
             }
-
+            conn.close();
         }catch (Exception e){}
-
         return  listaCliente;
     }
 
     //Metodo para BuscarRegistro
-
     public ObservableList<Cliente> BuscarRegistro(String a)
     {
         //Declaracion de variables
@@ -247,6 +258,8 @@ public class Cliente {
 
             while (resultado.next())
             {
+                /*aqui se llena la coleccion con objetos de tipo cliente*/
+                /*el resultado.getSting(parametro) se caputra el valor que general el proceso almacenado*/
                 listaCliente.add(new Cliente
                         (
                                 resultado.getString("Primer_Nombre"),
@@ -260,37 +273,56 @@ public class Cliente {
 
                         ));
             }
-
+            conn.close();
         }catch (Exception e){}
 
         return  listaCliente;
     }
-/*
-    public void EscribirArchivoAux(String a)
-    {
-        try{
 
-            FileWriter escribir = new FileWriter("buscar.txt");
-            escribir.write(a);
-            escribir.close();
-        }catch (IOException e){}
+    //Metodo para cambiar el estado de cliente, solo resive el parametro de cedula, atraves de ese el sp encontrara el registro.
+    public void estadoCliente(String Cedula) throws SQLException {
+        Connection conn = DriverManager.getConnection(JDBCUtil.getDatabaseUri());
+        CallableStatement cs = conn.prepareCall("{call sp_CambiarEstadoCliente(?)}");
+        cs.setInt(1,ObtenerId(Cedula).get(0));
+        cs.execute();
+        conn.close();
     }
-    public String LeerArchivoAux()
+
+    //Este metodo es creado con el fin de retonar el id del cliente para poder mandarselo a estado cliente o actualizar datos
+    public ObservableList<Integer> ObtenerId(String dat)
     {
-        String tex = null;
+        //Declaracion de variables
+        ObservableList<Integer> listaCliente;
+        //Inicializando el observablelist
+        listaCliente = FXCollections.observableArrayList();
+
         try {
-            FileReader entrada = new FileReader("buscar.txt");
-            BufferedReader fr = new BufferedReader(entrada);
+            Connection conn= DriverManager.getConnection(JDBCUtil.getDatabaseUri());
+            CallableStatement cs = conn.prepareCall("{call mostrarTodoCliente(?)}");
+            cs.setString(1,dat);
+            ResultSet resultado = cs.executeQuery();
 
-            tex  = fr.readLine();
-
-            entrada.close();
-
-
-        }catch (IOException e){}
-
-        return  tex;
+            while (resultado.next())
+            {
+                /*aqui se llena la coleccion con objetos de tipo cliente*/
+                /*el resultado.getSting(parametro) se caputra el valor que general el proceso almacenado*/
+                listaCliente.add(resultado.getInt("Id_Cliente"));
+            }
+            conn.close();
+        }catch (Exception e){}
+        return  listaCliente;
     }
-*/
 
+    public void ModificarDatos(String Cedula, String a, String b, String c) throws Exception
+    {
+        System.out.println(ObtenerId(Cedula).get(0));
+        Connection conn= DriverManager.getConnection(JDBCUtil.getDatabaseUri());
+        CallableStatement cs=conn.prepareCall("{call sp_ModificarDatosCliente(?, ?, ?, ?)}");
+        cs.setInt(1,ObtenerId(Cedula).get(0));
+        cs.setString(2,a);
+        cs.setString(3,b);
+        cs.setString(4,c);
+        cs.execute();
+        cs.close();
+    }
 }

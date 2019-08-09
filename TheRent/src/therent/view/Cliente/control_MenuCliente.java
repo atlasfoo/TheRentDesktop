@@ -108,7 +108,6 @@ public class control_MenuCliente implements Initializable {
 
     }
 
-
     /*Efecto de transicion cuando se da click*/
     public void initHamburger()
     {
@@ -145,22 +144,26 @@ public class control_MenuCliente implements Initializable {
                     {
                         switch (ob.getAccessibleText()) {
                             case "agregar":
+                                LimpiarCampos();
                                 Bloqueobotones(false,"agregar");
                                 break;
                             case "buscar":
+                                LimpiarCampos();
                                 Bloqueobotones(true,"buscar");
                                 CargandoHboxBusqueda();
                                 break;
                             case "modificar":
-                                Bloqueobotones(false,"modificar");
+                                LimpiarCampos();
+                                Bloqueobotones(true,"modificar");
+                                idGuardar.setText("Guardar Cambios");
                                 break;
                             case "deshabilitar":
+                                LimpiarCampos();
                                 Bloqueobotones(true,"deshabilitar");
                                 idGuardar.setText("Deshabilitar");
                                 idGuardar.setDisable(false);
 
                                 break;
-
                         }
                     });
                 }
@@ -170,12 +173,14 @@ public class control_MenuCliente implements Initializable {
     public void Bloqueobotones(boolean b, String m)
     {
         if(m.equals("modificar")) {
-            idPNombre.setDisable(b);
-            idSNombre.setDisable(b);
+            idPNombre.setDisable(false);
+            idSNombre.setDisable(false);
             idPApellido.setDisable(b);
             idSApellido.setDisable(b);
-            idDireccion.setDisable(b);
-            idGuardar.setDisable(b);
+            idCedula.setDisable(b);
+            idDireccion.setDisable(false);
+            idGuardar.setDisable(false);
+            idTipoCliente.setDisable(b);
         }
         else{
         idPNombre.setDisable(b);
@@ -189,7 +194,7 @@ public class control_MenuCliente implements Initializable {
         }
     }
 
-    //Cargando la barra de busqueda al tocar la opcion Buscar.
+    //Cargando la barra de busqueda al tocar la opcion Buscar. Y que cuando se detecta que se toca el boton buscar llama al metodo buscar.
     public void CargandoHboxBusqueda()
     {
         HBox box1;
@@ -211,8 +216,7 @@ public class control_MenuCliente implements Initializable {
                     {
                         switch (ob.getAccessibleText()) {
                             case "BuscarRegistro":
-                                System.out.println(text);
-                                     MostrandoDatosBuscados(text);
+                                MostrandoDatosBuscados(text);
                                 break;
                         }
                     });
@@ -222,18 +226,42 @@ public class control_MenuCliente implements Initializable {
             /* -------------------------*/
         }catch (Exception E){msgerr(E.getMessage());}
     }
+
     //Evento de boton para agregar un cliente
     @FXML
-     void AgregandoCliente()
+     void BotonCliente()
     {
-            try {
-                    CCliente.IngresarCliente(idPNombre.getText(), idSNombre.getText(), idPApellido.getText(), idSApellido.getText()
-                            , idCedula.getText(), idDireccion.getText(),idTipoCliente.getValue());
-                    MostrandoDatos();
-                    // msgerr(idTipoCliente.getValue());
-                }catch (Exception E){msgerr(E.getMessage());}
-
+        switch (idGuardar.getText())
+        {
+            case "Guardar":
+                AgregarClient();
+                break;
+            case "Deshabilitar":
+                idCedula.setDisable(true);
+                String aux = idCedula.getText();
+                estadoCliente(aux);
+                MostrandoDatos();
+                break;
+            case "Guardar Cambios":
+                idCedula.setDisable(true);
+                String a = idCedula.getText();
+                ModificarDatos(a,idPNombre.getText(), idSNombre.getText(), idDireccion.getText());
+                MostrandoDatos();
+                break;
+        }
     }
+  //Metodo que conecta con ccliente para agregar un registro
+    public void AgregarClient()
+    {
+        try {
+            CCliente.IngresarCliente(idPNombre.getText(), idSNombre.getText(), idPApellido.getText(), idSApellido.getText()
+                    , idCedula.getText(), idDireccion.getText(),idTipoCliente.getValue());
+            msjText("Cliente Agregado Correctamente.");
+            MostrandoDatos();
+            LimpiarCampos();
+        }catch (Exception E){msgerr(E.getMessage());}
+    }
+
     // Metodo para enviar los datos a la tabla
     public void MostrandoDatos()
     {
@@ -264,9 +292,16 @@ public class control_MenuCliente implements Initializable {
         TablaDatos.setItems(CCliente.BuscarDato(a));
         //Cuando se da click mostrar los registros en sus respectivos campos
         GestionEvento();
+        msjText("Registro Buscado Correctamente.");
     }
 
-
+    //Metodo Modificar
+    public void ModificarDatos(String a, String b, String c, String d)
+    {
+        try {
+            CCliente.modificarDatos(a,b,c,d);
+        }catch (Exception e){}
+    }
     //Evento para mandar mensajes
     public void msgerr(String msg){
         Alert al=new Alert(Alert.AlertType.ERROR);
@@ -292,8 +327,37 @@ public class control_MenuCliente implements Initializable {
             }
         });
     }
+    //Metodo que llama al ccliente para poder cambiar el estado del cliente
+    public void estadoCliente(String a)
+    {
+        try {
+            CCliente.estadoCliente(a);
+            MostrandoDatos();
+        }catch (Exception e)
+        {
 
+        }
+    }
+
+    //Variable estatica utilizada para capturar el valor a buscar, cuando se despliege la opcion de buscar
     public static String text;
 
+    //Metodo para limpiar los campos
+    public void LimpiarCampos()
+    {
+        idPNombre.setText("");
+        idSNombre.setText("");
+        idPApellido.setText("");
+        idSApellido.setText("");
+        idDireccion.setText("");
+        idCedula.setText("");
+        idTextoMensaje.setText("");
+    }
+    //Metodo para mandar el mensaje a escribir en el text ejemplo cuando se agrege un registro, se busque, etc.
+    public void msjText(String texto)
+    {
+        idTextoMensaje.setText("");
+        idTextoMensaje.setText(texto);
+    }
 }
 

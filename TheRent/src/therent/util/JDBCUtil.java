@@ -7,4 +7,5 @@ public class JDBCUtil {
     public static String getDatabaseUri(){
         return DATABASE_URI;
     }
+
 }
