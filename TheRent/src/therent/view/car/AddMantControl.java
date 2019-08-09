@@ -2,6 +2,7 @@ package therent.view.car;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDatePicker;
+import com.jfoenix.controls.JFXTextArea;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -11,6 +12,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.BorderPane;
 import therent.control.CAuto;
+import therent.control.CMantenimiento;
+import therent.control.CModeloAuto;
 import therent.model.beans.Auto;
 import therent.Main;
 public class AddMantControl {
@@ -38,6 +41,9 @@ public class AddMantControl {
 
     @FXML
     private JFXDatePicker f_outDatepick;
+
+    @FXML
+    private JFXTextArea descrTxta;
 
     @FXML
     private JFXButton submitBtn;
@@ -75,6 +81,27 @@ public class AddMantControl {
         } catch (Exception e) {
             msgerr(e.getMessage());
         }
+    }
+    @FXML
+    private void handleSubmit(){
+        Auto selected=carTable.getSelectionModel().getSelectedItem();
+        if(selected==null){
+            msgerr("Seleccione un auto");
+            return;
+        }
+
+        try {
+            CMantenimiento.addMant(f_inDatepick.getValue(), f_outDatepick.getValue(), descrTxta.getText(), selected.getIDAuto());
+        } catch (Exception e) {
+            msgerr(e.getMessage());
+            return;
+        }
+        msgconf("Se ha ingresado correctamente");
+        main.showCarOverview(parentPane);
+    }
+    @FXML
+    private void handleBack(){
+        main.showCarOverview(parentPane);
     }
 
     @FXML
