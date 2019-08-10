@@ -22,6 +22,7 @@ import therent.control.CCliente;
 import therent.model.Cliente;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.concurrent.ExecutionException;
 
 public class control_MenuCliente implements Initializable {
 
@@ -81,8 +82,9 @@ public class control_MenuCliente implements Initializable {
 
     @FXML
     private JFXDrawer plegable1;
-    @Override
 
+
+    @Override
     public void initialize(URL location, ResourceBundle resources) {
 
         try{
@@ -92,9 +94,9 @@ public class control_MenuCliente implements Initializable {
 
             MostrandoDatos();
 
+            GestionEvento();
+
         }catch (Exception e){msgerr(e.getMessage());}
-
-
         ObservableList<String> lis = FXCollections.observableArrayList();
         lis.add("Convencional"); //Revisar el getValue
         lis.add("Turista");
@@ -104,7 +106,7 @@ public class control_MenuCliente implements Initializable {
     }
 
     /*Efecto de transicion cuando se da click*/
-    public void initHamburger()
+    private void initHamburger()
     {
 
         HamburgerNextArrowBasicTransition transition = new HamburgerNextArrowBasicTransition(menu);
@@ -125,10 +127,11 @@ public class control_MenuCliente implements Initializable {
     }
 
     //Metodo para cargar el menu, carga el vbox
-    public void CargaMenu() throws Exception
+    private void CargaMenu()
     {
-        HBox box;
-        /*Se carga las opciones del menu (el otro fxml ) dentro del jfxdrawer*/
+        try {
+            HBox box;
+            /*Se carga las opciones del menu (el otro fxml ) dentro del jfxdrawer*/
 
             box = FXMLLoader.load(getClass().getResource("HboxOpciones.fxml"));
             plegable.setSidePane(box);
@@ -140,21 +143,22 @@ public class control_MenuCliente implements Initializable {
                         switch (ob.getAccessibleText()) {
                             case "agregar":
                                 LimpiarCampos();
-                                Bloqueobotones(false,"agregar");
+                                Bloqueobotones(false, "agregar");
+                                idGuardar.setText("Guardar");
                                 break;
                             case "buscar":
                                 LimpiarCampos();
-                                Bloqueobotones(true,"buscar");
+                                Bloqueobotones(true, "buscar");
                                 CargandoHboxBusqueda();
                                 break;
                             case "modificar":
                                 LimpiarCampos();
-                                Bloqueobotones(true,"modificar");
+                                Bloqueobotones(true, "modificar");
                                 idGuardar.setText("Guardar Cambios");
                                 break;
                             case "deshabilitar":
                                 LimpiarCampos();
-                                Bloqueobotones(true,"deshabilitar");
+                                Bloqueobotones(true, "deshabilitar");
                                 idGuardar.setText("Deshabilitar");
                                 idGuardar.setDisable(false);
 
@@ -163,9 +167,10 @@ public class control_MenuCliente implements Initializable {
                     });
                 }
             }
+        }catch (Exception e){msgerr(e.getMessage());}
     }
     //metodo para bloquear los campos de texto de acorde al boton seleccionado
-    public void Bloqueobotones(boolean b, String m)
+    private void Bloqueobotones(boolean b, String m)
     {
         if(m.equals("modificar")) {
             idPNombre.setDisable(false);
@@ -190,7 +195,7 @@ public class control_MenuCliente implements Initializable {
     }
 
     //Cargando la barra de busqueda al tocar la opcion Buscar. Y que cuando se detecta que se toca el boton buscar llama al metodo buscar.
-    public void CargandoHboxBusqueda()
+    private void CargandoHboxBusqueda()
     {
         HBox box1;
         try {
@@ -235,48 +240,54 @@ public class control_MenuCliente implements Initializable {
                     idCedula.setDisable(true);
                     String aux = idCedula.getText();
                     estadoCliente(aux);
-                    MostrandoDatos();
                     break;
                 case "Guardar Cambios":
                     idCedula.setDisable(true);
                     String a = idCedula.getText();
                     ModificarDatos(a, idPNombre.getText(), idSNombre.getText(), idDireccion.getText());
-                    MostrandoDatos();
                     break;
             }
-        }catch (Exception e){}
+        }catch (Exception e){msgerr(e.getMessage());}
     }
   //Metodo que conecta con ccliente para agregar un registro
-    public void AgregarClient()
+    private void AgregarClient()
     {
         try {
             CCliente.IngresarCliente(idPNombre.getText(), idSNombre.getText(), idPApellido.getText(), idSApellido.getText()
                     , idCedula.getText(), idDireccion.getText(),idTipoCliente.getValue());
-            msjText("Cliente Agregado Correctamente.");
             MostrandoDatos();
             LimpiarCampos();
+
         }catch (Exception E){msgerr(E.getMessage());}
     }
 
-    // Metodo para enviar los datos a la tabla
-    public void MostrandoDatos()
+    //Evento cuando se de click borrar mensaje
+    @FXML
+    void clickMensaje()
     {
-        //columnas
-        cNombre.setCellValueFactory(new PropertyValueFactory<Cliente,String>("nombre1"));
-        cApellido.setCellValueFactory(new PropertyValueFactory<Cliente,String>("apellido1"));
-        cCedula.setCellValueFactory(new PropertyValueFactory<Cliente,String>("cedula"));
-        cDireccion.setCellValueFactory(new PropertyValueFactory<Cliente,String>("direccion"));
-        cEstado.setCellValueFactory(new PropertyValueFactory<Cliente,String>("estado"));
-        cTipoCliente.setCellValueFactory(new PropertyValueFactory<>("tipoCliente"));
-        TablaDatos.setItems(CCliente.MostrarDatos());
-        //Cuando se da click mostrar los registros en sus respectivos campos
-        GestionEvento();
+        idTextoMensaje.setText("");
+    }
+
+    // Metodo para enviar los datos a la tabla
+    private void MostrandoDatos()
+    {
+        try {
+            //columnas
+            cNombre.setCellValueFactory(new PropertyValueFactory<Cliente, String>("nombre1"));
+            cApellido.setCellValueFactory(new PropertyValueFactory<Cliente, String>("apellido1"));
+            cCedula.setCellValueFactory(new PropertyValueFactory<Cliente, String>("cedula"));
+            cDireccion.setCellValueFactory(new PropertyValueFactory<Cliente, String>("direccion"));
+            cEstado.setCellValueFactory(new PropertyValueFactory<Cliente, String>("estado"));
+            cTipoCliente.setCellValueFactory(new PropertyValueFactory<>("tipoCliente"));
+            TablaDatos.setItems(CCliente.MostrarDatos());
+            //Cuando se da click mostrar los registros en sus respectivos campos
+        }catch (Exception e){msgerr(e.getMessage());}
     }
 
     //Metodo para mostrar los datos buscados.
     public void MostrandoDatosBuscados(String a)
     {
-
+        try{
         // control_HboxBusqueda c = new control_HboxBusqueda();
         //columnas
         cNombre.setCellValueFactory(new PropertyValueFactory<Cliente,String>("nombre1"));
@@ -287,19 +298,22 @@ public class control_MenuCliente implements Initializable {
         cTipoCliente.setCellValueFactory(new PropertyValueFactory<>("tipoCliente"));
         TablaDatos.setItems(CCliente.BuscarDato(a));
         //Cuando se da click mostrar los registros en sus respectivos campos
-        GestionEvento();
-        msjText("Registro Buscado Correctamente.");
+        }catch (Exception e){msgerr(e.getMessage());}
     }
 
     //Metodo Modificar
-    public void ModificarDatos(String a, String b, String c, String d)
+    private void ModificarDatos(String a, String b, String c, String d)
     {
         try {
             CCliente.modificarDatos(a,b,c,d);
-        }catch (Exception e){}
+            LimpiarCampos();
+            MostrandoDatos();
+        }catch (Exception e){
+            msgerr(e.getMessage());
+        }
     }
     //Evento para mandar mensajes
-    public void msgerr(String msg){
+    private void msgerr(String msg){
         Alert al=new Alert(Alert.AlertType.ERROR);
         al.setTitle("TheRent Link System");
         al.setHeaderText("ERROR");
@@ -308,11 +322,13 @@ public class control_MenuCliente implements Initializable {
     }
 
     //Metodo que gestiona el metodo change, para cuando se selecciona una fila de la tabla se ballan los registros de las tablas a los campos
-    public void GestionEvento()
+    private void GestionEvento()
     {
         TablaDatos.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Cliente>() {
             @Override
             public void changed(ObservableValue<? extends Cliente> observable, Cliente oldValue, Cliente newValue) {
+                if(newValue != null)
+                {
                 idPNombre.setText(newValue.getNombre1());
                 idSNombre.setText(newValue.getNombre2());
                 idPApellido.setText(newValue.getApellido1());
@@ -320,18 +336,20 @@ public class control_MenuCliente implements Initializable {
                 idCedula.setText(newValue.getCedula());
                 idDireccion.setText(newValue.getDireccion());
                 idTipoCliente.setValue(newValue.gettipocliente());
+                }
             }
         });
     }
     //Metodo que llama al ccliente para poder cambiar el estado del cliente
-    public void estadoCliente(String a)
+    private void estadoCliente(String a)
     {
         try {
             CCliente.estadoCliente(a);
+            LimpiarCampos();
             MostrandoDatos();
         }catch (Exception e)
         {
-
+            msgerr(e.getMessage());
         }
     }
 
@@ -349,11 +367,6 @@ public class control_MenuCliente implements Initializable {
         idCedula.setText("");
         idTextoMensaje.setText("");
     }
-    //Metodo para mandar el mensaje a escribir en el text ejemplo cuando se agrege un registro, se busque, etc.
-    public void msjText(String texto)
-    {
-        idTextoMensaje.setText("");
-        idTextoMensaje.setText(texto);
-    }
+
 }
 

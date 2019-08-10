@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 import therent.Main;
 
 import java.io.IOException;
+import java.security.KeyStore;
 
 public class MainFrameControl {
 
@@ -38,6 +39,7 @@ public class MainFrameControl {
             Stage dlgStage=new Stage();
             dlgStage.initModality(Modality.WINDOW_MODAL);
             dlgStage.setScene(new Scene(root));
+            dlgStage.setMaximized(true);
             dlgStage.showAndWait();
         } catch (IOException e) {
             e.printStackTrace();

@@ -15,18 +15,18 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="693.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="therent.view.Cliente.control_MenuCliente">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="816.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="therent.view.Cliente.control_MenuCliente">
    <children>
-      <BorderPane layoutX="14.0" layoutY="14.0" prefHeight="687.0" prefWidth="1095.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <BorderPane layoutX="14.0" layoutY="14.0" onMousePressed="#clickMensaje" prefHeight="687.0" prefWidth="1095.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
             <HBox prefHeight="53.0" prefWidth="1095.0" spacing="100.0">
                <children>
                   <JFXHamburger fx:id="menu" cache="true" prefHeight="129.0" prefWidth="97.0">
                      <HBox.margin>
-                        <Insets left="5.0" />
+                        <Insets left="10.0" />
                      </HBox.margin>
                   </JFXHamburger>
-                  <JFXDrawer fx:id="plegable" direction="TOP" prefHeight="54.0" prefWidth="462.0">
+                  <JFXDrawer fx:id="plegable" direction="TOP" prefHeight="53.0" prefWidth="464.0">
                      <HBox.margin>
                         <Insets left="120.0" />
                      </HBox.margin></JFXDrawer>
@@ -43,7 +43,7 @@
                   <DropShadow />
                </effect>
                <children>
-                  <JFXButton fx:id="idGuardar" buttonType="RAISED" layoutX="125.0" layoutY="509.0" onAction="#BotonCliente" prefHeight="34.0" prefWidth="90.0" ripplerFill="WHITE" style="-fx-background-color: #2196F3;" text="Guardar" textFill="WHITE" />
+                  <JFXButton fx:id="idGuardar" buttonType="RAISED" layoutX="103.0" layoutY="501.0" onAction="#BotonCliente" prefHeight="42.0" prefWidth="138.0" ripplerFill="WHITE" style="-fx-background-color: #2196F3;" text="Guardar" textFill="WHITE" />
                   <JFXTextField fx:id="idPNombre" alignment="CENTER" labelFloat="true" layoutX="81.0" layoutY="20.0" prefHeight="40.0" prefWidth="190.0" promptText="Primer Nombre" />
                   <JFXTextField fx:id="idSNombre" alignment="CENTER" labelFloat="true" layoutX="81.0" layoutY="82.0" prefHeight="40.0" prefWidth="190.0" promptText="Segundo Nombre" />
                   <JFXTextField fx:id="idPApellido" alignment="CENTER" labelFloat="true" layoutX="81.0" layoutY="146.0" prefHeight="40.0" prefWidth="190.0" promptText="Primer Apellido" />
@@ -51,7 +51,7 @@
                   <JFXTextField fx:id="idCedula" alignment="CENTER" labelFloat="true" layoutX="81.0" layoutY="280.0" prefHeight="40.0" prefWidth="190.0" promptText="Cédula" />
                   <JFXTextField fx:id="idDireccion" alignment="CENTER" labelFloat="true" layoutX="81.0" layoutY="345.0" prefHeight="40.0" prefWidth="190.0" promptText="Dirección" />
                   <JFXComboBox fx:id="idTipoCliente" labelFloat="true" layoutX="81.0" layoutY="414.0" prefHeight="40.0" prefWidth="190.0" promptText="                   Tipo De Cliente" />
-                  <Text fx:id="idTextoMensaje" layoutX="32.0" layoutY="606.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="253.13671875" />
+                  <Text fx:id="idTextoMensaje" layoutX="32.0" layoutY="714.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="253.13671875" />
                </children>
             </Pane>
          </left>

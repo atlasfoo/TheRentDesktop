@@ -7,7 +7,6 @@ import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
-import org.omg.Messaging.SYNC_WITH_TRANSPORT;
 import therent.util.JDBCUtil;
 import java.sql.*;
 
@@ -208,7 +207,7 @@ public class Cliente {
     }
 
     //Metodo para mostrar todos los registros
-    public ObservableList<Cliente> MostrarRegistros()
+    public ObservableList<Cliente> MostrarRegistros() throws Exception
     {
         //Declaracion de variables
         ObservableList<Cliente> listaCliente;
@@ -243,7 +242,7 @@ public class Cliente {
     }
 
     //Metodo para BuscarRegistro
-    public ObservableList<Cliente> BuscarRegistro(String a)
+    public ObservableList<Cliente> BuscarRegistro(String a) throws  Exception
     {
         //Declaracion de variables
         ObservableList<Cliente> listaCliente;
@@ -324,5 +323,25 @@ public class Cliente {
         cs.setString(4,c);
         cs.execute();
         cs.close();
+    }
+
+    public static ObservableList<String> cedulasRegistradas()
+    {
+        ObservableList<String> listaCedula;
+        //Inicializando el observablelist
+        listaCedula = FXCollections.observableArrayList();
+
+        try {
+            Connection conn= DriverManager.getConnection(JDBCUtil.getDatabaseUri());
+            Statement statement = conn.createStatement();
+            ResultSet resultado = statement.executeQuery("Select * from Cliente");
+
+            while (resultado.next())
+            {
+                listaCedula.add(resultado.getString("Cedula"));
+            }
+            conn.close();
+        }catch (Exception e){}
+        return  listaCedula;
     }
 }
