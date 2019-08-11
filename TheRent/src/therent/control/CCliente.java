@@ -8,6 +8,7 @@ import therent.model.Cliente;
 
 public class CCliente {
 
+    //metodo para mandar mensajes de error
     private static void msgerr(String msg) {
         Alert al=new Alert(Alert.AlertType.ERROR);
         al.setTitle("TheRent Link System");
@@ -15,7 +16,7 @@ public class CCliente {
         al.setContentText(msg);
         al.showAndWait();
     }
-
+    //metodo para mandar mensajes de correcto
     private static void msgevr(String msg) {
         Alert al=new Alert(Alert.AlertType.INFORMATION);
         al.setTitle("TheRent Link System");
@@ -23,7 +24,6 @@ public class CCliente {
         al.setContentText(msg);
         al.showAndWait();
     }
-
     //Metodo estatico para ingresar cliente.
     public static void IngresarCliente(String a, String b, String c, String d, String e, String f, String g) throws Exception
     {
@@ -84,7 +84,7 @@ public class CCliente {
 
        return MostrarDatos();
     }
-
+    //
     public static void estadoCliente(String a) throws Exception
     {
         if(a.equals("")||a == null)
@@ -97,7 +97,7 @@ public class CCliente {
         msgevr("El estado ha sido cambiado exitosamente.");
         }
     }
-
+    //
     public static void modificarDatos(String a, String b , String c, String d) throws  Exception
     {
         if(a.equals("")||a == null || a.equals("")||a == null || a.equals("")||a == null)
@@ -112,6 +112,10 @@ public class CCliente {
         }
     }
 
-
+    public static void IngresarTel(String Tel, String dat) throws Exception
+    {
+        Cliente c = new Cliente();
+        c.IngresarTel(Integer.parseInt(Tel),dat);
+    }
 }
 

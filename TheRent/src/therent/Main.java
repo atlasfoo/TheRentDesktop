@@ -6,31 +6,34 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import therent.view.Cliente.control_MenuCliente;
 import therent.view.LogWindowControl;
 import therent.view.MainFrameControl;
-
+import therent.view.*;
 import java.io.IOException;
 
 public class Main extends Application {
     Stage primaryStage;
+
     @Override
-    public void start(Stage primaryStage) throws Exception{
-        this.primaryStage=primaryStage;
+    public void start(Stage primaryStage) throws Exception {
+        this.primaryStage = primaryStage;
         primaryStage.setTitle("TheRent Link System");
         showLogin();
 
     }
 
-    public void showMainFrame(String role){
-        FXMLLoader loader=new FXMLLoader();
+    public void showMainFrame(String role) {
+        FXMLLoader loader = new FXMLLoader();
         loader.setLocation(Main.class.getResource("view/MainFrame.fxml"));
         try {
-            AnchorPane root=loader.load();
+            AnchorPane root = loader.load();
             primaryStage.setScene(new Scene(root));
             primaryStage.setMaximized(true);
-            MainFrameControl ctrl=loader.getController();
+            MainFrameControl ctrl = loader.getController();
             ctrl.setRole(role);
             primaryStage.show();
         } catch (IOException e) {
@@ -39,19 +42,18 @@ public class Main extends Application {
     }
 
 
-
-    public void showLogin(){
-        FXMLLoader loader=new FXMLLoader();
+    public void showLogin() {
+        FXMLLoader loader = new FXMLLoader();
         loader.setLocation(Main.class.getResource("view/LogWindow.fxml"));
         try {
-            AnchorPane root=loader.load();
+            AnchorPane root = loader.load();
             //la ventana de login NO se carga en el primaryStage
-            Stage dlgStage=new Stage();
+            Stage dlgStage = new Stage();
             dlgStage.setTitle("Inicio de Sesión");
             dlgStage.initModality(Modality.WINDOW_MODAL);
             dlgStage.setResizable(false);
             dlgStage.setScene(new Scene(root));
-            LogWindowControl ctrl=loader.getController();
+            LogWindowControl ctrl = loader.getController();
             ctrl.setDlgStage(dlgStage);
             ctrl.setMain(this);
             dlgStage.showAndWait();
@@ -59,6 +61,62 @@ public class Main extends Application {
             e.printStackTrace();
         }
     }
+/*
+    public void showCliente()
+    {
+        FXMLLoader loader=new FXMLLoader();
+        loader.setLocation(Main.class.getResource("view/Cliente/MenuCliente.fxml"));
+        try {
+            AnchorPane root=loader.load();
+
+            control_MenuCliente ctrl=loader.getController();
+
+            ctrl.setMain(this);
+
+            primaryStage.setMaximized(false);
+
+            primaryStage.setScene(new Scene(root));
+
+            primaryStage.setMaximized(true);
+
+            primaryStage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+*/
+
+  /*  public void showClient() {
+
+        FXMLLoader loader = new FXMLLoader();
+
+        loader.setLocation(this.getClass().getResource("view/Cliente/MenuCliente.fxml"));
+
+        try {
+
+            AnchorPane root=loader.load();
+
+           control_MenuCliente ctrl=loader.getController();
+
+            ctrl.setMain(this);
+
+            primaryStage.setMaximized(false);
+
+            primaryStage.setScene(new Scene(root));
+
+            primaryStage.setMaximized(true);
+
+            primaryStage.show();
+
+        } catch (IOException e) {
+
+            e.printStackTrace();
+
+        }
+
+    }*/
+
     /*TODO:
        1: implementar el resto de las funcionalidades, cada quien en su rama
     *  issue 1: RESUELTO

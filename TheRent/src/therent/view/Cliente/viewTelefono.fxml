@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXListView?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="337.0" prefWidth="539.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="therent.view.Cliente.control_viewTel">
+   <children>
+      <JFXListView fx:id="idLIst" layoutX="320.0" layoutY="65.0" prefHeight="192.0" prefWidth="200.0" />
+      <JFXButton fx:id="idAdd" layoutX="257.0" layoutY="136.0" onMouseClicked="#Agregar" text="&gt;&gt;" />
+      <JFXTextField fx:id="idTel" layoutX="32.0" layoutY="161.0" prefHeight="25.0" prefWidth="143.0" />
+      <JFXButton fx:id="idDell" layoutX="257.0" layoutY="179.0" text="&lt;&lt;" />
+      <JFXButton fx:id="btnCancelar" layoutX="469.0" layoutY="304.0" text="Cancelar" />
+      <JFXButton fx:id="btnAceptar" layoutX="4.0" layoutY="304.0" text="Aceptar" />
+   </children>
+</AnchorPane>

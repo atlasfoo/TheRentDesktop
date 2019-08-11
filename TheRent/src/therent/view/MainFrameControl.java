@@ -3,16 +3,14 @@ package therent.view;
 import com.jfoenix.controls.JFXButton;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import therent.Main;
+import therent.view.Cliente.control_MenuCliente;
 
 import java.io.IOException;
-import java.security.KeyStore;
 
 public class MainFrameControl {
 
@@ -28,11 +26,23 @@ public class MainFrameControl {
     @FXML
     private JFXButton deliverbtn;
 
+    @FXML
+    private AnchorPane anchorpane;
+
+    private Main main;
+
+    public void setMain(Main main) {
+
+        this.main = main;
+
+    }
+
+
     //Evento auxx para poder probar la ventana cliente
     @FXML
-    void abrirCliente() {
+    void abrirCliente()throws Exception {
 
-        FXMLLoader loader=new FXMLLoader();
+       FXMLLoader loader=new FXMLLoader();
         loader.setLocation(Main.class.getResource("view/Cliente/MenuCliente.fxml"));
         try {
             AnchorPane root=loader.load();
@@ -44,6 +54,7 @@ public class MainFrameControl {
         } catch (IOException e) {
             e.printStackTrace();
         }
+      //main.showClient();
     }
 
     private String role;

@@ -192,8 +192,6 @@ public class Cliente {
         cs.setString(6,cliente.getDireccion());
         cs.setString(7,cliente.gettipocliente());
         cs.execute();
-
-        msgerr("Correcto");
         conn.close();
     }
 
@@ -311,7 +309,7 @@ public class Cliente {
         }catch (Exception e){}
         return  listaCliente;
     }
-
+    //metodo par modificar o actualizar los registros
     public void ModificarDatos(String Cedula, String a, String b, String c) throws Exception
     {
         System.out.println(ObtenerId(Cedula).get(0));
@@ -325,6 +323,7 @@ public class Cliente {
         cs.close();
     }
 
+    //este metodo es utilizado para saver todas las cedulas de los registros y poder validar que no se repitan
     public static ObservableList<String> cedulasRegistradas()
     {
         ObservableList<String> listaCedula;
@@ -343,5 +342,18 @@ public class Cliente {
             conn.close();
         }catch (Exception e){}
         return  listaCedula;
+    }
+
+    //Este metodo ingresara el telefono del cliente, resive un entero que sera el numero y el otro es para extraer el numero de cedula y usar el metodo
+    //de arriba que extrae apartir de la cedula el id
+    public void IngresarTel(int tel,String dat) throws Exception
+    {
+
+        Connection conn= DriverManager.getConnection(JDBCUtil.getDatabaseUri());
+        CallableStatement cs=conn.prepareCall("{sp_new_cliente_telefono(?,?)}");
+        cs.setInt(1,ObtenerId(dat).get(0));
+        cs.setInt(2,tel);
+        cs.execute();
+        conn.close();
     }
 }

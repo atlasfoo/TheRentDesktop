@@ -11,29 +11,63 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.text.Text;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import therent.Main;
 import therent.control.CCliente;
 import therent.model.Cliente;
+
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.concurrent.ExecutionException;
 
 public class control_MenuCliente implements Initializable {
 
+    //------------------------------------------------
+    @FXML
+    private  BorderPane borderPaneContainer;
+
+    private Main main;
+
+    public void setMain(Main main) {
+
+        this.main = main;
+
+    }
+
+    public BorderPane getSidepane() {
+
+        return borderPaneContainer;
+
+    }
+
+    public void setSidepane(BorderPane borderPaneContainer) {
+
+        this.borderPaneContainer = borderPaneContainer;
+
+    }
+
+//----------------------------------------------------------
     @FXML
     private JFXButton idGuardar;
 
     @FXML
-    private Text idTextoMensaje;
+    private JFXTextField idPNombre;
 
     @FXML
-    private JFXTextField idPNombre;
+    private JFXButton idTelefono;
+
+    @FXML
+    private JFXButton idCorreo;
 
     @FXML
     private JFXTextField idSNombre;
@@ -235,6 +269,7 @@ public class control_MenuCliente implements Initializable {
             switch (idGuardar.getText()) {
                 case "Guardar":
                     AgregarClient();
+                    AgregarTelCliente();
                     break;
                 case "Deshabilitar":
                     idCedula.setDisable(true);
@@ -255,19 +290,29 @@ public class control_MenuCliente implements Initializable {
         try {
             CCliente.IngresarCliente(idPNombre.getText(), idSNombre.getText(), idPApellido.getText(), idSApellido.getText()
                     , idCedula.getText(), idDireccion.getText(),idTipoCliente.getValue());
+
             MostrandoDatos();
-            LimpiarCampos();
 
         }catch (Exception E){msgerr(E.getMessage());}
     }
 
-    //Evento cuando se de click borrar mensaje
-    @FXML
-    void clickMensaje()
+    private void AgregarTelCliente()
     {
-        idTextoMensaje.setText("");
-    }
+        try {
 
+            if (control_viewTel.tel != null) {
+                for (String s : control_viewTel.tel) {
+                   CCliente.IngresarTel(s, idCedula.getText());
+                    System.out.println(s+""+idCedula.getText());
+                }
+
+                LimpiarCampos();
+            }
+            else
+                LimpiarCampos();
+
+        }catch (Exception e){msgerr(e.getMessage());}
+    }
     // Metodo para enviar los datos a la tabla
     private void MostrandoDatos()
     {
@@ -327,7 +372,7 @@ public class control_MenuCliente implements Initializable {
         TablaDatos.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Cliente>() {
             @Override
             public void changed(ObservableValue<? extends Cliente> observable, Cliente oldValue, Cliente newValue) {
-                if(newValue != null)
+                if(newValue != null) //Se crea la condicional para evitar errores cuando se deseleccione un registro de la tabla
                 {
                 idPNombre.setText(newValue.getNombre1());
                 idSNombre.setText(newValue.getNombre2());
@@ -352,10 +397,8 @@ public class control_MenuCliente implements Initializable {
             msgerr(e.getMessage());
         }
     }
-
     //Variable estatica utilizada para capturar el valor a buscar, cuando se despliege la opcion de buscar
     public static String text;
-
     //Metodo para limpiar los campos
     public void LimpiarCampos()
     {
@@ -365,7 +408,29 @@ public class control_MenuCliente implements Initializable {
         idSApellido.setText("");
         idDireccion.setText("");
         idCedula.setText("");
-        idTextoMensaje.setText("");
+    }
+
+    @FXML
+    void AgregarTel()
+    {
+        //------------------------------------
+        FXMLLoader loader=new FXMLLoader();
+        loader.setLocation(Main.class.getResource("view/Cliente/viewTelefono.fxml"));
+        try {
+            AnchorPane root=loader.load();
+            Stage dlgStage=new Stage();
+            dlgStage.initModality(Modality.WINDOW_MODAL);
+            dlgStage.setScene(new Scene(root));
+            dlgStage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        //-------------------------------------
+    }
+    @FXML
+    void AgregarCorr()
+    {
+
     }
 
 }
