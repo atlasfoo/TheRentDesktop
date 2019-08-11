@@ -29,18 +29,17 @@ public class MainFrameControl {
 
     private String role;
 
-    Stage primaryStage;
-
     private Main main;
 
     public void setMain(Main main) {
         this.main = main;
     }
 
-    public void setMain(Stage primaryStage) {
-        this.primaryStage = primaryStage;
+    //mostrar ventana principal para abrir reserva
+    @FXML
+    void JFXButttonReservation() {
+        main.ShowReservationFrame();
     }
-
 
     public void setRole(String role) {
         this.role = role;
@@ -65,23 +64,6 @@ public class MainFrameControl {
     @FXML
     public void initialize(){
         //void
-    }
-
-    //mostrar ventana principal para abrir reserva
-    @FXML
-    public void ShowReservationFrame(){
-        main.showReservation();
-        /*FXMLLoader loader=new FXMLLoader();
-        loader.setLocation(Main.class.getResource("view/Reservation/ReservaWindow.fxml"));
-        try {
-            AnchorPane root=loader.load();
-            primaryStage.initModality(Modality.WINDOW_MODAL);
-            primaryStage.setMaximized(true);
-            primaryStage.setScene(new Scene(root));
-            primaryStage.showAndWait();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
     }
 
 

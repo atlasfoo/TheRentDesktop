@@ -16,12 +16,18 @@ import java.io.IOException;
 
 public class Main extends Application {
     Stage primaryStage;
+    String session_role;
+
     @Override
     public void start(Stage primaryStage) throws Exception{
         this.primaryStage=primaryStage;
         primaryStage.setTitle("TheRent Link System");
-        //showLogin();
-        showReservation();
+        showLogin();
+    }
+
+    // Redireccionar a Main teniendo la sesión abierta
+    public void redirectMain(){
+        showMainFrame(this.session_role);
     }
 
     public void showMainFrame(String role){
@@ -29,10 +35,13 @@ public class Main extends Application {
         loader.setLocation(Main.class.getResource("view/MainFrame.fxml"));
         try {
             AnchorPane root=loader.load();
+            primaryStage.setMaximized(false);
             primaryStage.setScene(new Scene(root));
             primaryStage.setMaximized(true);
             MainFrameControl ctrl=loader.getController();
+            this.session_role=role;
             ctrl.setRole(role);
+            ctrl.setMain(this);
             primaryStage.show();
         } catch (IOException e) {
             e.printStackTrace();
@@ -61,30 +70,22 @@ public class Main extends Application {
         }
     }
 
-    public void showReservation(){
-        BorderPane sidepane = ShowReservationFrame();
-        if(sidepane==null){
-            return;
-        }
-    }
-
     //mostrar ventana principal para abrir reserva
-    public BorderPane ShowReservationFrame(){
+    public void ShowReservationFrame(){
         FXMLLoader loader=new FXMLLoader();
         loader.setLocation(Main.class.getResource("view/Reservation/ReservaWindow.fxml"));
         try {
             AnchorPane root=loader.load();
             ReservaWindowControl ctrl=loader.getController();
             ctrl.setMain(this);
-            //primaryStage.setMaximized(false);
+            primaryStage.setMaximized(false);
             primaryStage.setScene(new Scene(root));
             primaryStage.setMaximized(true);
             primaryStage.show();
-            //return ctrl.getSidepane();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return null;
+
     }
 
 /*TODO:

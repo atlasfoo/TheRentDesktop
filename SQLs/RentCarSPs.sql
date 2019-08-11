@@ -165,20 +165,24 @@ end //
 /*Popular tabla detalle renta*/
 delimiter //
 create procedure sp_new_detalle_renta(
-in id_rent int, 
 in id_car int,
-in id_employees int,
 in date_of_delivery date, 
 in date_of_receipt date,
 in cost double
 )
 begin
 	insert into Detalle_Renta(Id_Renta,Id_Auto,Id_Empleado,Fecha_Entrega,Fecha_Recibo,Costo) 
-					   values(id_rent,id_car,id_employees,date_of_delivery,date_of_receipt,cost);
+					   values((select count(distinct Id_Renta)from Renta),id_car,(select count(distinct Id_Empleado)from Empleado),date_of_delivery,date_of_receipt,cost);
 end //
 
-#procedimiento para la Reserva Interfaz
-
+#proceso para la view
+delimiter //
+create PROCEDURE sp_new_renta_view(
+in id_client int,
+in estados varchar(20))
+begin
+	insert into Renta(Id_Cliente,Fecha,Estado) values(id_client,now(),estados);
+end //
 
 /*busqueda de las reservas le falta esta en proceso*/
 delimiter //
@@ -247,4 +251,13 @@ create procedure sp_auto_vista()
 begin
 select a.Id_Auto, ma.Marca, ma.Modelo from Auto a inner join Modelo_Auto ma on ma.Id_Modelo = a.Id_Modelo;
 end //
+
+#eliminar un detalle renta
+delimiter //
+create procedure sp_delete_detalle_renta(in id int)
+begin
+delete from Detalle_Renta
+where Id_Detalle_Renta = id;
+end //
+
 

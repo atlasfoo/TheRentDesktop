@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" prefHeight="460.0" prefWidth="930.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="therent.view.Reservation.ReservaWindowControl">
+<AnchorPane id="AnchorPane" prefHeight="550.0" prefWidth="930.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="therent.view.Reservation.ReservaWindowControl">
     <children>
         <SplitPane dividerPositions="0.24" layoutX="185.0" layoutY="146.0" prefHeight="612.0" prefWidth="838.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <items>
@@ -24,6 +24,8 @@
                               <JFXButton fx:id="boton_agregar_reserva" buttonType="RAISED" mnemonicParsing="false" onAction="#openReservaScene1" onMouseEntered="#btnAgregarOnMouseEntered" onMouseExited="#btnAgregarOnMouseExited" prefHeight="140.0" prefWidth="160.0" ripplerFill="#221fe7" text="Button" />
                               <Label text="Visualizar las Reservas" />
                               <JFXButton fx:id="boton_visualizar_reserva" buttonType="RAISED" mnemonicParsing="false" onAction="#openReservaScene2" onMouseEntered="#btnSearchOnMouseEntered" onMouseExited="#btnSearchOnMouseExited" prefHeight="140.0" prefWidth="160.0" ripplerFill="#221fe7" text="Button" />
+                              <Label text="SALIR" />
+                              <JFXButton fx:id="boton_salir" onDragExited="#btnExitOnMouseExited" onMouseEntered="#btnAgregarOnMouseEntered" onMouseExited="#btnAgregarOnMouseExited" prefHeight="140.0" prefWidth="160.0" />
                            </children>
                                 </VBox>
                             </content>
@@ -32,7 +34,7 @@
                 </AnchorPane>
                 <AnchorPane>
                     <children>
-                        <BorderPane fx:id="borderPaneContainer" onMouseEntered="#btnSearchOnMouseEntered" onMouseExited="#btnSearchOnMouseExited" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                        <BorderPane fx:id="borderPaneContainer" onMouseEntered="#btnExitOnMouseEntered" onMouseExited="#btnExitOnMouseExited" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
                             <top>
                                 <HBox fx:id="hboxPnLabel" alignment="CENTER" prefHeight="50.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                            <children>

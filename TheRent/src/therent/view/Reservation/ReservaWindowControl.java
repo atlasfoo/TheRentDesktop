@@ -61,7 +61,7 @@ public class ReservaWindowControl implements Initializable {
             hboxPnLabel.getChildren().clear();
             hboxPnLabel.getChildren().add(lblTitle);
         } catch (IOException ex) {
-            Logger.getLogger(ReservaWindowControl.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
         }
     }
 
@@ -72,13 +72,12 @@ public class ReservaWindowControl implements Initializable {
             Node child = loader.load(getClass().getResource("../Reservation/RentSearchWindow.fxml").openStream());
             borderPaneContainer.getChildren().clear();
             borderPaneContainer.setCenter(child);
-
             Label lblTitle = new Label("BUSQUEDA RESERVAS");
             lblTitle.setFont(new Font(24));
             hboxPnLabel.getChildren().clear();
             hboxPnLabel.getChildren().add(lblTitle);
         } catch (IOException ex) {
-            Logger.getLogger(ReservaWindowControl.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
         }
     }
 
@@ -111,4 +110,13 @@ public class ReservaWindowControl implements Initializable {
         boton_visualizar_reserva.setStyle("-fx-background-color:#dae7f3;");
     }
 
+    @FXML
+    private void btnExitOnMouseExited(MouseEvent event) {
+        boton_agregar_reserva.setStyle("-fx-background-color:transparent;");
+    }
+
+    @FXML
+    private void btnExitOnMouseEntered(MouseEvent event) {
+        boton_agregar_reserva.setStyle("-fx-background-color:#dae7f3;");
+    }
 }

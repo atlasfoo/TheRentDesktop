@@ -16,7 +16,7 @@ import java.sql.ResultSet;
 public class TablaVistaA {
 
     //auto
-    private IntegerProperty id_car;
+    private IntegerProperty id_Auto;
     private StringProperty marca;
     private StringProperty modelo;
 
@@ -29,23 +29,23 @@ public class TablaVistaA {
     }
 
     //constructor completo
-    public TablaVistaA(int IDCar, String Marca, String Modelo) {
-        this.id_car = new SimpleIntegerProperty(IDCar);
+    public TablaVistaA(int Id_Auto, String Marca, String Modelo) {
+        this.id_Auto = new SimpleIntegerProperty(Id_Auto);
         this.marca = new SimpleStringProperty(Marca);
         this.modelo = new SimpleStringProperty(Modelo);
     }
     //getters y setters
 
-    public int getIDAuto() {
-        return id_car.get();
+    public int getId_Auto() {
+        return id_Auto.get();
     }
 
-    public IntegerProperty IDAutoProperty() {
-        return id_car;
+    public IntegerProperty Id_AutoProperty() {
+        return id_Auto;
     }
 
-    public void setIDAuto(int IDAuto) {
-        this.id_car.set(IDAuto);
+    public void setId_Auto(int Id_Auto) {
+        this.id_Auto.set(Id_Auto);
     }
 
 
@@ -95,7 +95,7 @@ public class TablaVistaA {
                                 resultado.getString("Modelo")
                         ));
             }
-
+        conn.close();
         }catch (Exception e){}
 
         return  ListaReserva;

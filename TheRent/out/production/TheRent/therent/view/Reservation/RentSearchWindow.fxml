@@ -1,19 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDatePicker?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
 
-<AnchorPane prefHeight="440.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="therent.view.Reservation.RentSearchWindowController">
+<AnchorPane prefHeight="480.0" prefWidth="700.0" style="-fx-border-color: #0095a8;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="therent.view.Reservation.RentSearchWindowController">
    <children>
-      <Pane layoutX="15.0" layoutY="14.0" prefHeight="80.0" prefWidth="665.0" style="-fx-border-color: #0095a8;" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
-         <children>
-            <JFXTextField labelFloat="true" layoutX="22.0" layoutY="28.0" prefHeight="25.0" prefWidth="363.0" promptText="Buscar reserva del cliente" />
-         </children>
-      </Pane>
-      <TableView layoutX="14.0" layoutY="104.0" prefHeight="324.0" prefWidth="680.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="100.0">
+      <TableView layoutX="10.0" layoutY="89.0" prefHeight="338.0" prefWidth="680.0" AnchorPane.bottomAnchor="53.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="89.0">
         <columns>
           <TableColumn prefWidth="120.0" text="Nombres" />
             <TableColumn prefWidth="120.0" text="Fecha Entrega" />
@@ -22,5 +17,10 @@
             <TableColumn prefWidth="120.0" text="Costo" />
         </columns>
       </TableView>
+      <JFXDatePicker layoutX="51.0" layoutY="31.0" promptText="Fecha Entrega" />
+      <JFXDatePicker layoutX="413.0" layoutY="31.0" promptText="Fecha Recibo" />
+      <JFXButton layoutX="280.0" layoutY="33.0" prefHeight="28.0" prefWidth="94.0" style="-fx-border-color: #0095a8;" text="BUSCAR" />
+      <JFXButton layoutX="371.0" layoutY="438.0" prefHeight="28.0" prefWidth="84.0" style="-fx-border-color: #0095a8;" text="ELIMINAR" />
+      <JFXButton layoutX="490.0" layoutY="437.0" prefHeight="28.0" prefWidth="84.0" style="-fx-border-color: #0095a8;" text="MODIFICAR" />
    </children>
 </AnchorPane>

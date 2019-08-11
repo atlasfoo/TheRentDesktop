@@ -24,30 +24,30 @@ public class TablaVistaC
     }
 
     //constructor completo
-    public TablaVistaC(int IDCliente, String PrimerNombre, String PrimerApellido) {
-        this.Id_Cliente = new SimpleIntegerProperty(IDCliente);
+    public TablaVistaC(int IdCliente, String PrimerNombre, String PrimerApellido) {
+        this.Id_Cliente = new SimpleIntegerProperty(IdCliente);
         this.Primer_Nombre = new SimpleStringProperty(PrimerNombre);
         this.Primer_Apellido = new SimpleStringProperty(PrimerApellido);
     }
     //getters y setters
 
-    public int getIdCliente() {
+    public int getId_Cliente() {
         return Id_Cliente.get();
     }
 
-    public IntegerProperty IdClienteProperty() {
+    public IntegerProperty Id_Cliente_Property() {
         return Id_Cliente;
     }
 
-    public void setIdcliente(int id_cliente) {
+    public void setId_Cliente(int id_cliente) {
         this.Id_Cliente.set(id_cliente);
     }
 
-    public String getPrimerNombre() {
+    public String getPrimer_Nombre() {
         return Primer_Nombre.get();
     }
 
-    public StringProperty PrimerNombreProperty() {
+    public StringProperty Primer_Nombre_Porperty() {
         return Primer_Nombre;
     }
 
@@ -55,11 +55,11 @@ public class TablaVistaC
         this.Primer_Nombre.set(primer_nombre);
     }
 
-    public String getPrimerApellido() {
+    public String getPrimer_Apellido() {
         return Primer_Apellido.get();
     }
 
-    public StringProperty PrimerApellidoProperty() {
+    public StringProperty Primer_Apellido_Property() {
         return Primer_Apellido;
     }
 
@@ -89,7 +89,7 @@ public class TablaVistaC
                                 resultado.getString("Primer_Apellido")
                         ));
             }
-
+        conn.close();
         }catch (Exception e){}
 
         return  ListaReserva;
