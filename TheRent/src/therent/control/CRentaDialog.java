@@ -1,10 +1,9 @@
 package therent.control;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import therent.model.DetalleRentaModel;
-import therent.model.RentaModel;
-import therent.model.TablaVistaA;
-import therent.model.TablaVistaC;
+import javafx.scene.control.Alert;
+import therent.model.*;
 
 import java.sql.Date;
 import java.time.LocalDate;
@@ -41,5 +40,36 @@ public class CRentaDialog
         DetalleRentaModel detalleRentaModel = new DetalleRentaModel(idauto, Date.valueOf(fechaentrega),
                 Date.valueOf(fecharecibo),costo);
         detalleRentaModel.IngresarDetalleRenta(detalleRentaModel);
+    }
+
+    //Metodo estatico que realiza la busqueda de auto disponible
+    public static ObservableList<Auto> BuscarDatoAuto(LocalDate fe, LocalDate fr) throws Exception
+    {
+            DetalleRentaModel auto = new DetalleRentaModel();
+            ObservableList<Auto> autos ;
+            autos = auto.disponibilidad_auto(Date.valueOf(fe),Date.valueOf(fr));
+            msgevr("Registro encontrado.");
+            return autos;
+        //return MostrarDatos();
+
+    }
+
+    //Metodo para mandar mensajes
+    public void msgerr(String msg){
+        Alert al=new Alert(Alert.AlertType.ERROR);
+        al.setTitle("TheRent Link System");
+        al.setHeaderText("ERROR");
+        al.setContentText(msg);
+        al.showAndWait();
+    }
+
+
+    //metodo para mandar mensajes de correcto
+    private static void msgevr(String msg) {
+        Alert al=new Alert(Alert.AlertType.INFORMATION);
+        al.setTitle("TheRent Link System");
+        al.setHeaderText("Correcto.");
+        al.setContentText(msg);
+        al.showAndWait();
     }
 }

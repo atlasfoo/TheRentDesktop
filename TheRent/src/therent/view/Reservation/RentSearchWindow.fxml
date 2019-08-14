@@ -5,22 +5,47 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane prefHeight="480.0" prefWidth="700.0" style="-fx-border-color: #0095a8;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="therent.view.Reservation.RentSearchWindowController">
+<AnchorPane prefHeight="500.0" prefWidth="1000.0" style="-fx-border-color: #0095a8;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="therent.view.Reservation.RentSearchWindowController">
    <children>
-      <TableView layoutX="10.0" layoutY="89.0" prefHeight="338.0" prefWidth="680.0" AnchorPane.bottomAnchor="53.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="89.0">
+      <TableView fx:id="tabla_auto" layoutX="10.0" layoutY="89.0" prefHeight="338.0" prefWidth="680.0" AnchorPane.bottomAnchor="53.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="89.0">
         <columns>
-          <TableColumn prefWidth="120.0" text="Nombres" />
-            <TableColumn prefWidth="120.0" text="Fecha Entrega" />
-            <TableColumn prefWidth="120.0" text="Fecha Recibido" />
-            <TableColumn prefWidth="120.0" text="Auto" />
-            <TableColumn prefWidth="120.0" text="Costo" />
+          <TableColumn fx:id="column_id_auto" minWidth="0.0" prefWidth="0.0" text="Id_Auto" />
+            <TableColumn fx:id="column_marca" prefWidth="90.0" text="Marca" />
+            <TableColumn fx:id="column_modelo" prefWidth="90.0" text="Modelo" />
+            <TableColumn fx:id="column_color" prefWidth="90.0" text="Color" />
+            <TableColumn fx:id="column_año" prefWidth="90.0" text="Año" />
+            <TableColumn fx:id="column_transmision" prefWidth="90.0" text="Transmisión" />
+            <TableColumn fx:id="column_carroceria" prefWidth="90.0" text="Carrocería" />
+            <TableColumn fx:id="column_combustible" prefWidth="90.0" text="Combustible" />
+            <TableColumn fx:id="column_placa" prefWidth="90.0" text="Placa" />
+            <TableColumn fx:id="column_vin" prefWidth="90.0" text="VIN" />
+            <TableColumn fx:id="column_chasis" prefWidth="90.0" text="Chasis" />
+            <TableColumn fx:id="column_categoria" prefWidth="90.0" text="Categoría" />
+            <TableColumn fx:id="column_precio" prefWidth="90.0" text="Precio" />
+            <TableColumn fx:id="column_deposito" prefWidth="90.0" text="Depósito" />
+            <TableColumn fx:id="column_habilitado" prefWidth="90.0" text="Habilitado" />
+            <TableColumn fx:id="column_estado" prefWidth="90.0" text="Estado" />
         </columns>
       </TableView>
-      <JFXDatePicker layoutX="51.0" layoutY="31.0" promptText="Fecha Entrega" />
-      <JFXDatePicker layoutX="413.0" layoutY="31.0" promptText="Fecha Recibo" />
-      <JFXButton layoutX="280.0" layoutY="33.0" prefHeight="28.0" prefWidth="94.0" style="-fx-border-color: #0095a8;" text="BUSCAR" />
-      <JFXButton layoutX="371.0" layoutY="438.0" prefHeight="28.0" prefWidth="84.0" style="-fx-border-color: #0095a8;" text="ELIMINAR" />
-      <JFXButton layoutX="490.0" layoutY="437.0" prefHeight="28.0" prefWidth="84.0" style="-fx-border-color: #0095a8;" text="MODIFICAR" />
+      <JFXDatePicker fx:id="fx_fecha_entrega" layoutX="51.0" layoutY="31.0" promptText="Fecha Entrega" />
+      <JFXDatePicker fx:id="fx_fecha_recibo" layoutX="413.0" layoutY="31.0" promptText="Fecha Recibo" />
+      <JFXButton fx:id="fx_button_search" layoutX="280.0" layoutY="33.0" onAction="#ButtonSearchCar" prefHeight="28.0" prefWidth="94.0" style="-fx-border-color: #0095a8;" text="BUSCAR" />
+      <GridPane layoutX="655.0" layoutY="18.0" maxHeight="54.0" prefHeight="54.0" prefWidth="200.0" AnchorPane.topAnchor="18.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <JFXButton fx:id="fx_button_modificar" prefHeight="28.0" prefWidth="84.0" style="-fx-border-color: #0095a8;" text="MODIFICAR" GridPane.columnIndex="1" />
+            <JFXButton fx:id="fx_button_eliminar" prefHeight="28.0" prefWidth="84.0" style="-fx-border-color: #0095a8;" text="ELIMINAR" />
+         </children>
+      </GridPane>
    </children>
 </AnchorPane>
