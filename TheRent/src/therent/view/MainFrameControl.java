@@ -40,22 +40,11 @@ public class MainFrameControl {
 
     //Evento auxx para poder probar la ventana cliente
     @FXML
-    void abrirCliente()throws Exception {
+    void abrirCliente() throws Exception {
 
-       FXMLLoader loader=new FXMLLoader();
-        loader.setLocation(Main.class.getResource("view/Cliente/MenuCliente.fxml"));
-        try {
-            AnchorPane root=loader.load();
-            Stage dlgStage=new Stage();
-            dlgStage.initModality(Modality.WINDOW_MODAL);
-            dlgStage.setScene(new Scene(root));
-            dlgStage.setMaximized(true);
-            dlgStage.showAndWait();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-      //main.showClient();
+      main.showClient();
     }
+
 
     private String role;
 

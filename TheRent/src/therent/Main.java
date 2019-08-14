@@ -1,5 +1,6 @@
 package therent;
 
+import com.jfoenix.controls.JFXButton;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -35,6 +36,7 @@ public class Main extends Application {
             primaryStage.setMaximized(true);
             MainFrameControl ctrl = loader.getController();
             ctrl.setRole(role);
+            ctrl.setMain(this);
             primaryStage.show();
         } catch (IOException e) {
             e.printStackTrace();
@@ -61,37 +63,12 @@ public class Main extends Application {
             e.printStackTrace();
         }
     }
-/*
-    public void showCliente()
-    {
-        FXMLLoader loader=new FXMLLoader();
-        loader.setLocation(Main.class.getResource("view/Cliente/MenuCliente.fxml"));
-        try {
-            AnchorPane root=loader.load();
 
-            control_MenuCliente ctrl=loader.getController();
-
-            ctrl.setMain(this);
-
-            primaryStage.setMaximized(false);
-
-            primaryStage.setScene(new Scene(root));
-
-            primaryStage.setMaximized(true);
-
-            primaryStage.show();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-*/
-
-  /*  public void showClient() {
+    public void showClient() {
 
         FXMLLoader loader = new FXMLLoader();
 
-        loader.setLocation(this.getClass().getResource("view/Cliente/MenuCliente.fxml"));
+        loader.setLocation(Main.class.getResource("view/Cliente/MenuCliente.fxml"));
 
         try {
 
@@ -114,8 +91,48 @@ public class Main extends Application {
             e.printStackTrace();
 
         }
+    }
 
-    }*/
+    //Abre la ventana cliente
+    public void showClienteTel()
+    {
+        FXMLLoader loader=new FXMLLoader();
+        loader.setLocation(Main.class.getResource("view/Cliente/viewTelefono.fxml"));
+        try {
+            AnchorPane root=loader.load();
+            Stage dlgStage=new Stage();
+            dlgStage.initModality(Modality.WINDOW_MODAL);
+            dlgStage.setScene(new Scene(root));
+            dlgStage.setResizable(false);
+            dlgStage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    //Abre la ventana correo
+    public void showClienteCorreo()
+    {
+
+        FXMLLoader loader=new FXMLLoader();
+        loader.setLocation(Main.class.getResource("view/Cliente/viewCorreo.fxml"));
+        try {
+            AnchorPane root=loader.load();
+            Stage dlgStage=new Stage();
+            dlgStage.initModality(Modality.WINDOW_MODAL);
+            dlgStage.setScene(new Scene(root));
+            dlgStage.setResizable(false);
+            dlgStage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    //Cierra ventana, es creado para cerrar el showCliente y showCorreo
+    public void closeViewCliente(JFXButton button)
+    {
+        Stage stage = (Stage) button.getScene().getWindow();
+        stage.close();
+    }
 
     /*TODO:
        1: implementar el resto de las funcionalidades, cada quien en su rama

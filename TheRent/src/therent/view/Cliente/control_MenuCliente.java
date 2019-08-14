@@ -29,6 +29,7 @@ import therent.model.Cliente;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.concurrent.ExecutionException;
 
 public class control_MenuCliente implements Initializable {
 
@@ -44,17 +45,6 @@ public class control_MenuCliente implements Initializable {
 
     }
 
-    public BorderPane getSidepane() {
-
-        return borderPaneContainer;
-
-    }
-
-    public void setSidepane(BorderPane borderPaneContainer) {
-
-        this.borderPaneContainer = borderPaneContainer;
-
-    }
 
 //----------------------------------------------------------
     @FXML
@@ -116,7 +106,6 @@ public class control_MenuCliente implements Initializable {
 
     @FXML
     private JFXDrawer plegable1;
-
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -215,6 +204,8 @@ public class control_MenuCliente implements Initializable {
             idDireccion.setDisable(false);
             idGuardar.setDisable(false);
             idTipoCliente.setDisable(b);
+            idTelefono.setDisable(false);
+            idCorreo.setDisable(false);
         }
         else{
         idPNombre.setDisable(b);
@@ -225,6 +216,8 @@ public class control_MenuCliente implements Initializable {
         idDireccion.setDisable(b);
         idGuardar.setDisable(b);
         idTipoCliente.setDisable(b);
+        idCorreo.setDisable(b);
+        idTelefono.setDisable(b);
         }
     }
 
@@ -268,18 +261,22 @@ public class control_MenuCliente implements Initializable {
         try {
             switch (idGuardar.getText()) {
                 case "Guardar":
+                    String aux = idCedula.getText();
                     AgregarClient();
-                    AgregarTelCliente();
+                    AgregarTelCliente(aux);
+                    AgregarCorrCliente(aux);
                     break;
                 case "Deshabilitar":
                     idCedula.setDisable(true);
-                    String aux = idCedula.getText();
-                    estadoCliente(aux);
+                    String aux1 = idCedula.getText();
+                    estadoCliente(aux1);
                     break;
                 case "Guardar Cambios":
                     idCedula.setDisable(true);
                     String a = idCedula.getText();
                     ModificarDatos(a, idPNombre.getText(), idSNombre.getText(), idDireccion.getText());
+                    ModificarCorreo(a);
+                    ModificarTelefono(a);
                     break;
             }
         }catch (Exception e){msgerr(e.getMessage());}
@@ -295,18 +292,32 @@ public class control_MenuCliente implements Initializable {
 
         }catch (Exception E){msgerr(E.getMessage());}
     }
-
-    private void AgregarTelCliente()
+    //este metodo se usa para agregar datos de contactos con el cliente, esto puede ser null.
+    private void AgregarTelCliente(String aux)
     {
         try {
-
-            if (control_viewTel.tel != null) {
+            if (control_viewTel.tel != null) {  //se realiza la pregunta por si es nulo no llamar al metodo de la bd
                 for (String s : control_viewTel.tel) {
-                   CCliente.IngresarTel(s, idCedula.getText());
-                    System.out.println(s+""+idCedula.getText());
+                   CCliente.IngresarTel(s, aux);
                 }
-
                 LimpiarCampos();
+                control_viewTel.tel = null;  //se manda la lista en null para que no aparesca al abrir nuevamente la ventana para agregar telefono
+            }
+            else
+                LimpiarCampos();
+
+        }catch (Exception e){msgerr(e.getMessage());}
+    }
+    //Agregar CorreoCliente
+    private void AgregarCorrCliente(String aux)
+    {
+        try {
+            if (control_viewCorreo.tele != null) {  //se realiza la pregunta por si es nulo no llamar al metodo de la bd
+                for (String s : control_viewCorreo.tele) {
+                    CCliente.IngresarCorreo(s, aux);
+                }
+                LimpiarCampos();
+                control_viewCorreo.tele = null;  //se manda la lista en null para que no aparesca al abrir nuevamente la ventana para agregar telefono
             }
             else
                 LimpiarCampos();
@@ -356,6 +367,32 @@ public class control_MenuCliente implements Initializable {
         }catch (Exception e){
             msgerr(e.getMessage());
         }
+    }
+
+    private void ModificarTelefono( String ced) {
+        try {
+            if (control_viewTel.tel != null) {  //se realiza la pregunta por si es nulo no llamar al metodo de la bd
+                for (String s : control_viewTel.tel) {
+                    CCliente.ModificarTel(s,ced);
+                }
+                control_viewTel.tel = null;  //se manda la lista en null para que no aparesca al abrir nuevamente la ventana para agregar telefono
+            } else
+                LimpiarCampos();
+
+        }catch (Exception e){msgerr(e.getMessage());}
+    }
+
+    private void ModificarCorreo( String ced) {
+        try {
+            if (control_viewCorreo.tele != null) {  //se realiza la pregunta por si es nulo no llamar al metodo de la bd
+                for (String s : control_viewCorreo.tele) {
+                    CCliente.ModificarCorreo(s,ced);
+                }
+                control_viewCorreo.tele= null;  //se manda la lista en null para que no aparesca al abrir nuevamente la ventana para agregar telefono
+            } else
+                LimpiarCampos();
+
+        }catch (Exception e){msgerr(e.getMessage());}
     }
     //Evento para mandar mensajes
     private void msgerr(String msg){
@@ -410,27 +447,19 @@ public class control_MenuCliente implements Initializable {
         idCedula.setText("");
     }
 
+    //Metodo para abrir la ventana del telefono
     @FXML
     void AgregarTel()
     {
         //------------------------------------
-        FXMLLoader loader=new FXMLLoader();
-        loader.setLocation(Main.class.getResource("view/Cliente/viewTelefono.fxml"));
-        try {
-            AnchorPane root=loader.load();
-            Stage dlgStage=new Stage();
-            dlgStage.initModality(Modality.WINDOW_MODAL);
-            dlgStage.setScene(new Scene(root));
-            dlgStage.showAndWait();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        main.showClienteTel();
         //-------------------------------------
     }
+    //Metodo para abrir la ventana del correo
     @FXML
-    void AgregarCorr()
+    void AgregarCorreo()
     {
-
+        main.showClienteCorreo();
     }
 
 }

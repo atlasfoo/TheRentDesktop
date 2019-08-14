@@ -195,15 +195,6 @@ public class Cliente {
         conn.close();
     }
 
-    //Metodo para mandar mensajes
-    public void msgerr(String msg){
-        Alert al=new Alert(Alert.AlertType.ERROR);
-        al.setTitle("TheRent Link System");
-        al.setHeaderText("ERROR");
-        al.setContentText(msg);
-        al.showAndWait();
-    }
-
     //Metodo para mostrar todos los registros
     public ObservableList<Cliente> MostrarRegistros() throws Exception
     {
@@ -212,7 +203,7 @@ public class Cliente {
         //Inicializando el observablelist
         listaCliente = FXCollections.observableArrayList();
 
-        try {
+
             Connection conn= DriverManager.getConnection(JDBCUtil.getDatabaseUri());
             CallableStatement cs = conn.prepareCall("{call sp_mostrar_cliente}");
             ResultSet resultado = cs.executeQuery();
@@ -235,7 +226,7 @@ public class Cliente {
                               ));
             }
             conn.close();
-        }catch (Exception e){}
+
         return  listaCliente;
     }
 
@@ -247,7 +238,6 @@ public class Cliente {
         //Inicializando el observablelist
         listaCliente = FXCollections.observableArrayList();
 
-        try {
             Connection conn= DriverManager.getConnection(JDBCUtil.getDatabaseUri());
             CallableStatement cs = conn.prepareCall("{CALL sp_buscar_Cliente (?)}");
             cs.setString(1,a);
@@ -271,13 +261,12 @@ public class Cliente {
                         ));
             }
             conn.close();
-        }catch (Exception e){}
 
         return  listaCliente;
     }
 
     //Metodo para cambiar el estado de cliente, solo resive el parametro de cedula, atraves de ese el sp encontrara el registro.
-    public void estadoCliente(String Cedula) throws SQLException {
+    public void estadoCliente(String Cedula) throws Exception {
         Connection conn = DriverManager.getConnection(JDBCUtil.getDatabaseUri());
         CallableStatement cs = conn.prepareCall("{call sp_CambiarEstadoCliente(?)}");
         cs.setInt(1,ObtenerId(Cedula).get(0));
@@ -344,15 +333,68 @@ public class Cliente {
         return  listaCedula;
     }
 
+    //para validar que el cliente no registre el mismo telefono
+    public  ObservableList<String> TelefonoRegistradoPorCliente(String Cedula)
+    {
+        ObservableList<String> listaTel;
+        //Inicializando el observablelist
+        listaTel = FXCollections.observableArrayList();
+
+        try {
+            Connection conn= DriverManager.getConnection(JDBCUtil.getDatabaseUri());
+           CallableStatement statement = conn.prepareCall("Call sp_mostrarTelporCliente (?)");
+           statement.setInt(1,ObtenerId(Cedula).get(0));
+           ResultSet resultado = statement.executeQuery();
+
+            while (resultado.next())
+            {
+                listaTel.add(resultado.getString("Telefono"));
+            }
+            conn.close();
+        }catch (Exception e){}
+        return  listaTel;
+    }
+
+    public  ObservableList<String> CorreonoRegistradoPorCliente(String Cedula)
+    {
+        ObservableList<String> listaTel;
+        //Inicializando el observablelist
+        listaTel = FXCollections.observableArrayList();
+
+        try {
+            Connection conn= DriverManager.getConnection(JDBCUtil.getDatabaseUri());
+            CallableStatement statement = conn.prepareCall("call sp_mostrarCorreoCliente(?)");
+            statement.setInt(1,ObtenerId(Cedula).get(0));
+            ResultSet resultado = statement.executeQuery();
+
+            while (resultado.next())
+            {
+                listaTel.add(resultado.getString("Email"));
+            }
+            conn.close();
+        }catch (Exception e){}
+        return  listaTel;
+    }
+
     //Este metodo ingresara el telefono del cliente, resive un entero que sera el numero y el otro es para extraer el numero de cedula y usar el metodo
     //de arriba que extrae apartir de la cedula el id
     public void IngresarTel(int tel,String dat) throws Exception
     {
-
         Connection conn= DriverManager.getConnection(JDBCUtil.getDatabaseUri());
-        CallableStatement cs=conn.prepareCall("{sp_new_cliente_telefono(?,?)}");
+        CallableStatement cs=conn.prepareCall("{call sp_new_cliente_telefono(?,?)}");
         cs.setInt(1,ObtenerId(dat).get(0));
         cs.setInt(2,tel);
+        cs.execute();
+        conn.close();
+    }
+
+    //Ingresar Correo
+    public void IngresarCorreo(String c,String dat) throws Exception
+    {
+        Connection conn= DriverManager.getConnection(JDBCUtil.getDatabaseUri());
+        CallableStatement cs=conn.prepareCall("{call sp_new_cliente_email(?,?)}");
+        cs.setInt(1,ObtenerId(dat).get(0));
+        cs.setString(2,c);
         cs.execute();
         conn.close();
     }

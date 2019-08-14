@@ -65,8 +65,8 @@
                     </rowConstraints>
                      <children>
                         <JFXTextField fx:id="idPNombre" alignment="CENTER" labelFloat="true" prefHeight="40.0" prefWidth="190.0" promptText="Primer Nombre" GridPane.rowIndex="1" />
-                        <JFXTextField fx:id="idSApellido" alignment="CENTER" labelFloat="true" prefHeight="40.0" prefWidth="190.0" promptText="Segundo Apellido" GridPane.rowIndex="2" />
-                        <JFXTextField fx:id="idSNombre" alignment="CENTER" labelFloat="true" prefHeight="40.0" prefWidth="190.0" promptText="Segundo Nombre" GridPane.rowIndex="4" />
+                        <JFXTextField fx:id="idSApellido" alignment="CENTER" labelFloat="true" prefHeight="40.0" prefWidth="190.0" promptText="Segundo Apellido" GridPane.rowIndex="4" />
+                        <JFXTextField fx:id="idSNombre" alignment="CENTER" labelFloat="true" prefHeight="40.0" prefWidth="190.0" promptText="Segundo Nombre" GridPane.rowIndex="2" />
                         <JFXTextField fx:id="idPApellido" alignment="CENTER" labelFloat="true" prefHeight="40.0" prefWidth="190.0" promptText="Primer Apellido" GridPane.rowIndex="3" />
                         <JFXTextField fx:id="idCedula" alignment="CENTER" labelFloat="true" prefHeight="40.0" prefWidth="190.0" promptText="Cédula" GridPane.rowIndex="5" />
                         <JFXTextField fx:id="idDireccion" alignment="CENTER" labelFloat="true" prefHeight="40.0" prefWidth="190.0" promptText="Dirección" GridPane.rowIndex="6" />
@@ -111,7 +111,7 @@
                                     <Insets left="50.0" top="20.0" />
                                  </HBox.margin>
                               </Text>
-                              <JFXButton fx:id="idCorreo" text="+">
+                              <JFXButton fx:id="idCorreo" onAction="#AgregarCorreo" text="+">
                                  <HBox.margin>
                                     <Insets left="65.0" top="15.0" />
                                  </HBox.margin>

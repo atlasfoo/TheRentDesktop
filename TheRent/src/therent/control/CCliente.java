@@ -7,7 +7,6 @@ import therent.model.Cliente;
 
 
 public class CCliente {
-
     //metodo para mandar mensajes de error
     private static void msgerr(String msg) {
         Alert al=new Alert(Alert.AlertType.ERROR);
@@ -36,6 +35,7 @@ public class CCliente {
                 g.equals("") || g == null  )
         {
             msgerr("No se pueden guardar los datos, verificar que ningún campo este vacío.");
+
         }
         else
         {
@@ -108,14 +108,89 @@ public class CCliente {
             {
             Cliente s = new Cliente();
             s.ModificarDatos(a, b, c, d);
-            msgevr("Los datos han sido modificados correctamente.");
+            msgevr("Los datos han sido actualizado exitosamente.");
         }
     }
 
+    // metodo que resive el telefono y la cedula para poder ingresar el cliente
     public static void IngresarTel(String Tel, String dat) throws Exception
     {
-        Cliente c = new Cliente();
-        c.IngresarTel(Integer.parseInt(Tel),dat);
+        if(Tel.equals("") || Tel == null || dat.equals("") || dat == null)
+        {
+            msgerr("No se pueden guardar los datos, verificar que la lista no este vacía.");
+        }
+        else
+            {
+                Cliente cliente = new Cliente();
+                cliente.IngresarTel(Integer.parseInt(Tel), dat);
+            }
+
     }
+
+    //para agregar mas telefono a un registro ya existente
+    public static void ModificarTel(String tel, String dat) throws Exception
+    {
+        boolean resultado = false;
+        Cliente c = new Cliente();
+
+        for(String s :c.TelefonoRegistradoPorCliente(dat))
+        {
+            if(s.equals(tel))
+            {
+                resultado = true;
+            }
+        }
+
+        if(resultado ==  true)
+        {
+            msgerr("El usuario ya tiene registrado el número.");
+        }
+        else {
+            Cliente cliente = new Cliente();
+            cliente.IngresarTel(Integer.parseInt(tel),dat);
+        }
+
+    }
+
+    //ingresar correo
+    public static void IngresarCorreo(String c, String dat) throws Exception
+    {
+        if(c.equals("") || c == null || dat.equals("") || dat == null)
+        {
+          //  System.out.println(c+" "+dat);
+            msgerr("No se pueden guardar los datos, verificar que la lista de correo no este vacía.");
+        }
+        else
+        {
+            Cliente cliente = new Cliente();
+            cliente.IngresarCorreo(c, dat);
+        }
+
+    }
+
+    public static void ModificarCorreo(String correo, String dat) throws Exception
+    {
+        boolean resultado = false;
+        Cliente c = new Cliente();
+
+        for(String s :c.CorreonoRegistradoPorCliente(dat))
+        {
+            if(s.equals(correo))
+            {
+                resultado = true;
+            }
+        }
+
+        if(resultado ==  true)
+        {
+            msgerr("El usuario ya tiene registrado el Correo.");
+        }
+        else {
+            Cliente cliente = new Cliente();
+            cliente.IngresarCorreo(correo,dat);
+        }
+
+    }
+
 }
 
