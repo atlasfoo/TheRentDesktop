@@ -461,6 +461,28 @@ public class control_MenuCliente implements Initializable {
     {
         main.showClienteCorreo();
     }
+    //evento nuevo a trabajar
+    @FXML
+    void eventoClick(MouseEvent event) {
+
+       if(event.getClickCount() == 2)
+       {
+           Cliente cliente = TablaDatos.getSelectionModel().getSelectedItem();
+         n = cliente.getNombre1() +""+cliente.getNombre2();
+         c = cliente.getCedula();
+         d = cliente.getDireccion();
+         tp = cliente.gettipocliente();
+         e = cliente.getEstado();
+
+           main.showDatosCompleto();
+       }
+    }
+
+    static String n ;
+    static String c;
+    static String d;
+    static String tp;
+    static String e;
 
 }
 

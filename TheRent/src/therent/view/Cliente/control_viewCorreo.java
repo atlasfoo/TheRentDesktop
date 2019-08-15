@@ -85,7 +85,13 @@ public class control_viewCorreo implements Initializable {
             main.closeViewCliente(btnCancelar);
 
     }
-
+    @FXML
+    void borrar()
+    {
+        String dat;
+        dat = idLIst.getSelectionModel().getSelectedItem();
+        idLIst.getItems().remove(dat);
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources)

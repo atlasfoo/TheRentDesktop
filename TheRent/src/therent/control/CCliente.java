@@ -133,7 +133,7 @@ public class CCliente {
         boolean resultado = false;
         Cliente c = new Cliente();
 
-        for(String s :c.TelefonoRegistradoPorCliente(dat))
+        for(Cliente s :c.TelefonoRegistradoPorCliente(dat))
         {
             if(s.equals(tel))
             {
@@ -172,10 +172,10 @@ public class CCliente {
     {
         boolean resultado = false;
         Cliente c = new Cliente();
-
-        for(String s :c.CorreonoRegistradoPorCliente(dat))
+//Revisar
+        for(Cliente s :c.CorreonoRegistradoPorCliente(dat))
         {
-            if(s.equals(correo))
+            if(s.getCorreo().equals(correo))
             {
                 resultado = true;
             }
@@ -192,5 +192,15 @@ public class CCliente {
 
     }
 
+    //Probar
+    public static ObservableList<Cliente> TelRegistrado(String dat){
+        Cliente c = new Cliente();
+       return  c.TelefonoRegistradoPorCliente(dat);
+    }
+
+    public static ObservableList<Cliente> CorrRegistrado(String dat){
+        Cliente c = new Cliente();
+        return c.CorreonoRegistradoPorCliente(dat);
+    }
 }
 

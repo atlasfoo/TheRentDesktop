@@ -81,6 +81,14 @@ public class control_viewTel  implements Initializable {
         main.closeViewCliente(btnAceptar);
     }
 
+    //Verificar
+    @FXML
+    void borrar()
+    {
+        String dat;
+        dat = idLIst.getSelectionModel().getSelectedItem();
+        idLIst.getItems().remove(dat);
+    }
     @FXML
     void Cancelar()
     {

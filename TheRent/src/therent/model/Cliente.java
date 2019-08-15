@@ -22,7 +22,8 @@ public class Cliente {
     private StringProperty tipoCliente;
     private StringProperty estado;
     private IntegerProperty id;
-
+    private StringProperty tel;
+    private StringProperty correo;
 
    public Cliente(String nombre1, String nombre2, String apellido1, String apellido2, String cedula, String direccion, String tipocliente)
     {
@@ -47,8 +48,12 @@ public class Cliente {
         this.estado = new SimpleStringProperty(estado);
     }
 
+    public Cliente(){}
 
-    public  Cliente(){}
+    public  Cliente(String n){this.tel = new SimpleStringProperty(n);}
+
+    public Cliente(String correo,String vacio){this.correo = new SimpleStringProperty(correo);}
+
 
     public Integer getId(){return id.get();}
 
@@ -128,6 +133,14 @@ public class Cliente {
 
     public void setEstado(String estado) { this.estado = new SimpleStringProperty(estado); }
 
+    public String getTel(){return tel.get();}
+
+    public void setTel(String tel){this.tel =  new SimpleStringProperty(tel);}
+
+    public String getCorreo(){return correo.get();}
+
+    public void setCorreo(String correo){this.correo =  new SimpleStringProperty(correo);}
+
 
     //Metodos get y set property
 
@@ -141,6 +154,14 @@ public class Cliente {
     public StringProperty nombre2property()
     {
         return nombre2;
+    }
+    public StringProperty telefonoproperty()
+    {
+        return tel;
+    }
+    public StringProperty correoproperty()
+    {
+        return correo;
     }
 
     public StringProperty apellido1Property(){
@@ -332,11 +353,11 @@ public class Cliente {
         }catch (Exception e){}
         return  listaCedula;
     }
-
+//--------------------------------------------------------------------------------
     //para validar que el cliente no registre el mismo telefono
-    public  ObservableList<String> TelefonoRegistradoPorCliente(String Cedula)
+    public  ObservableList<Cliente> TelefonoRegistradoPorCliente(String Cedula)
     {
-        ObservableList<String> listaTel;
+        ObservableList<Cliente> listaTel;
         //Inicializando el observablelist
         listaTel = FXCollections.observableArrayList();
 
@@ -348,16 +369,16 @@ public class Cliente {
 
             while (resultado.next())
             {
-                listaTel.add(resultado.getString("Telefono"));
+                listaTel.add(new Cliente(resultado.getString("Telefono")));
             }
             conn.close();
         }catch (Exception e){}
         return  listaTel;
     }
 
-    public  ObservableList<String> CorreonoRegistradoPorCliente(String Cedula)
+    public  ObservableList<Cliente> CorreonoRegistradoPorCliente(String Cedula)
     {
-        ObservableList<String> listaTel;
+        ObservableList<Cliente> listaTel;
         //Inicializando el observablelist
         listaTel = FXCollections.observableArrayList();
 
@@ -369,13 +390,13 @@ public class Cliente {
 
             while (resultado.next())
             {
-                listaTel.add(resultado.getString("Email"));
+                listaTel.add( new Cliente (resultado.getString("Email"),""));
             }
             conn.close();
         }catch (Exception e){}
         return  listaTel;
     }
-
+//--------------------------------------------------------------------------------
     //Este metodo ingresara el telefono del cliente, resive un entero que sera el numero y el otro es para extraer el numero de cedula y usar el metodo
     //de arriba que extrae apartir de la cedula el id
     public void IngresarTel(int tel,String dat) throws Exception

@@ -101,7 +101,7 @@ public class Main extends Application {
         try {
             AnchorPane root=loader.load();
             Stage dlgStage=new Stage();
-            dlgStage.initModality(Modality.WINDOW_MODAL);
+            dlgStage.initModality(Modality.APPLICATION_MODAL);
             dlgStage.setScene(new Scene(root));
             dlgStage.setResizable(false);
             dlgStage.showAndWait();
@@ -118,7 +118,7 @@ public class Main extends Application {
         try {
             AnchorPane root=loader.load();
             Stage dlgStage=new Stage();
-            dlgStage.initModality(Modality.WINDOW_MODAL);
+            dlgStage.initModality(Modality.APPLICATION_MODAL);
             dlgStage.setScene(new Scene(root));
             dlgStage.setResizable(false);
             dlgStage.showAndWait();
@@ -127,6 +127,22 @@ public class Main extends Application {
         }
     }
 
+    //Abre la ventana para mostrar los datos completos
+    public  void showDatosCompleto()
+    {
+        FXMLLoader loader=new FXMLLoader();
+        loader.setLocation(Main.class.getResource("view/Cliente/viewDatosCompleto.fxml"));
+        try {
+            AnchorPane root=loader.load();
+            Stage dlgStage=new Stage();
+            dlgStage.initModality(Modality.APPLICATION_MODAL);
+            dlgStage.setScene(new Scene(root));
+            dlgStage.setResizable(false);
+            dlgStage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     //Cierra ventana, es creado para cerrar el showCliente y showCorreo
     public void closeViewCliente(JFXButton button)
     {
@@ -135,7 +151,7 @@ public class Main extends Application {
     }
 
     /*TODO:
-       1: implementar el resto de las funcionalidades, cada quien en su rama
+       1: implementar el resto de laas funcionalidades, cada quien en su rama
     *  issue 1: RESUELTO
     *  issue 2: investigar como crear una pantalla de carga, ya que el servidor bd
     *  remoto toma tiempo en responder*/

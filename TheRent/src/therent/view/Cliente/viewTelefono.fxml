@@ -12,7 +12,7 @@
       <JFXListView fx:id="idLIst" layoutX="320.0" layoutY="65.0" prefHeight="192.0" prefWidth="200.0" />
       <JFXButton fx:id="idAdd" layoutX="257.0" layoutY="136.0" onMouseClicked="#Agregar" text="&gt;&gt;" />
       <JFXTextField fx:id="idTel" layoutX="32.0" layoutY="161.0" prefHeight="25.0" prefWidth="143.0" promptText="Número" />
-      <JFXButton fx:id="idDell"   layoutX="257.0" layoutY="179.0" text="&lt;&lt;" />
+      <JFXButton fx:id="idDell"   layoutX="257.0" layoutY="179.0" text="&lt;&lt;" onAction="#borrar" />
       <JFXButton fx:id="btnCancelar" onAction="#Cancelar" layoutX="469.0" layoutY="304.0" text="Cancelar" />
       <JFXButton fx:id="btnAceptar" onAction="#Aceptar" layoutX="4.0" layoutY="304.0" text="Aceptar" />
       <Text layoutX="222.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Teléfono " wrappingWidth="95.13671875">
