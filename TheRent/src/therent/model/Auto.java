@@ -242,4 +242,44 @@ public class Auto {
         this.chasis.set(chasis);
     }
 
+    //Metodo para mostrar todos los registros de auto
+    public ObservableList<Auto> MostrarRegistrosAuto() throws Exception
+    {
+        //Declaracion de variables
+        ObservableList<Auto> listaAuto;
+        //Inicializando el observablelist
+        listaAuto = FXCollections.observableArrayList();
+
+
+        Connection conn= DriverManager.getConnection(JDBCUtil.getDatabaseUri());
+        CallableStatement cs = conn.prepareCall("{call sp_mostrar_auto}");
+        ResultSet resultado = cs.executeQuery();
+
+        while (resultado.next())
+        {
+            listaAuto.add(new Auto
+                    (
+                            resultado.getInt("Id_Auto"),
+                            resultado.getString("Marca"),
+                            resultado.getString("Modelo"),
+                            resultado.getString("Color"),
+                            resultado.getInt("Año"),
+                            resultado.getString("Transmisión"),
+                            resultado.getString("Carrocería"),
+                            resultado.getString("Combustible"),
+                            resultado.getString("Placa"),
+                            resultado.getString("VIN"),
+                            resultado.getString("Chasis"),
+                            resultado.getString("Categoría"),
+                            resultado.getFloat("Precio"),
+                            resultado.getFloat("Depósito"),
+                            resultado.getString("Habilitado"),
+                            resultado.getString("Estado")
+                    ));
+        }
+        conn.close();
+
+        return  listaAuto;
+    }
+
 }

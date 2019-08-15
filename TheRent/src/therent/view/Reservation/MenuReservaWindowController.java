@@ -20,13 +20,16 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class ReservaWindowControl implements Initializable {
+public class MenuReservaWindowController implements Initializable {
 
     @FXML
     private JFXButton boton_agregar_reserva;
 
     @FXML
     private JFXButton boton_visualizar_reserva;
+
+    @FXML
+    private JFXButton boton_salir;
 
     @FXML
     private BorderPane borderPaneContainer;
@@ -53,7 +56,7 @@ public class ReservaWindowControl implements Initializable {
     private void openReservaScene1(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader();
-            Node child = loader.load(getClass().getResource("../Reservation/RentaDialogWindow.fxml").openStream());
+            Node child = loader.load(getClass().getResource("../Reservation/addRentationWindow.fxml").openStream());
             borderPaneContainer.getChildren().clear();
             borderPaneContainer.setCenter(child);
             Label lblTitle = new Label("AGREGAR RESERVAS");
@@ -112,11 +115,11 @@ public class ReservaWindowControl implements Initializable {
 
     @FXML
     private void btnExitOnMouseExited(MouseEvent event) {
-        boton_agregar_reserva.setStyle("-fx-background-color:transparent;");
+        boton_salir.setStyle("-fx-background-color:transparent;");
     }
 
     @FXML
     private void btnExitOnMouseEntered(MouseEvent event) {
-        boton_agregar_reserva.setStyle("-fx-background-color:#dae7f3;");
+        boton_salir.setStyle("-fx-background-color:#dae7f3;");
     }
 }

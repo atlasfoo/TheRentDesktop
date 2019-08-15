@@ -2,15 +2,13 @@ package therent;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import therent.view.LogWindowControl;
 import therent.view.MainFrameControl;
-import therent.view.Reservation.ReservaWindowControl;
+import therent.view.Reservation.MenuReservaWindowController;
 
 import java.io.IOException;
 
@@ -73,10 +71,10 @@ public class Main extends Application {
     //mostrar ventana principal para abrir reserva
     public void ShowReservationFrame(){
         FXMLLoader loader=new FXMLLoader();
-        loader.setLocation(Main.class.getResource("view/Reservation/ReservaWindow.fxml"));
+        loader.setLocation(Main.class.getResource("view/Reservation/MenuReservaWindow.fxml"));
         try {
             AnchorPane root=loader.load();
-            ReservaWindowControl ctrl=loader.getController();
+            MenuReservaWindowController ctrl=loader.getController();
             ctrl.setMain(this);
             primaryStage.setMaximized(false);
             primaryStage.setScene(new Scene(root));

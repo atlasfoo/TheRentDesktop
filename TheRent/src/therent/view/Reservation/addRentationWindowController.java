@@ -14,13 +14,14 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import therent.control.CRentaDialog;
-import therent.model.TablaVistaA;
+import therent.model.RentaModel;
 import therent.model.TablaVistaC;
 
 import java.net.URL;
+import java.util.Date;
 import java.util.ResourceBundle;
 
-public class RentaDialogWindow implements Initializable {
+public class addRentationWindowController implements Initializable {
 
 
     @FXML
@@ -30,28 +31,19 @@ public class RentaDialogWindow implements Initializable {
     private JFXComboBox<String> fx_estado;
 
     @FXML
+    private JFXButton fx_btn_agregar_renta;
+
+    @FXML
     private Label msjText;
 
     @FXML
-    private Label mensaje_save_DR;
+    private JFXButton fx_button_modificar;
 
     @FXML
-    private JFXTextField fx_costo_renta;
+    private JFXButton fx_button_eliminar;
 
     @FXML
-    private JFXButton btn_agregar_renta;
-
-    @FXML
-    private JFXButton btn_guardar_renta;
-
-    @FXML
-    private JFXDatePicker fx_fecha_entrega;
-
-    @FXML
-    private JFXDatePicker fx_fecha_recibo;
-
-    @FXML
-    private JFXTextField fx_auto;
+    private JFXTextField fx_id_cliente;
 
     @FXML
     private TableView<TablaVistaC> tabla_cliente;
@@ -66,22 +58,26 @@ public class RentaDialogWindow implements Initializable {
     private TableColumn<TablaVistaC,String> column_primer_apellido;
 
     @FXML
-    private TableView<TablaVistaA> tabla_auto;
+    private TableView<RentaModel> tabla_renta;
 
     @FXML
-    private TableColumn<TablaVistaA,String> column_id_auto;
+    private TableColumn<RentaModel,String> column_primer_nombre2;
 
     @FXML
-    private TableColumn<TablaVistaA,String> column_marca;
+    private TableColumn<RentaModel,String> column_segundo_nombre;
 
     @FXML
-    private TableColumn<TablaVistaA,String> column_modelo;
+    private TableColumn<RentaModel,String> column_primer_apellido2;
 
     @FXML
-    private JFXTextField fx_id_cliente;
+    private TableColumn<RentaModel,String> column_segundo_apellido;
 
     @FXML
-    private JFXTextField fx_id_auto;
+    private TableColumn<RentaModel,Date> column_fecha;
+
+    @FXML
+    private TableColumn<RentaModel,String> column_estado;
+
 
     @FXML
     private void SaveNewReserva(ActionEvent actionEvent){
@@ -98,13 +94,19 @@ public class RentaDialogWindow implements Initializable {
         //GestionEvento();
     }
 
-    public void MostrandoDatosAuto()
+    public void MostrandoDatosRenta()
     {
-        //columnas
-        column_id_auto.setCellValueFactory(new PropertyValueFactory<TablaVistaA,String>("Id_Auto"));
-        column_marca.setCellValueFactory(new PropertyValueFactory<TablaVistaA,String>("Marca"));
-        column_modelo.setCellValueFactory(new PropertyValueFactory<TablaVistaA,String>("Modelo"));
-        tabla_auto.setItems(CRentaDialog.MostrarAuto());
+        try {
+            column_primer_nombre2.setCellValueFactory(new PropertyValueFactory<RentaModel, String>("Primer_Nombre"));
+            column_segundo_nombre.setCellValueFactory(new PropertyValueFactory<RentaModel, String>("Segundo_Nombre"));
+            column_primer_apellido2.setCellValueFactory(new PropertyValueFactory<RentaModel, String>("Primer_Apellido"));
+            column_segundo_apellido.setCellValueFactory(new PropertyValueFactory<RentaModel, String>("Segundo_Apellido"));
+            column_fecha.setCellValueFactory(new PropertyValueFactory<RentaModel, Date>("fecha"));
+            column_estado.setCellValueFactory(new PropertyValueFactory<RentaModel, String>("estado"));
+            tabla_renta.setItems(CRentaDialog.MostrarRenta());
+        }catch (Exception E){
+            msgerr(E.getMessage());
+        }//columnas
         //Cuando se da click mostrar los registros en sus respectivos campos
         //GestionEvento();
     }
@@ -117,11 +119,11 @@ public class RentaDialogWindow implements Initializable {
         lis.add("PAGADO");
         fx_estado.setItems(lis);
        MostrandoDatosCliente();
-       MostrandoDatosAuto();
+       MostrandoDatosRenta();
        GestionEvento();
        GestionEvento2();
        fx_id_cliente.setVisible(false);
-       fx_id_auto.setVisible(false);
+
     }
 
     //Evento para mandar mensajes
@@ -147,14 +149,14 @@ public class RentaDialogWindow implements Initializable {
 
     public void GestionEvento2()
     {
-        tabla_auto.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<TablaVistaA>() {
+        /*tabla_renta.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<TablaVistaA>() {
             @Override
             public void changed(ObservableValue<? extends TablaVistaA> observable, TablaVistaA oldValue, TablaVistaA newValue){
                 //fx_id_auto.setText(newValue.getIDAuto());
                 fx_auto.setText(newValue.getMarca() + " " + newValue.getModelo());
                 fx_id_auto.setText(String.valueOf(newValue.getId_Auto()));
             }
-        });
+        });*/
     }
 
     @FXML
@@ -163,29 +165,13 @@ public class RentaDialogWindow implements Initializable {
             CRentaDialog.addRenta(Integer.parseInt(fx_id_cliente.getText()),fx_estado.getValue());
             msjText("Renta Agregado Correctamente.");
             LimpiarCampos();
+            MostrandoDatosRenta();
+            Bloqueobotones(true, "AGREGAR");
         }catch (Exception E){msgerr(E.getMessage());}
 
         LimpiarCampos();
 
     }
-
-    @FXML
-    private void Button_addDetalleRenta(ActionEvent actionEvent)
-    {
-        try{
-            CRentaDialog.addDetalleRenta(
-                    Integer.parseInt(fx_id_auto.getText()),
-                    fx_fecha_entrega.getValue(),
-                    fx_fecha_recibo.getValue(),
-                    Double.parseDouble(fx_costo_renta.getText())
-
-            );
-            msjText2("LA RESERVA SE AGREGO CORRECTAMENTE");
-        }catch (Exception E){
-            msgerr(E.getMessage());
-        }
-    }
-
 
     public void LimpiarCampos()
     {
@@ -201,11 +187,21 @@ public class RentaDialogWindow implements Initializable {
 
     }
 
-    //Metodo para mandar el mensaje a escribir en el text ejemplo cuando se agrege un registro, se busque, etc.
-    public void msjText2(String texto)
+    //metodo para bloquear los campos de texto de acorde al boton seleccionado
+    private void Bloqueobotones(boolean b, String m)
     {
-        mensaje_save_DR.setText("");
-        mensaje_save_DR.setText(texto);
+        if(m.equals("AGREGAR")) {
+            fx_id_cliente.setDisable(false);
+            fx_nombre_cliente.setDisable(false);
+            fx_estado.setDisable(false);
+
+        }
+        else{
+            fx_id_cliente.setDisable(b);
+            fx_nombre_cliente.setDisable(b);
+            fx_estado.setDisable(b);
+
+        }
     }
 
 }

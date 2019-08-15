@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" prefHeight="550.0" prefWidth="930.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="therent.view.Reservation.ReservaWindowControl">
+<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="930.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="therent.view.Reservation.MenuReservaWindowController">
     <children>
         <SplitPane dividerPositions="0.24" layoutX="185.0" layoutY="146.0" prefHeight="612.0" prefWidth="838.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <items>
@@ -20,12 +20,12 @@
                             <content>
                                 <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="5.0">
                            <children>
-                              <Label text="Agregar la Reserva" />
+                              <Label text="Agregar la Renta" />
                               <JFXButton fx:id="boton_agregar_reserva" buttonType="RAISED" mnemonicParsing="false" onAction="#openReservaScene1" onMouseEntered="#btnAgregarOnMouseEntered" onMouseExited="#btnAgregarOnMouseExited" prefHeight="140.0" prefWidth="160.0" ripplerFill="#221fe7" text="Button" />
-                              <Label text="Visualizar las Reservas" />
+                              <Label text="Agregar el Auto para la Reserva" />
                               <JFXButton fx:id="boton_visualizar_reserva" buttonType="RAISED" mnemonicParsing="false" onAction="#openReservaScene2" onMouseEntered="#btnSearchOnMouseEntered" onMouseExited="#btnSearchOnMouseExited" prefHeight="140.0" prefWidth="160.0" ripplerFill="#221fe7" text="Button" />
                               <Label text="SALIR" />
-                              <JFXButton fx:id="boton_salir" onDragExited="#btnExitOnMouseExited" onMouseEntered="#btnAgregarOnMouseEntered" onMouseExited="#btnAgregarOnMouseExited" prefHeight="140.0" prefWidth="160.0" />
+                              <JFXButton fx:id="boton_salir" buttonType="RAISED" mnemonicParsing="false" onDragExited="#btnExitOnMouseExited" onMouseEntered="#btnExitOnMouseEntered" onMouseExited="#btnExitOnMouseExited" prefHeight="140.0" prefWidth="160.0" ripplerFill="#481fff" text="Button" />
                            </children>
                                 </VBox>
                             </content>

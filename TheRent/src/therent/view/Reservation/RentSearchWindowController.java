@@ -2,68 +2,76 @@ package therent.view.Reservation;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDatePicker;
+import com.jfoenix.controls.JFXTextField;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import therent.control.CRentaDialog;
 import therent.model.Auto;
-import therent.model.TablaVistaC;
+import therent.model.RentaModel;
 
-public class RentSearchWindowController {
+import java.net.URL;
+import java.util.ResourceBundle;
 
-    @FXML
-    private TableView<?> tabla_auto;
-
-    @FXML
-    private TableColumn<?, ?> column_id_auto;
+public class RentSearchWindowController implements Initializable {
 
     @FXML
-    private TableColumn<?, ?> column_marca;
+    private TableView<Auto> tabla_auto;
 
     @FXML
-    private TableColumn<?, ?> column_modelo;
+    private TableColumn<Auto, String> column_id_auto;
 
     @FXML
-    private TableColumn<?, ?> column_color;
+    private TableColumn<Auto, String> column_marca;
 
     @FXML
-    private TableColumn<?, ?> column_año;
+    private TableColumn<Auto, String> column_modelo;
 
     @FXML
-    private TableColumn<?, ?> column_transmision;
+    private TableColumn<Auto, String> column_color;
 
     @FXML
-    private TableColumn<?, ?> column_carroceria;
+    private TableColumn<Auto, String> column_año;
 
     @FXML
-    private TableColumn<?, ?> column_combustible;
+    private TableColumn<Auto, String> column_transmision;
 
     @FXML
-    private TableColumn<?, ?> column_placa;
+    private TableColumn<Auto, String> column_carroceria;
 
     @FXML
-    private TableColumn<?, ?> column_vin;
+    private TableColumn<Auto, String> column_combustible;
 
     @FXML
-    private TableColumn<?, ?> column_chasis;
+    private TableColumn<Auto, String> column_placa;
 
     @FXML
-    private TableColumn<?, ?> column_categoria;
+    private TableColumn<Auto, String> column_vin;
 
     @FXML
-    private TableColumn<?, ?> column_precio;
+    private TableColumn<Auto, String> column_chasis;
 
     @FXML
-    private TableColumn<?, ?> column_deposito;
+    private TableColumn<Auto, String> column_categoria;
 
     @FXML
-    private TableColumn<?, ?> column_habilitado;
+    private TableColumn<Auto, String> column_precio;
 
     @FXML
-    private TableColumn<?, ?> column_estado;
+    private TableColumn<Auto, String> column_deposito;
+
+    @FXML
+    private TableColumn<Auto, String> column_habilitado;
+
+    @FXML
+    private TableColumn<Auto, String> column_estado;
 
     @FXML
     private JFXDatePicker fx_fecha_entrega;
@@ -80,11 +88,41 @@ public class RentSearchWindowController {
     @FXML
     private JFXButton fx_button_eliminar;
 
-    public void MostrandoDatosCliente()
-    {
+    @FXML
+    private JFXTextField fx_costo_renta;
+
+    @FXML
+    private JFXTextField fx_auto;
+
+    @FXML
+    private Label mensaje;
+
+    @FXML
+    private JFXTextField fx_id_auto;
+
+    public void MostrandoDatosAuto(){
         //columnas
-        //column_id_auto.setCellValueFactory(new PropertyValueFactory<Auto,String>("Id_Auto"));
-        //tabla_auto.setItems(CRentaDialog.MostrarAuto());
+        try {
+            column_id_auto.setCellValueFactory(new PropertyValueFactory<Auto, String>("IdAuto"));
+            column_marca.setCellValueFactory(new PropertyValueFactory<Auto, String>("marca"));
+            column_modelo.setCellValueFactory(new PropertyValueFactory<Auto, String>("modelo"));
+            column_color.setCellValueFactory(new PropertyValueFactory<Auto, String>("color"));
+            column_año.setCellValueFactory(new PropertyValueFactory<Auto, String>("Anho"));
+            column_transmision.setCellValueFactory(new PropertyValueFactory<Auto, String>("Transmision"));
+            column_carroceria.setCellValueFactory(new PropertyValueFactory<Auto, String>("carrocerria"));
+            column_combustible.setCellValueFactory(new PropertyValueFactory<Auto, String>("combustible"));
+            column_placa.setCellValueFactory(new PropertyValueFactory<Auto, String>("placa"));
+            column_vin.setCellValueFactory(new PropertyValueFactory<Auto, String>("VIN"));
+            column_chasis.setCellValueFactory(new PropertyValueFactory<Auto, String>("chasis"));
+            column_categoria.setCellValueFactory(new PropertyValueFactory<Auto, String>("categoria"));
+            column_precio.setCellValueFactory(new PropertyValueFactory<Auto, String>("precio"));
+            column_deposito.setCellValueFactory(new PropertyValueFactory<Auto, String>("deposito"));
+            column_habilitado.setCellValueFactory(new PropertyValueFactory<Auto, String>("estado"));
+            column_estado.setCellValueFactory(new PropertyValueFactory<Auto, String>("isenabled"));
+            tabla_auto.setItems(CRentaDialog.MostrarDispAuto());
+        }catch(Exception e){
+            msgerr(e.getMessage());
+        }
         //Cuando se da click mostrar los registros en sus respectivos campos
         //GestionEvento();
     }
@@ -93,12 +131,64 @@ public class RentSearchWindowController {
     private void ButtonSearchCar(ActionEvent actionEvent)
     {
         try{
-            CRentaDialog.BuscarDatoAuto(fx_fecha_entrega.getValue(),fx_fecha_recibo.getValue());
+            column_id_auto.setCellValueFactory(new PropertyValueFactory<Auto, String>("IdAuto"));
+            column_marca.setCellValueFactory(new PropertyValueFactory<Auto, String>("marca"));
+            column_modelo.setCellValueFactory(new PropertyValueFactory<Auto, String>("modelo"));
+            column_color.setCellValueFactory(new PropertyValueFactory<Auto, String>("color"));
+            column_año.setCellValueFactory(new PropertyValueFactory<Auto, String>("Anho"));
+            column_transmision.setCellValueFactory(new PropertyValueFactory<Auto, String>("Transmision"));
+            column_carroceria.setCellValueFactory(new PropertyValueFactory<Auto, String>("carrocerria"));
+            column_combustible.setCellValueFactory(new PropertyValueFactory<Auto, String>("combustible"));
+            column_placa.setCellValueFactory(new PropertyValueFactory<Auto, String>("placa"));
+            column_vin.setCellValueFactory(new PropertyValueFactory<Auto, String>("VIN"));
+            column_chasis.setCellValueFactory(new PropertyValueFactory<Auto, String>("chasis"));
+            column_categoria.setCellValueFactory(new PropertyValueFactory<Auto, String>("categoria"));
+            column_precio.setCellValueFactory(new PropertyValueFactory<Auto, String>("precio"));
+            column_deposito.setCellValueFactory(new PropertyValueFactory<Auto, String>("deposito"));
+            column_habilitado.setCellValueFactory(new PropertyValueFactory<Auto, String>("estado"));
+            column_estado.setCellValueFactory(new PropertyValueFactory<Auto, String>("isenabled"));
+            tabla_auto.setItems(CRentaDialog.BuscarDatoAuto(fx_fecha_entrega.getValue(),fx_fecha_recibo.getValue()));
             //msjText2("LA RESERVA SE AGREGO CORRECTAMENTE");
         }catch (Exception E){
             msgerr(E.getMessage());
         }
 
+    }
+
+    @FXML
+    private void Button_addDetalleRenta(ActionEvent actionEvent)
+    {
+        try{
+            CRentaDialog.addDetalleRenta(
+                    Integer.parseInt(fx_id_auto.getText()),
+                    fx_fecha_entrega.getValue(),
+                    fx_fecha_recibo.getValue(),
+                    Double.parseDouble(fx_costo_renta.getText())
+
+            );
+            msjText("LA RESERVA SE AGREGO CORRECTAMENTE");
+            Bloqueobotones(true,"AGREGAR");
+        }catch (Exception E){
+            msgerr(E.getMessage());
+        }
+    }
+
+    public void msjText(String texto)
+    {
+        mensaje.setText("");
+        mensaje.setText(texto);
+
+    }
+
+    public void GestionEvento2()
+    {
+        tabla_auto.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Auto>() {
+            @Override
+            public void changed(ObservableValue<? extends Auto> observable, Auto oldValue, Auto newValue){
+                fx_auto.setText(newValue.getMarca() + " " + newValue.getModelo());
+                fx_id_auto.setText(String.valueOf(newValue.getIDAuto()));
+            }
+        });
     }
 
     //Evento para mandar mensajes
@@ -108,5 +198,31 @@ public class RentSearchWindowController {
         al.setHeaderText("ERROR");
         al.setContentText(msg);
         al.showAndWait();
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        //fx_id_auto.setVisible(false);
+        MostrandoDatosAuto();
+        GestionEvento2();
+        fx_id_auto.setVisible(false);
+    }
+
+    private void Bloqueobotones(boolean b, String m)
+    {
+        if(m.equals("AGREGAR")) {
+            fx_id_auto.setDisable(false);
+            fx_auto.setDisable(false);
+            fx_fecha_entrega.setDisable(false);
+            fx_fecha_recibo.setDisable(false);
+            fx_costo_renta.setDisable(false);
+        }
+        else{
+            fx_id_auto.setDisable(b);
+            fx_auto.setDisable(b);
+            fx_fecha_entrega.setDisable(b);
+            fx_fecha_recibo.setDisable(b);
+            fx_costo_renta.setDisable(b);
+        }
     }
 }
