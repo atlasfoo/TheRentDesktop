@@ -23,7 +23,9 @@
                               <Label text="Agregar la Renta" />
                               <JFXButton fx:id="boton_agregar_reserva" buttonType="RAISED" mnemonicParsing="false" onAction="#openReservaScene1" onMouseEntered="#btnAgregarOnMouseEntered" onMouseExited="#btnAgregarOnMouseExited" prefHeight="140.0" prefWidth="160.0" ripplerFill="#221fe7" text="Button" />
                               <Label text="Agregar el Auto para la Reserva" />
-                              <JFXButton fx:id="boton_visualizar_reserva" buttonType="RAISED" mnemonicParsing="false" onAction="#openReservaScene2" onMouseEntered="#btnSearchOnMouseEntered" onMouseExited="#btnSearchOnMouseExited" prefHeight="140.0" prefWidth="160.0" ripplerFill="#221fe7" text="Button" />
+                              <JFXButton fx:id="boton_visu_auto_disponible" buttonType="RAISED" mnemonicParsing="false" onAction="#openReservaScene2" onMouseEntered="#btnSearchOnMouseEntered" onMouseExited="#btnSearchOnMouseExited" prefHeight="140.0" prefWidth="160.0" ripplerFill="#221fe7" text="Button" />
+                              <Label text="Visualizar las Reservas" />
+                              <JFXButton fx:id="boton_visualizar_reserva" buttonType="RAISED" mnemonicParsing="false" onAction="#openReservaScene3" onMouseEntered="#btnvisualOnMouseEntered" onMouseExited="#btnvisualOnMouseExited" prefHeight="140.0" prefWidth="160.0" ripplerFill="#481fff" text="Button" />
                               <Label text="SALIR" />
                               <JFXButton fx:id="boton_salir" buttonType="RAISED" mnemonicParsing="false" onDragExited="#btnExitOnMouseExited" onMouseEntered="#btnExitOnMouseEntered" onMouseExited="#btnExitOnMouseExited" prefHeight="140.0" prefWidth="160.0" ripplerFill="#481fff" text="Button" />
                            </children>

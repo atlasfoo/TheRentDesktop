@@ -13,6 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import therent.control.CRentaDialog;
 import therent.model.RentaModel;
 import therent.model.TablaVistaC;
@@ -123,6 +124,7 @@ public class addRentationWindowController implements Initializable {
        GestionEvento();
        GestionEvento2();
        fx_id_cliente.setVisible(false);
+       fx_nombre_cliente.setEditable(false);
 
     }
 
@@ -204,4 +206,7 @@ public class addRentationWindowController implements Initializable {
         }
     }
 
+    public void KeyTypedNombreCliente(KeyEvent keyEvent) {
+
+    }
 }

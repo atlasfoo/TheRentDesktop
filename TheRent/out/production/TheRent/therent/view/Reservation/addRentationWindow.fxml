@@ -21,7 +21,7 @@
             <Pane maxHeight="200.0" prefHeight="200.0" prefWidth="469.0">
                <children>
                   <Label layoutX="164.0" layoutY="14.0" text="Datos de la Renta" />
-                  <JFXTextField fx:id="fx_nombre_cliente" labelFloat="true" layoutX="21.0" layoutY="57.0" prefHeight="25.0" prefWidth="258.0" promptText="Nombre del Cliente" />
+                  <JFXTextField fx:id="fx_nombre_cliente" labelFloat="true" layoutX="21.0" layoutY="57.0" onKeyTyped="#KeyTypedNombreCliente" prefHeight="25.0" prefWidth="258.0" promptText="Nombre del Cliente" />
                   <JFXComboBox fx:id="fx_estado" labelFloat="true" layoutX="21.0" layoutY="117.0" prefHeight="25.0" prefWidth="258.0" promptText="Estado" />
                   <Label fx:id="msjText" layoutX="33.0" layoutY="162.0" prefHeight="28.0" prefWidth="246.0" />
                   <GridPane layoutX="337.0" layoutY="24.0" maxHeight="145.0" prefHeight="145.0" prefWidth="104.0">
@@ -34,8 +34,6 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <JFXButton fx:id="fx_button_modificar" prefHeight="28.0" prefWidth="104.0" style="-fx-border-color: #0095a8;" text="MODIFICAR" GridPane.rowIndex="2" />
-                        <JFXButton fx:id="fx_button_eliminar" prefHeight="28.0" prefWidth="104.0" style="-fx-border-color: #0095a8;" text="ELIMINAR" GridPane.rowIndex="1" />
                         <JFXButton fx:id="fx_btn_agregar_renta" buttonType="RAISED" onAction="#Button_addRenta" prefHeight="32.0" prefWidth="104.0" style="-fx-border-color: #0095a8;" text="AGREGAR" />
                      </children>
                   </GridPane>

@@ -7,9 +7,6 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.TilePane?>
 
 <AnchorPane prefHeight="700.0" prefWidth="1000.0" style="-fx-border-color: #0095a8;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="therent.view.Reservation.RentSearchWindowController">
@@ -37,19 +34,6 @@
       <JFXDatePicker fx:id="fx_fecha_entrega" layoutX="49.0" layoutY="32.0" prefHeight="28.0" prefWidth="190.0" promptText="Fecha Entrega" />
       <JFXDatePicker fx:id="fx_fecha_recibo" layoutX="265.0" layoutY="32.0" prefHeight="28.0" prefWidth="190.0" promptText="Fecha Recibo" />
       <JFXButton fx:id="fx_button_search" layoutX="509.0" layoutY="32.0" onAction="#ButtonSearchCar" prefHeight="28.0" prefWidth="94.0" style="-fx-border-color: #0095a8;" text="BUSCAR" />
-      <GridPane layoutX="655.0" layoutY="18.0" maxHeight="54.0" prefHeight="54.0" prefWidth="200.0" AnchorPane.topAnchor="18.0">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <JFXButton fx:id="fx_button_modificar" prefHeight="28.0" prefWidth="84.0" style="-fx-border-color: #0095a8;" text="MODIFICAR" GridPane.columnIndex="1" />
-            <JFXButton fx:id="fx_button_eliminar" prefHeight="28.0" prefWidth="84.0" style="-fx-border-color: #0095a8;" text="ELIMINAR" />
-         </children>
-      </GridPane>
       <JFXTextField fx:id="fx_costo_renta" labelFloat="true" layoutX="265.0" layoutY="95.0" prefHeight="25.0" prefWidth="190.0" promptText="Costo de la Renta" />
       <JFXTextField fx:id="fx_auto" labelFloat="true" layoutX="49.0" layoutY="96.0" prefHeight="25.0" prefWidth="190.0" promptText="Auto" />
       <JFXButton fx:id="fx_button_search" layoutX="509.0" layoutY="94.0" onAction="#ButtonSearchCar" prefHeight="28.0" prefWidth="94.0" style="-fx-border-color: #0095a8;" text="GUARDAR" />

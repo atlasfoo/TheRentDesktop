@@ -184,6 +184,28 @@ begin
 	insert into Renta(Id_Cliente,Fecha,Estado) values(id_client,now(),estados);
 end //
 
+#procedimiento de visualizacion de reservas
+delimiter //
+create procedure sp_visualizacion_reservas()
+begin
+select
+dr.Id_Detalle_Renta as 'Id_Detalle_Renta', 
+MA.Marca as 'Marca',
+MA.Modelo as 'Modelo',
+dr.Fecha_Entrega as 'Fecha_Entrega', 
+dr.Fecha_Recibo as 'Fecha_Recibo',
+dr.Costo as 'Costo'
+from Renta r
+inner join Detalle_Renta dr
+on dr.Id_Renta = r.Id_Renta
+inner join Auto a
+on a.Id_Auto = dr.Id_Auto
+inner join Modelo_Auto MA
+on MA.Id_Modelo = a.Id_Modelo
+group by dr.Id_Detalle_Renta
+order by dr.Fecha_Entrega asc;
+end //;
+
 /*busqueda de las reservas le falta esta en proceso*/
 delimiter //
 create procedure sp_buscar_reservas(in dato_cliente Varchar(50))

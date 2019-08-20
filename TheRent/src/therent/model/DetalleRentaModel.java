@@ -12,6 +12,8 @@ import java.sql.*;
 public class DetalleRentaModel {
     private IntegerProperty Id_detalle_renta;
     private IntegerProperty Id_Auto;
+    private StringProperty marca;
+    private StringProperty modelo;
     private IntegerProperty Id_Empleado;
     private ObjectProperty<Date> Fecha_Entrega;
     private ObjectProperty<Date> Fecha_Recibo;
@@ -28,7 +30,35 @@ public class DetalleRentaModel {
         this.costo = new SimpleDoubleProperty(costo);
     }
 
-    //get y set cliente
+    public DetalleRentaModel(int id_detalle_renta, String marca, String modelo, Date fecha_entrega, Date fecha_recibo, Double costo) {
+        this.Id_detalle_renta = new SimpleIntegerProperty(id_detalle_renta);
+        this.marca = new SimpleStringProperty(marca);
+        this.modelo = new SimpleStringProperty(modelo);
+        this.Fecha_Entrega = new SimpleObjectProperty<>(fecha_entrega);
+        this.Fecha_Recibo = new SimpleObjectProperty<>(fecha_recibo);
+        this.costo = new SimpleDoubleProperty(costo);
+    }
+
+    public DetalleRentaModel(int id_detalle_renta) {
+        this.Id_detalle_renta = new SimpleIntegerProperty(id_detalle_renta);
+
+    }
+
+    //get y set id_detalle_renta
+    public int getId_Detalle_Renta() {
+        return Id_detalle_renta.get();
+    }
+
+    public IntegerProperty Id_Detalle_Renta_Property() {
+        return Id_detalle_renta;
+    }
+
+    public void setId_detalle_renta(int id_detalle_renta) {
+        this.Id_detalle_renta.set(id_detalle_renta);
+    }
+
+
+    //get y set empleado
     public int getId_Cliente() {
         return Id_Empleado.get();
     }
@@ -53,6 +83,33 @@ public class DetalleRentaModel {
     public void setId_Auto(int id_Auto) {
         this.Id_Auto.set(id_Auto);
     }
+
+    //get y set de marca
+    public String getMarca() {
+        return marca.get();
+    }
+
+    public StringProperty marcaProperty() {
+        return marca;
+    }
+
+    public void setMarca(String marca) {
+        this.marca.set(marca);
+    }
+
+    //get y set de modelo
+    public String getModelo() {
+        return modelo.get();
+    }
+
+    public StringProperty modeloProperty() {
+        return modelo;
+    }
+
+    public void setModelo(String modelo) {
+        this.modelo.set(modelo);
+    }
+
 
     //get y set fecha entrega
 
@@ -116,9 +173,9 @@ public class DetalleRentaModel {
     public ObservableList<DetalleRentaModel> eliminar_registro(Integer a)
     {
         //Declaracion de variables
-        ObservableList<DetalleRentaModel> listaCliente;
+        ObservableList<DetalleRentaModel> listaReserva;
         //Inicializando el observablelist
-        listaCliente = FXCollections.observableArrayList();
+        listaReserva = FXCollections.observableArrayList();
 
         try {
             Connection conn= DriverManager.getConnection(JDBCUtil.getDatabaseUri());
@@ -130,18 +187,16 @@ public class DetalleRentaModel {
             {
                 /*aqui se llena la coleccion con objetos de tipo cliente*/
                 /*el resultado.getSting(parametro) se captura el valor que general el proceso almacenado*/
-                listaCliente.add(new DetalleRentaModel
+                listaReserva.add(new DetalleRentaModel
                         (
-                                resultado.getInt("Id_Auto"),
-                                resultado.getDate("Fecha_Entrega"),
-                                resultado.getDate("Fecha_Recibo"),
-                                resultado.getDouble("Costo")
+                                resultado.getInt("Id_Detalle_Renta")
+
                         ));
             }
             conn.close();
         }catch (Exception e){}
 
-        return  listaCliente;
+        return  listaReserva;
     }
 
 
@@ -189,7 +244,35 @@ public class DetalleRentaModel {
         return  listaAuto;
     }
 
+    public ObservableList<DetalleRentaModel> Mostrarlasreservas()
+    {
+        //Declaracion de variables
+        ObservableList<DetalleRentaModel> ListaReserva;
+        //Inicializando el observablelist
+        ListaReserva = FXCollections.observableArrayList();
 
+        try {
+            Connection conn= DriverManager.getConnection(JDBCUtil.getDatabaseUri());
+            CallableStatement cs = conn.prepareCall("{call sp_visualizacion_reservas}");
+            ResultSet resultado = cs.executeQuery();
+
+            while (resultado.next())
+            {
+                ListaReserva.add(new DetalleRentaModel
+                        (
+                                resultado.getInt("Id_Detalle_Renta"),
+                                resultado.getString("Marca"),
+                                resultado.getString("Modelo"),
+                                resultado.getDate("Fecha_Entrega"),
+                                resultado.getDate("Fecha_Recibo"),
+                                resultado.getDouble("Costo")
+                                ));
+            }
+            conn.close();
+        }catch (Exception e){}
+
+        return  ListaReserva;
+    }
 
 
     //Metodo para mandar mensajes

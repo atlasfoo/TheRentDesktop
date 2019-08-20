@@ -83,12 +83,6 @@ public class RentSearchWindowController implements Initializable {
     private JFXButton fx_button_search;
 
     @FXML
-    private JFXButton fx_button_modificar;
-
-    @FXML
-    private JFXButton fx_button_eliminar;
-
-    @FXML
     private JFXTextField fx_costo_renta;
 
     @FXML
@@ -187,6 +181,7 @@ public class RentSearchWindowController implements Initializable {
             public void changed(ObservableValue<? extends Auto> observable, Auto oldValue, Auto newValue){
                 fx_auto.setText(newValue.getMarca() + " " + newValue.getModelo());
                 fx_id_auto.setText(String.valueOf(newValue.getIDAuto()));
+                fx_costo_renta.setText(String.valueOf(Float.valueOf(newValue.getPrecio())));
             }
         });
     }
@@ -206,6 +201,8 @@ public class RentSearchWindowController implements Initializable {
         MostrandoDatosAuto();
         GestionEvento2();
         fx_id_auto.setVisible(false);
+        fx_auto.setEditable(false);
+        fx_costo_renta.setEditable(false);
     }
 
     private void Bloqueobotones(boolean b, String m)

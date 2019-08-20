@@ -86,6 +86,34 @@ public class CRentaDialog
         return aut;
     }
 
+    //muestra las reservas hasta el momento
+    public static ObservableList<DetalleRentaModel> MostrarReservas() throws Exception {
+        DetalleRentaModel visu_renta = new DetalleRentaModel();
+        ObservableList<DetalleRentaModel> ren;
+
+        ren = visu_renta.Mostrarlasreservas();
+
+        return ren;
+    }
+
+
+    public static ObservableList<DetalleRentaModel> EliminarReserva(int id_detalle_renta) throws Exception
+    {
+        if(id_detalle_renta < 0)
+        {
+            msgerr("No se pueden guardar los datos, verificar que ningún campo este vacío.");
+
+        }
+        else {
+            DetalleRentaModel eliminar = new DetalleRentaModel();
+            ObservableList<DetalleRentaModel> reservas;
+            reservas = eliminar.eliminar_registro(id_detalle_renta);
+            msgevr("Registro encontrado.");
+            return reservas;
+        }
+        return MostrarReservas();
+    }
+
     //Metodo para mandar mensajes
     public static void msgerr(String msg){
         Alert al=new Alert(Alert.AlertType.ERROR);
