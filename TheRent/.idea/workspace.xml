@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/../SQLs/RentCarSPs.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../SQLs/RentCarSPs.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/therent/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/therent/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/therent/model/MantenimientoModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/therent/model/MantenimientoModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TheRent/therent/Test.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TheRent/therent/Test.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/therent/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/therent/Test.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -153,7 +154,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="Application.Test">
     <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
       <option name="VMOptions" />
       <option name="arguments" />
@@ -326,7 +327,8 @@
       <workItem from="1565138021615" duration="9391000" />
       <workItem from="1565274215995" duration="4947000" />
       <workItem from="1565323826942" duration="3899000" />
-      <workItem from="1565358619813" duration="3643000" />
+      <workItem from="1565358619813" duration="3872000" />
+      <workItem from="1565554200514" duration="2777000" />
     </task>
     <servers />
   </component>

@@ -149,10 +149,20 @@ BEGIN
 END //
 
 
+#Mantenimiento
 
+DELIMITER //
 
+CREATE PROCEDURE sp_add_mantenimiento(IN f_in DATE, IN f_out DATE, descr VARCHAR(200), IN id_auto INT)
+BEGIN
+	INSERT INTO Mantenimiento(fecha_inicio, fecha_fin, descripcion, id_auto) VALUES(f_in, f_out, descr, id_auto);
+END	//
 
+CALL sp_auto_all();
 
+SELECT * FROM Mantenimiento
+
+CALL sp_add_mantenimiento('20190506', '20190511', 'Cambio de suspensión', 10);
 
 #Cliente
 
@@ -240,4 +250,39 @@ begin
 					   values(id_rent,id_car,id_employees,date_of_delivery,date_of_receipt,cost);
 end //;
 
+SET global log_bin_trust_function_creators=1
+
+#autos reservados en fecha
+DELIMITER //
+CREATE PROCEDURE sp_disponibilidad_auto(IN f_in DATE,IN f_out DATE)
+BEGIN
+	CREATE TEMPORARY TABLE autos_ocupados
+		SELECT dr.Id_Auto AS id_auto FROM Detalle_Renta dr WHERE (dr.Fecha_Recibo>=f_in AND dr.Fecha_Entrega<f_out);
+	SELECT a.Id_Auto as IDAuto,
+	ma.Marca as Marca,
+	ma.Modelo as Modelo,
+   a.Color as Color,
+   a.año AS Año,
+	a.Transmisión as Transmisión,
+	ma.Tipo_Carroceria as Carrocería,
+	ma.Combustible as Combustible,
+	a.Placa as Placa,
+	a.Vin as VIN,
+	a.No_Chasis AS Chasis,
+	c.Descripcion as Categoría,
+	c.Costo_dia as Precio,
+	c.Deposito AS Depsósito,
+	a.is_enabled AS Habilitado,
+	a.Estado as Estado FROM Auto a 
+	INNER JOIN Modelo_Auto ma ON a.Id_Modelo=ma.Id_Modelo
+	INNER JOIN Categoria c ON c.Id_Categoria=ma.Id_Categoria
+	WHERE a.Id_Auto NOT IN(SELECT id_auto FROM autos_ocupados);
+	DROP TEMPORARY TABLE autos_ocupados;
+END //
+
+SELECT * FROM Detalle_Renta;
+CALL sp_disponibilidad_auto('20190724', '20190726');
+SELECT @a;
+
+DROP procedure sp_disponibilidad_auto
 
