@@ -33,25 +33,13 @@ public class MainFrameControl {
     private AnchorPane anchorpane;
 
     private Main main;
-
-    public void setMain(Main main) {
-
-        this.main = main;
-
-    }
-
+    private String role;
 
     //Evento auxx para poder probar la ventana cliente
     @FXML
     void abrirCliente() throws Exception {
-
-      main.showClient();
+        main.showClient();
     }
-
-
-    private String role;
-
-    private Main main;
 
     public void setMain(Main main) {
         this.main = main;

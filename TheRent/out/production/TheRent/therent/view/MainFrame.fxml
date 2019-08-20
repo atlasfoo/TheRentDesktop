@@ -11,11 +11,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<<<<<<< HEAD
 <AnchorPane fx:id="anchorpane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="therent.view.MainFrameControl">
-=======
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="therent.view.MainFrameControl">
->>>>>>> 4994f698089764de9e273b4a7755335dfa02c633
    <children>
       <GridPane hgap="20.0" layoutX="200.0" layoutY="148.0" vgap="20.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0">
         <columnConstraints>
