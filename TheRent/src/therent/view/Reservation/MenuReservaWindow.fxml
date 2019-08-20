@@ -20,10 +20,8 @@
                             <content>
                                 <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="5.0">
                            <children>
-                              <Label text="Agregar la Renta" />
+                              <Label text="Agregar la Reserva" />
                               <JFXButton fx:id="boton_agregar_reserva" buttonType="RAISED" mnemonicParsing="false" onAction="#openReservaScene1" onMouseEntered="#btnAgregarOnMouseEntered" onMouseExited="#btnAgregarOnMouseExited" prefHeight="140.0" prefWidth="160.0" ripplerFill="#221fe7" text="Button" />
-                              <Label text="Agregar el Auto para la Reserva" />
-                              <JFXButton fx:id="boton_visu_auto_disponible" buttonType="RAISED" mnemonicParsing="false" onAction="#openReservaScene2" onMouseEntered="#btnSearchOnMouseEntered" onMouseExited="#btnSearchOnMouseExited" prefHeight="140.0" prefWidth="160.0" ripplerFill="#221fe7" text="Button" />
                               <Label text="Visualizar las Reservas" />
                               <JFXButton fx:id="boton_visualizar_reserva" buttonType="RAISED" mnemonicParsing="false" onAction="#openReservaScene3" onMouseEntered="#btnvisualOnMouseEntered" onMouseExited="#btnvisualOnMouseExited" prefHeight="140.0" prefWidth="160.0" ripplerFill="#481fff" text="Button" />
                               <Label text="SALIR" />

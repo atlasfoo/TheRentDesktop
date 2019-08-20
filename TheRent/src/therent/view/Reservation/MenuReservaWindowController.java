@@ -26,9 +26,6 @@ public class MenuReservaWindowController implements Initializable {
     private JFXButton boton_agregar_reserva;
 
     @FXML
-    private JFXButton boton_visu_auto_disponible;
-
-    @FXML
     private JFXButton boton_visualizar_reserva;
 
     @FXML
@@ -71,21 +68,6 @@ public class MenuReservaWindowController implements Initializable {
         }
     }
 
-    @FXML
-    private void openReservaScene2(ActionEvent actionEvent) {
-        try {
-            FXMLLoader loader = new FXMLLoader();
-            Node child = loader.load(getClass().getResource("../Reservation/RentSearchWindow.fxml").openStream());
-            borderPaneContainer.getChildren().clear();
-            borderPaneContainer.setCenter(child);
-            Label lblTitle = new Label("busqueda de autos disponibles");
-            lblTitle.setFont(new Font(24));
-            hboxPnLabel.getChildren().clear();
-            hboxPnLabel.getChildren().add(lblTitle);
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-    }
 
     @FXML
     private void openReservaScene3(ActionEvent actionEvent) {
@@ -119,17 +101,6 @@ public class MenuReservaWindowController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         //boton_agregar_reserva.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("empleados.png"))));
 
-    }
-
-    @FXML
-    private void btnSearchOnMouseExited(MouseEvent mouseEvent) {
-
-        boton_visu_auto_disponible.setStyle("-fx-background-color:transparent;");
-    }
-
-    @FXML
-    private void btnSearchOnMouseEntered(MouseEvent mouseEvent) {
-        boton_visu_auto_disponible.setStyle("-fx-background-color:#dae7f3;");
     }
 
     @FXML

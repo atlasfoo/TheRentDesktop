@@ -17,6 +17,7 @@ import therent.model.RentaModel;
 import therent.model.TablaVistaC;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.ResourceBundle;
 
@@ -38,10 +39,10 @@ public class IncomeVisualizationWindowController implements Initializable {
     private TableColumn<DetalleRentaModel,String> column_modelo;
 
     @FXML
-    private TableColumn<DetalleRentaModel,String> column_fecha_entrega;
+    private TableColumn<DetalleRentaModel, String> column_fecha_entrega;
 
     @FXML
-    private TableColumn<DetalleRentaModel,String> column_fecha_recibo;
+    private TableColumn<DetalleRentaModel, String> column_fecha_recibo;
 
     @FXML
     private TableColumn<DetalleRentaModel,String> column_costo;
@@ -55,7 +56,7 @@ public class IncomeVisualizationWindowController implements Initializable {
             column_id_detalle_renta.setCellValueFactory(new PropertyValueFactory<DetalleRentaModel, String>("Id_detalle_renta"));
             column_marca.setCellValueFactory(new PropertyValueFactory<DetalleRentaModel, String>("marca"));
             column_modelo.setCellValueFactory(new PropertyValueFactory<DetalleRentaModel, String>("modelo"));
-            column_fecha_entrega.setCellValueFactory(new PropertyValueFactory<DetalleRentaModel, String>("Fecha_Entrega"));
+            column_fecha_entrega.setCellValueFactory(new PropertyValueFactory<DetalleRentaModel,String>("Fecha_Entrega"));
             column_fecha_recibo.setCellValueFactory(new PropertyValueFactory<DetalleRentaModel, String>("Fecha_Recibo"));
             column_costo.setCellValueFactory(new PropertyValueFactory<DetalleRentaModel, String>("costo"));
             tabla_reservas.setItems(CRentaDialog.MostrarReservas());

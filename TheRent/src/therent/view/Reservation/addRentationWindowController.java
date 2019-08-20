@@ -15,6 +15,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import therent.control.CRentaDialog;
+import therent.model.Auto;
 import therent.model.RentaModel;
 import therent.model.TablaVistaC;
 
@@ -32,16 +33,10 @@ public class addRentationWindowController implements Initializable {
     private JFXComboBox<String> fx_estado;
 
     @FXML
-    private JFXButton fx_btn_agregar_renta;
-
-    @FXML
     private Label msjText;
 
     @FXML
-    private JFXButton fx_button_modificar;
-
-    @FXML
-    private JFXButton fx_button_eliminar;
+    private JFXButton fx_btn_agregar_renta;
 
     @FXML
     private JFXTextField fx_id_cliente;
@@ -59,26 +54,79 @@ public class addRentationWindowController implements Initializable {
     private TableColumn<TablaVistaC,String> column_primer_apellido;
 
     @FXML
-    private TableView<RentaModel> tabla_renta;
+    private JFXDatePicker fx_fecha_entrega;
 
     @FXML
-    private TableColumn<RentaModel,String> column_primer_nombre2;
+    private JFXDatePicker fx_fecha_recibo;
 
     @FXML
-    private TableColumn<RentaModel,String> column_segundo_nombre;
+    private JFXButton fx_button_search;
 
     @FXML
-    private TableColumn<RentaModel,String> column_primer_apellido2;
+    private JFXTextField fx_costo_renta;
 
     @FXML
-    private TableColumn<RentaModel,String> column_segundo_apellido;
+    private JFXTextField fx_auto;
 
     @FXML
-    private TableColumn<RentaModel,Date> column_fecha;
+    private JFXButton fx_button_save;
 
     @FXML
-    private TableColumn<RentaModel,String> column_estado;
+    private Label mensaje;
 
+    @FXML
+    private JFXTextField fx_id_auto;
+
+    @FXML
+    private TableView<Auto> tabla_auto;
+
+    @FXML
+    private TableColumn<Auto, String> column_id_auto;
+
+    @FXML
+    private TableColumn<Auto, String> column_marca;
+
+    @FXML
+    private TableColumn<Auto, String> column_modelo;
+
+    @FXML
+    private TableColumn<Auto, String> column_color;
+
+    @FXML
+    private TableColumn<Auto, String> column_año;
+
+    @FXML
+    private TableColumn<Auto, String> column_transmision;
+
+    @FXML
+    private TableColumn<Auto, String> column_carroceria;
+
+    @FXML
+    private TableColumn<Auto, String> column_combustible;
+
+    @FXML
+    private TableColumn<Auto, String> column_placa;
+
+    @FXML
+    private TableColumn<Auto, String> column_vin;
+
+    @FXML
+    private TableColumn<Auto, String> column_chasis;
+
+    @FXML
+    private TableColumn<Auto, String> column_categoria;
+
+    @FXML
+    private TableColumn<Auto, String> column_precio;
+
+    @FXML
+    private TableColumn<Auto, String> column_deposito;
+
+    @FXML
+    private TableColumn<Auto, String> column_habilitado;
+
+    @FXML
+    private TableColumn<Auto, String> column_estado;
 
     @FXML
     private void SaveNewReserva(ActionEvent actionEvent){
@@ -95,46 +143,78 @@ public class addRentationWindowController implements Initializable {
         //GestionEvento();
     }
 
-    public void MostrandoDatosRenta()
-    {
+    public void MostrandoDatosAuto(){
+        //columnas
         try {
-            column_primer_nombre2.setCellValueFactory(new PropertyValueFactory<RentaModel, String>("Primer_Nombre"));
-            column_segundo_nombre.setCellValueFactory(new PropertyValueFactory<RentaModel, String>("Segundo_Nombre"));
-            column_primer_apellido2.setCellValueFactory(new PropertyValueFactory<RentaModel, String>("Primer_Apellido"));
-            column_segundo_apellido.setCellValueFactory(new PropertyValueFactory<RentaModel, String>("Segundo_Apellido"));
-            column_fecha.setCellValueFactory(new PropertyValueFactory<RentaModel, Date>("fecha"));
-            column_estado.setCellValueFactory(new PropertyValueFactory<RentaModel, String>("estado"));
-            tabla_renta.setItems(CRentaDialog.MostrarRenta());
-        }catch (Exception E){
-            msgerr(E.getMessage());
-        }//columnas
+            column_id_auto.setCellValueFactory(new PropertyValueFactory<Auto, String>("IdAuto"));
+            column_marca.setCellValueFactory(new PropertyValueFactory<Auto, String>("marca"));
+            column_modelo.setCellValueFactory(new PropertyValueFactory<Auto, String>("modelo"));
+            column_color.setCellValueFactory(new PropertyValueFactory<Auto, String>("color"));
+            column_año.setCellValueFactory(new PropertyValueFactory<Auto, String>("Anho"));
+            column_transmision.setCellValueFactory(new PropertyValueFactory<Auto, String>("Transmision"));
+            column_carroceria.setCellValueFactory(new PropertyValueFactory<Auto, String>("carrocerria"));
+            column_combustible.setCellValueFactory(new PropertyValueFactory<Auto, String>("combustible"));
+            column_placa.setCellValueFactory(new PropertyValueFactory<Auto, String>("placa"));
+            column_vin.setCellValueFactory(new PropertyValueFactory<Auto, String>("VIN"));
+            column_chasis.setCellValueFactory(new PropertyValueFactory<Auto, String>("chasis"));
+            column_categoria.setCellValueFactory(new PropertyValueFactory<Auto, String>("categoria"));
+            column_precio.setCellValueFactory(new PropertyValueFactory<Auto, String>("precio"));
+            column_deposito.setCellValueFactory(new PropertyValueFactory<Auto, String>("deposito"));
+            column_habilitado.setCellValueFactory(new PropertyValueFactory<Auto, String>("estado"));
+            column_estado.setCellValueFactory(new PropertyValueFactory<Auto, String>("isenabled"));
+            tabla_auto.setItems(CRentaDialog.MostrarDispAuto());
+        }catch(Exception e){
+            msgerr(e.getMessage());
+        }
         //Cuando se da click mostrar los registros en sus respectivos campos
         //GestionEvento();
     }
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        ObservableList<String> lis = FXCollections.observableArrayList();
-        lis.add("RESERVADO"); //Revisar el getValue
-        lis.add("CANCELADO");
-        lis.add("PAGADO");
-        fx_estado.setItems(lis);
-       MostrandoDatosCliente();
-       MostrandoDatosRenta();
-       GestionEvento();
-       GestionEvento2();
-       fx_id_cliente.setVisible(false);
-       fx_nombre_cliente.setEditable(false);
+    @FXML
+    private void ButtonSearchCar(ActionEvent actionEvent)
+    {
+        try{
+            column_id_auto.setCellValueFactory(new PropertyValueFactory<Auto, String>("IdAuto"));
+            column_marca.setCellValueFactory(new PropertyValueFactory<Auto, String>("marca"));
+            column_modelo.setCellValueFactory(new PropertyValueFactory<Auto, String>("modelo"));
+            column_color.setCellValueFactory(new PropertyValueFactory<Auto, String>("color"));
+            column_año.setCellValueFactory(new PropertyValueFactory<Auto, String>("Anho"));
+            column_transmision.setCellValueFactory(new PropertyValueFactory<Auto, String>("Transmision"));
+            column_carroceria.setCellValueFactory(new PropertyValueFactory<Auto, String>("carrocerria"));
+            column_combustible.setCellValueFactory(new PropertyValueFactory<Auto, String>("combustible"));
+            column_placa.setCellValueFactory(new PropertyValueFactory<Auto, String>("placa"));
+            column_vin.setCellValueFactory(new PropertyValueFactory<Auto, String>("VIN"));
+            column_chasis.setCellValueFactory(new PropertyValueFactory<Auto, String>("chasis"));
+            column_categoria.setCellValueFactory(new PropertyValueFactory<Auto, String>("categoria"));
+            column_precio.setCellValueFactory(new PropertyValueFactory<Auto, String>("precio"));
+            column_deposito.setCellValueFactory(new PropertyValueFactory<Auto, String>("deposito"));
+            column_habilitado.setCellValueFactory(new PropertyValueFactory<Auto, String>("estado"));
+            column_estado.setCellValueFactory(new PropertyValueFactory<Auto, String>("isenabled"));
+            tabla_auto.setItems(CRentaDialog.BuscarDatoAuto(fx_fecha_entrega.getValue(),fx_fecha_recibo.getValue()));
+            msjText("LA RESERVA SE BUSCO CORRECTAMENTE");
+
+        }catch (Exception E){
+            msgerr(E.getMessage());
+        }
 
     }
 
-    //Evento para mandar mensajes
-    public void msgerr(String msg){
-        Alert al=new Alert(Alert.AlertType.ERROR);
-        al.setTitle("TheRent Link System");
-        al.setHeaderText("ERROR");
-        al.setContentText(msg);
-        al.showAndWait();
+    @FXML
+    private void Button_addDetalleRenta(ActionEvent actionEvent)
+    {
+        try{
+            CRentaDialog.addDetalleRenta(
+                    Integer.parseInt(fx_id_auto.getText()),
+                    fx_fecha_entrega.getValue(),
+                    fx_fecha_recibo.getValue(),
+                    Double.parseDouble(fx_costo_renta.getText())
+
+            );
+            msjText("LA RESERVA SE AGREGO CORRECTAMENTE");
+            Bloqueobotones(true,"AGREGAR");
+        }catch (Exception E){
+            msgerr(E.getMessage());
+        }
     }
 
     public void GestionEvento()
@@ -151,14 +231,14 @@ public class addRentationWindowController implements Initializable {
 
     public void GestionEvento2()
     {
-        /*tabla_renta.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<TablaVistaA>() {
+        tabla_auto.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Auto>() {
             @Override
-            public void changed(ObservableValue<? extends TablaVistaA> observable, TablaVistaA oldValue, TablaVistaA newValue){
-                //fx_id_auto.setText(newValue.getIDAuto());
+            public void changed(ObservableValue<? extends Auto> observable, Auto oldValue, Auto newValue){
                 fx_auto.setText(newValue.getMarca() + " " + newValue.getModelo());
-                fx_id_auto.setText(String.valueOf(newValue.getId_Auto()));
+                fx_id_auto.setText(String.valueOf(newValue.getIDAuto()));
+                fx_costo_renta.setText(String.valueOf(Float.valueOf(newValue.getPrecio())));
             }
-        });*/
+        });
     }
 
     @FXML
@@ -167,7 +247,6 @@ public class addRentationWindowController implements Initializable {
             CRentaDialog.addRenta(Integer.parseInt(fx_id_cliente.getText()),fx_estado.getValue());
             msjText("Renta Agregado Correctamente.");
             LimpiarCampos();
-            MostrandoDatosRenta();
             Bloqueobotones(true, "AGREGAR");
         }catch (Exception E){msgerr(E.getMessage());}
 
@@ -192,7 +271,7 @@ public class addRentationWindowController implements Initializable {
     //metodo para bloquear los campos de texto de acorde al boton seleccionado
     private void Bloqueobotones(boolean b, String m)
     {
-        if(m.equals("AGREGAR")) {
+        /*if(m.equals("AGREGAR")) {
             fx_id_cliente.setDisable(false);
             fx_nombre_cliente.setDisable(false);
             fx_estado.setDisable(false);
@@ -203,7 +282,35 @@ public class addRentationWindowController implements Initializable {
             fx_nombre_cliente.setDisable(b);
             fx_estado.setDisable(b);
 
-        }
+        }*/
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        ObservableList<String> lis = FXCollections.observableArrayList();
+        lis.add("RESERVADO"); //Revisar el getValue
+        lis.add("CANCELADO");
+        lis.add("PAGADO");
+        fx_estado.setItems(lis);
+        MostrandoDatosCliente();
+        GestionEvento();
+        fx_id_cliente.setVisible(false);
+        fx_nombre_cliente.setEditable(false);
+        MostrandoDatosAuto();
+        GestionEvento2();
+        fx_id_auto.setVisible(false);
+        fx_auto.setEditable(false);
+        fx_costo_renta.setEditable(false);
+
+    }
+
+    //Evento para mandar mensajes
+    public void msgerr(String msg){
+        Alert al=new Alert(Alert.AlertType.ERROR);
+        al.setTitle("TheRent Link System");
+        al.setHeaderText("ERROR");
+        al.setContentText(msg);
+        al.showAndWait();
     }
 
     public void KeyTypedNombreCliente(KeyEvent keyEvent) {
