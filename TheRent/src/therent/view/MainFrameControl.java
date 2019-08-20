@@ -1,6 +1,8 @@
 package therent.view;
 
 import com.jfoenix.controls.JFXButton;
+import javafx.embed.swing.JFXPanel;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import therent.Main;
 import javafx.fxml.FXMLLoader;
@@ -55,6 +57,12 @@ public class MainFrameControl {
         this.main = main;
     }
 
+    //mostrar ventana principal para abrir reserva
+    @FXML
+    void JFXButttonReservation() {
+        main.ShowReservationFrame();
+    }
+
     public void setRole(String role) {
         this.role = role;
         //al modificar el rol
@@ -74,6 +82,7 @@ public class MainFrameControl {
         }
     }
 
+
     @FXML
     public void initialize(){
         //void
@@ -82,4 +91,6 @@ public class MainFrameControl {
     public void handleAdminAutoBtn(){
         main.showCar();
     }
+
+
 }

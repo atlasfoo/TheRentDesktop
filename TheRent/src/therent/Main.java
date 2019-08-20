@@ -3,7 +3,6 @@ package therent;
 import com.jfoenix.controls.JFXButton;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.layout.AnchorPane;
@@ -14,6 +13,7 @@ import therent.model.beans.Auto;
 import therent.view.LogWindowControl;
 import therent.view.MainFrameControl;
 import therent.view.car.*;
+import therent.view.Reservation.MenuReservaWindowController;
 
 import therent.view.Cliente.control_MenuCliente;
 import therent.view.LogWindowControl;
@@ -43,6 +43,11 @@ public class Main extends Application {
 
 
     // Mostrar ventana principal
+    // Redireccionar a Main teniendo la sesión abierta
+    public void redirectMain(){
+        showMainFrame(this.session_role);
+    }
+
     public void showMainFrame(String role){
         FXMLLoader loader=new FXMLLoader();
         loader.setLocation(Main.class.getResource("view/MainFrame.fxml"));
@@ -100,6 +105,13 @@ public class Main extends Application {
         try {
             AnchorPane root=loader.load();
             RootLayoutControl ctrl=loader.getController();
+    //mostrar ventana principal para abrir reserva
+    public void ShowReservationFrame(){
+        FXMLLoader loader=new FXMLLoader();
+        loader.setLocation(Main.class.getResource("view/Reservation/MenuReservaWindow.fxml"));
+        try {
+            AnchorPane root=loader.load();
+            MenuReservaWindowController ctrl=loader.getController();
             ctrl.setMain(this);
             primaryStage.setMaximized(false);
             primaryStage.setScene(new Scene(root));
@@ -272,6 +284,15 @@ public class Main extends Application {
 
     /*TODO:
        1: implementar el resto de laas funcionalidades, cada quien en su rama
+            primaryStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+/*TODO:
+       1: implementar el resto de las funcionalidades, cada quien en su rama
     *  issue 1: RESUELTO
     *  issue 2: investigar como crear una pantalla de carga, ya que el servidor bd
     *  remoto toma tiempo en responder*/

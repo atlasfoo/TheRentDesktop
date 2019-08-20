@@ -50,7 +50,7 @@
             </BorderPane>
             <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
                <bottom>
-                  <JFXButton fx:id="reservbtn" alignment="CENTER" buttonType="RAISED" style="-fx-background-color: #002f6c;" text="Reservaciones" textFill="WHITE" BorderPane.alignment="CENTER">
+                  <JFXButton fx:id="reservbtn" alignment="CENTER" buttonType="RAISED" onAction="#JFXButttonReservation" style="-fx-background-color: #002f6c;" text="Reservaciones" textFill="WHITE" BorderPane.alignment="CENTER">
                      <font>
                         <Font name="Segoe UI Italic" size="14.0" />
                      </font>
