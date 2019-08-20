@@ -1,5 +1,5 @@
 #TODO: procedimientos almacenados y funciones
-use bemorsa1qiar4u96lent;
+use bxhla1vg2uaypvnsiqyx;
 #nuevo empleado
 DELIMITER //
 Create PROCEDURE sp_new_empleado (in p_nom varchar(20), in s_nom varchar(20), in p_apll varchar(20), in s_apll varchar(20), in dir varchar(70), in ced varchar(16), in tel varchar(15), in correo varchar(50), out id_empl int)
@@ -39,8 +39,6 @@ CREATE PROCEDURE sp_new_sysuser (in id_empleado int, in usrname varchar(50), in 
 	END    
 //
 
-ALTER TABLE sysuser convert to character set utf8mb4
-drop procedure sp_login_sysuser;
 DELIMITER //
 CREATE PROCEDURE sp_login_sysuser(in usrname varchar(50), in ipswd varchar(100), out roln varchar(15))
 begin
@@ -50,6 +48,18 @@ begin
 	end if;
 end //
 
+CALL sp_categoria_all();
+
+#categoría
+DELIMITER //
+CREATE PROCEDURE sp_categoria_all()
+BEGIN	
+	SELECT Id_Categoria AS ID,
+	Nombre AS Categoría,
+	Descripcion AS Descripción,
+	Costo_dia AS Costo,
+	deposito AS Depósito FROM Categoria;
+END //
 #modelo de auto
 
 DELIMITER //
@@ -68,11 +78,20 @@ begin
     insert into Modelo_Auto(Marca, Modelo, Motorizacion, Combustible, Tipo_Carroceria, Id_Categoria) values(marca, modelo, mot, combs, tipo_carroceria, id_cat);
 end//
 
-alter table Auto
-add column No_Chasis varchar(30);
 
 DELIMITER //
-CREATE PROCEDURE sp_new_auto(in placa varchar(10), in no_c varchar(30), in vin varchar(30), in color varchar(30), in trans int, in id_mod int)
+CREATE PROCEDURE sp_model_all()
+BEGIN
+	SELECT ma.Id_Modelo AS ID,
+	ma.Marca AS Marca,
+	ma.Modelo AS Modelo,
+	c.Nombre AS Categoria,
+	c.Costo_dia AS Costo FROM Modelo_Auto ma 
+	INNER JOIN Categoria c ON ma.Id_Categoria=c.Id_Categoria;
+END	//
+
+DELIMITER //
+CREATE PROCEDURE sp_new_auto(in placa varchar(10), IN yr INT , in no_c varchar(30), in vin varchar(30), in color varchar(30), in trans int, in id_mod int)
 begin
 	declare transm varchar(20);
 	if trans=1 then
@@ -82,8 +101,69 @@ begin
 	else
 		set transm='MANUAL';
 	end if;
-    insert into Auto(Placa, Vin, Color, Transmisión, Id_Modelo, Estado, No_Chasis) values(placa, vin, color, transm, id_mod, 'DISPONIBLE', no_c);
+    insert into Auto(Placa, Vin, Color, Transmisión, Id_Modelo, Estado, No_Chasis, año, is_enabled) values(placa, vin, color, transm, id_mod, 'DISPONIBLE', no_c, yr, 'SI');
 end//
+
+
+DELIMITER //
+CREATE PROCEDURE sp_auto_all()
+begin
+	SELECT a.Id_Auto as IDAuto,
+	ma.Marca as Marca,
+	ma.Modelo as Modelo,
+   a.Color as Color,
+   a.año AS Año,
+	a.Transmisión as Transmisión,
+	ma.Tipo_Carroceria as Carrocería,
+	ma.Combustible as Combustible,
+	a.Placa as Placa,
+	a.Vin as VIN,
+	a.No_Chasis AS Chasis,
+	c.Descripcion as Categoría,
+	c.Costo_dia as Precio,
+	c.Deposito AS Depsósito,
+	a.is_enabled AS Habilitado,
+	a.Estado as Estado FROM Auto a 
+	INNER JOIN Modelo_Auto ma ON a.Id_Modelo=ma.Id_Modelo
+	INNER JOIN Categoria c ON c.Id_Categoria=ma.Id_Categoria;
+end //
+
+CALL sp_auto_all
+
+DELIMITER //
+CREATE PROCEDURE sp_enable_car(IN id_aut INT)
+BEGIN
+	IF(SELECT is_enabled FROM Auto WHERE Id_Auto=id_aut)='SI' THEN
+		UPDATE Auto SET is_enabled='NO' WHERE Id_Auto=id_aut;
+	ELSE 
+		UPDATE Auto SET is_enabled='SI' WHERE Id_Auto=id_aut;
+	END if;
+END //
+
+
+DELIMITER //
+
+CREATE PROCEDURE sp_edit_auto(IN id INT,IN plac VARCHAR(20), IN col VARCHAR(50))
+BEGIN	
+	UPDATE Auto SET Placa=plac, Color=col WHERE Id_Auto=id;
+END //
+
+
+#Mantenimiento
+
+DELIMITER //
+
+CREATE PROCEDURE sp_add_mantenimiento(IN f_in DATE, IN f_out DATE, descr VARCHAR(200), IN id_auto INT)
+BEGIN
+	INSERT INTO Mantenimiento(fecha_inicio, fecha_fin, descripcion, id_auto) VALUES(f_in, f_out, descr, id_auto);
+END	//
+
+CALL sp_auto_all();
+
+SELECT * FROM Mantenimiento
+
+CALL sp_add_mantenimiento('20190506', '20190511', 'Cambio de suspensión', 10);
+
 #Cliente
 
 CREATE DEFINER=`uuvywdmg2p2x5tad`@`%` PROCEDURE `sp_new_cliente`(  in primernombre varchar(20),
@@ -153,7 +233,7 @@ in fecha_2 date,
 in estado_2 varchar(20))
 begin
 	insert into Renta(Id_Cliente,Fecha,Estado) values(id_client,fecha_2,estado_2);
-end //
+end //;
 
 /*Popular tabla detalle renta*/
 delimiter //
@@ -168,60 +248,41 @@ in cost double
 begin
 	insert into Detalle_Renta(Id_Renta,Id_Auto,Id_Empleado,Fecha_Entrega,Fecha_Recibo,Costo) 
 					   values(id_rent,id_car,id_employees,date_of_delivery,date_of_receipt,cost);
-end //
+end //;
 
-#procedimiento de visualizacion de reservas
-delimiter //
-create procedure sp_visualizacion_reservas()
-begin
-select 
-concat(c.Primer_Nombre , ' ' , c.Segundo_Nombre)  as 'Nombres',
-concat(c.Primer_Apellido , ' ' , c.Segundo_Apellido) as 'Apellidos',
-dr.Fecha_Entrega as 'Fecha de Entrega', 
-dr.Fecha_Recibo as 'Fecha de Recibido',
-MA.Marca as 'Marca del Auto',
-MA.Modelo as 'Modelo del Auto',
-dr.Costo as 'Costo de la Renta'
-from Renta r
-inner join Detalle_Renta dr
-on dr.Id_Renta = r.Id_Renta
-inner join Auto a
-on a.Id_Auto = dr.Id_Auto
-inner join Modelo_Auto MA
-on MA.Id_Modelo = a.Id_Modelo
-inner join Cliente c
-on c.Id_Cliente = r.Id_Cliente
-group by r.Id_Renta;
-end //
+SET global log_bin_trust_function_creators=1
 
-#procedimiento de busqueda de reservas
+#autos reservados en fecha
+DELIMITER //
+CREATE PROCEDURE sp_disponibilidad_auto(IN f_in DATE,IN f_out DATE)
+BEGIN
+	CREATE TEMPORARY TABLE autos_ocupados
+		SELECT dr.Id_Auto AS id_auto FROM Detalle_Renta dr WHERE (dr.Fecha_Recibo>=f_in AND dr.Fecha_Entrega<f_out);
+	SELECT a.Id_Auto as IDAuto,
+	ma.Marca as Marca,
+	ma.Modelo as Modelo,
+   a.Color as Color,
+   a.año AS Año,
+	a.Transmisión as Transmisión,
+	ma.Tipo_Carroceria as Carrocería,
+	ma.Combustible as Combustible,
+	a.Placa as Placa,
+	a.Vin as VIN,
+	a.No_Chasis AS Chasis,
+	c.Descripcion as Categoría,
+	c.Costo_dia as Precio,
+	c.Deposito AS Depsósito,
+	a.is_enabled AS Habilitado,
+	a.Estado as Estado FROM Auto a 
+	INNER JOIN Modelo_Auto ma ON a.Id_Modelo=ma.Id_Modelo
+	INNER JOIN Categoria c ON c.Id_Categoria=ma.Id_Categoria
+	WHERE a.Id_Auto NOT IN(SELECT id_auto FROM autos_ocupados);
+	DROP TEMPORARY TABLE autos_ocupados;
+END //
 
-/*busqueda de las reservas disponibles*/
-delimiter //
-create procedure sp_buscar_reservas(in dato_cliente Varchar(50))
-begin
- select 
-concat(c.Primer_Nombre , ' ' , c.Segundo_Nombre)  as 'Nombres',
-concat(c.Primer_Apellido , ' ' , c.Segundo_Apellido) as 'Apellidos',
-dr.Fecha_Entrega as 'Fecha de Entrega', 
-dr.Fecha_Recibo as 'Fecha de Recibido',
-MA.Marca as 'Marca del Auto',
-MA.Modelo as 'Modelo del Auto',
-dr.Costo as 'Costo de la Renta'
-from Renta r
-inner join Detalle_Renta dr
-on dr.Id_Renta = r.Id_Renta
-inner join Auto a
-on a.Id_Auto = dr.Id_Auto
-inner join Modelo_Auto MA
-on MA.Id_Modelo = a.Id_Modelo
-inner join Cliente c
-on c.Id_Cliente = r.Id_Cliente
-where c.Primer_Nombre like CONCAT(Dato_cliente,'%')
-or  c.Segundo_Nombre like CONCAT(Dato_cliente,'%') 
-or  c.Primer_Apellido like CONCAT(Dato_cliente,'%') 
-or  c.Segundo_Apellido like CONCAT(Dato_cliente,'%');
-end //
+SELECT * FROM Detalle_Renta;
+CALL sp_disponibilidad_auto('20190724', '20190726');
+SELECT @a;
 
-
+DROP procedure sp_disponibilidad_auto
 

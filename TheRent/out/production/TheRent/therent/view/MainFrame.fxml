@@ -28,7 +28,7 @@
          <children>
             <BorderPane prefHeight="200.0" prefWidth="200.0">
                <bottom>
-                  <JFXButton fx:id="adminautobtn" alignment="CENTER" buttonType="RAISED" style="-fx-background-color: #002f6c;" text="Administración de Autos" textFill="WHITE" BorderPane.alignment="CENTER">
+                  <JFXButton fx:id="adminautobtn" alignment="CENTER" buttonType="RAISED" onAction="#handleAdminAutoBtn" style="-fx-background-color: #002f6c;" text="Administración de Autos" textFill="WHITE" BorderPane.alignment="CENTER">
                      <font>
                         <Font name="Segoe UI Italic" size="14.0" />
                      </font>

@@ -21,6 +21,7 @@ public class LoginModel {
         cs.registerOutParameter(3, Types.VARCHAR);
         cs.execute();
         String role=cs.getString(3);
+        conn.close();
         return role;
     }
 }
