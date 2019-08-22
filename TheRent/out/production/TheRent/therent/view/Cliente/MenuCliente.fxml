@@ -20,9 +20,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="816.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="therent.view.Cliente.control_MenuCliente">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="790.0" prefWidth="1484.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="therent.view.Cliente.control_MenuCliente">
    <children>
-      <BorderPane fx:id="borderPaneContainer" layoutX="14.0" layoutY="14.0" prefHeight="687.0" prefWidth="1095.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <BorderPane fx:id="borderPaneContainer" layoutX="14.0" layoutY="14.0" prefHeight="816.0" prefWidth="1328.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
             <HBox prefHeight="53.0" prefWidth="1095.0" spacing="100.0">
                <children>
@@ -33,7 +33,7 @@
                   </JFXHamburger>
                   <JFXDrawer fx:id="plegable" direction="TOP" prefHeight="53.0" prefWidth="464.0">
                      <HBox.margin>
-                        <Insets left="120.0" />
+                        <Insets left="50.0" />
                      </HBox.margin></JFXDrawer>
                   <JFXDrawer fx:id="plegable1" direction="TOP" prefHeight="53.0" prefWidth="500.0">
                      <HBox.margin>
@@ -43,7 +43,7 @@
             </HBox>
          </top>
          <left>
-            <Pane prefHeight="763.0" prefWidth="573.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
+            <Pane prefHeight="757.0" prefWidth="525.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
                <effect>
                   <DropShadow />
                </effect>
@@ -128,7 +128,7 @@
             </Pane>
          </left>
          <center>
-            <TableView fx:id="TablaDatos" onMouseClicked="#eventoClick" prefHeight="480.0" prefWidth="662.0" BorderPane.alignment="CENTER">
+            <TableView fx:id="TablaDatos" onMouseClicked="#eventoClick" prefHeight="763.0" prefWidth="811.0" BorderPane.alignment="CENTER">
                <columns>
                   <TableColumn fx:id="cNombre" prefWidth="139.0" text="Nombre" />
                   <TableColumn fx:id="cApellido" prefWidth="130.0" text="Apellido" />
@@ -137,6 +137,12 @@
                   <TableColumn fx:id="cEstado" prefWidth="181.0" text="Estado" />
                   <TableColumn fx:id="cTipoCliente" prefWidth="181.0" text="Tipo de Cliente" />
                </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+               <effect>
+                  <Blend />
+               </effect>
             </TableView>
          </center>
       </BorderPane>

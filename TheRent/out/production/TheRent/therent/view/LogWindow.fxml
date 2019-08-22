@@ -49,7 +49,7 @@
                <children>
                   <ImageView fitHeight="380.0" fitWidth="200.0" layoutY="106.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="-2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="0.0">
                      <image>
-                        <Image url="file:media/img/gt-img.jpg" />
+                        <Image url="file:media/img/gt-img.jpg"  />
                      </image>
                   </ImageView>
                </children>

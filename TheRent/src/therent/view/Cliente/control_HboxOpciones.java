@@ -1,8 +1,16 @@
 package therent.view.Cliente;
 import com.jfoenix.controls.JFXButton;
 import javafx.fxml.FXML;
+import therent.Main;
 
 public class control_HboxOpciones {
+
+
+    private Main main;
+
+    public void setMain(Main main) {
+        this.main = main;
+    }
 
     @FXML
     private JFXButton id_Agregar;
@@ -15,6 +23,7 @@ public class control_HboxOpciones {
 
     @FXML
     private JFXButton id_Deshabilitar;
+
 
 
 }

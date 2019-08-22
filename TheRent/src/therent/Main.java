@@ -51,8 +51,6 @@ public class Main extends Application {
         }
     }
 
-
-
     public void showLogin(){
         FXMLLoader loader=new FXMLLoader();
         loader.setLocation(Main.class.getResource("view/LogWindow.fxml"));
@@ -168,6 +166,8 @@ public class Main extends Application {
             ex.printStackTrace();
         }
     }
+
+
     public void showClient() {
 
         FXMLLoader loader = new FXMLLoader();

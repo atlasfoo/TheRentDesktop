@@ -3,22 +3,26 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXListView?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="337.0" prefWidth="539.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="therent.view.Cliente.control_viewCorreo">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="337.0" prefWidth="505.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="therent.view.Cliente.control_viewCorreo">
    <children>
-      <JFXListView fx:id="idLIst" layoutX="330.0" layoutY="75.0" prefHeight="192.0" prefWidth="200.0" />
-      <JFXButton fx:id="idAdd" layoutX="267.0" layoutY="146.0" onMouseClicked="#Agregar" text="&gt;&gt;" />
-      <JFXTextField fx:id="idCorr" layoutX="42.0" layoutY="171.0" prefHeight="25.0" prefWidth="143.0" promptText="Correo Electronico " />
-      <JFXButton fx:id="idDell" layoutX="267.0" layoutY="189.0" text="&lt;&lt;" onAction="#borrar"/>
-      <JFXButton fx:id="btnCancelar" layoutX="479.0" layoutY="314.0" onAction="#Cancelar" text="Cancelar" />
-      <JFXButton fx:id="btnAceptar" layoutX="14.0" layoutY="314.0" onAction="#Aceptar" text="Aceptar" />
-      <Text layoutX="191.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Correo Electronico" wrappingWidth="218.13671875">
+      <JFXListView fx:id="idLIst" layoutX="297.0" layoutY="87.0" prefHeight="192.0" prefWidth="200.0" showTooltip="true" />
+      <JFXButton fx:id="idAdd" layoutX="227.0" layoutY="146.0" onMouseClicked="#Agregar" text="&gt;&gt;" />
+      <JFXTextField fx:id="idCorr" layoutX="14.0" layoutY="177.0" prefHeight="25.0" prefWidth="143.0" promptText="Correo Electronico " />
+      <JFXButton fx:id="idDell" layoutX="227.0" layoutY="190.0" onAction="#borrar" text="&lt;&lt;" />
+      <JFXButton fx:id="btnCancelar" layoutX="443.0" layoutY="311.0" onAction="#Cancelar" ripplerFill="WHITE" style="-fx-background-color: #2196F3;" text="Cancelar" textFill="WHITE" />
+      <JFXButton fx:id="btnAceptar" layoutY="311.0" onAction="#Aceptar" ripplerFill="WHITE" style="-fx-background-color: #2196F3;" text="Aceptar" textFill="WHITE" />
+      <Text layoutX="151.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Correo Electronico" wrappingWidth="218.13671875">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Text>
    </children>
+   <effect>
+      <DropShadow />
+   </effect>
 </AnchorPane>

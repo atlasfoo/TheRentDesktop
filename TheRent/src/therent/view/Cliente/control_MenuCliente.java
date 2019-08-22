@@ -184,7 +184,9 @@ public class control_MenuCliente implements Initializable {
                                 Bloqueobotones(true, "deshabilitar");
                                 idGuardar.setText("Deshabilitar");
                                 idGuardar.setDisable(false);
-
+                                break;
+                            case "Salir":
+                                 Salir();
                                 break;
                         }
                     });
@@ -192,6 +194,12 @@ public class control_MenuCliente implements Initializable {
             }
         }catch (Exception e){msgerr(e.getMessage());}
     }
+    //salir de la ventana hacia el menu
+    public void Salir()
+    {
+        main.redirectMain();
+    }
+
     //metodo para bloquear los campos de texto de acorde al boton seleccionado
     private void Bloqueobotones(boolean b, String m)
     {
@@ -411,13 +419,17 @@ public class control_MenuCliente implements Initializable {
             public void changed(ObservableValue<? extends Cliente> observable, Cliente oldValue, Cliente newValue) {
                 if(newValue != null) //Se crea la condicional para evitar errores cuando se deseleccione un registro de la tabla
                 {
-                idPNombre.setText(newValue.getNombre1());
-                idSNombre.setText(newValue.getNombre2());
-                idPApellido.setText(newValue.getApellido1());
-                idSApellido.setText(newValue.getApellido2() );
-                idCedula.setText(newValue.getCedula());
-                idDireccion.setText(newValue.getDireccion());
-                idTipoCliente.setValue(newValue.gettipocliente());
+                    //este if para validar de que solo cuando se guarden cambios o desabiliten
+                 if(idGuardar.getText().equals("Guardar Cambios") || idGuardar.getText().equals("Buscar") || idGuardar.getText().equals("Deshabilitar"))
+                 {
+                     idPNombre.setText(newValue.getNombre1());
+                     idSNombre.setText(newValue.getNombre2());
+                     idPApellido.setText(newValue.getApellido1());
+                     idSApellido.setText(newValue.getApellido2() );
+                     idCedula.setText(newValue.getCedula());
+                     idDireccion.setText(newValue.getDireccion());
+                     idTipoCliente.setValue(newValue.gettipocliente());
+                 }
                 }
             }
         });
@@ -461,14 +473,14 @@ public class control_MenuCliente implements Initializable {
     {
         main.showClienteCorreo();
     }
-    //evento nuevo a trabajar
+    //para cargar los cell y correos a la dialog al hacer doble click en un registro de la tabla
     @FXML
     void eventoClick(MouseEvent event) {
 
        if(event.getClickCount() == 2)
        {
            Cliente cliente = TablaDatos.getSelectionModel().getSelectedItem();
-         n = cliente.getNombre1() +""+cliente.getNombre2();
+         n = cliente.getNombre1() +" "+cliente.getNombre2();
          c = cliente.getCedula();
          d = cliente.getDireccion();
          tp = cliente.gettipocliente();
