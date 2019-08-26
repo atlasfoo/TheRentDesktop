@@ -1,4 +1,4 @@
-package therent.model;
+package therent.model.auto;
 
 import com.sun.org.apache.xpath.internal.operations.Mod;
 import therent.model.beans.Auto;

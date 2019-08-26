@@ -1,8 +1,13 @@
-package therent.control;
+package therent.control.reservation;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
-import therent.model.*;
+import therent.control.auto.CAuto;
+import therent.model.beans.Auto;
+import therent.model.reservation.DetalleRentaModel;
+import therent.model.reservation.RentaModel;
+import therent.model.reservation.TablaVistaC;
 
 import java.sql.Date;
 import java.time.LocalDate;
@@ -81,7 +86,7 @@ public class CRentaDialog
         Auto datos_Auto = new Auto();
         ObservableList<Auto> aut;
 
-        aut = datos_Auto.MostrarRegistrosAuto();
+        aut = FXCollections.observableArrayList(CAuto.getAutos());
 
         return aut;
     }

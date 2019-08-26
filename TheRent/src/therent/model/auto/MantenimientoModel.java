@@ -1,4 +1,4 @@
-package therent.model;
+package therent.model.auto;
 
 import javafx.util.StringConverter;
 import therent.util.JDBCUtil;

@@ -1,16 +1,15 @@
-package therent;
+package therent.model.auto;
 
-import therent.model.ModeloAutoModel;
 import therent.model.beans.Auto;
-import therent.model.beans.ModeloAuto;
 import therent.util.JDBCUtil;
 
 import java.sql.*;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Test {
+public class AutoModel {
+    public AutoModel(){}
+
     public List<Auto> getAllAutos() throws SQLException {
         // Crear conexión
         Connection conn= DriverManager.getConnection(JDBCUtil.getDatabaseUri());
@@ -44,34 +43,35 @@ public class Test {
         conn.close();
         return autos;
     }
-
-    private String is_disponible(int id_auto, LocalDate f_in, LocalDate f_out) throws SQLException {
-        Connection conn=DriverManager.getConnection(JDBCUtil.getDatabaseUri());
-        CallableStatement cs=conn.prepareCall("{call sp_disponibilidad_auto(?,?,?,?)}");
-        cs.setInt(1, id_auto);
-        cs.setDate(2,Date.valueOf(f_in));
-        cs.setDate(3, Date.valueOf(f_out));
-        cs.registerOutParameter(4, Types.VARCHAR);
-        cs.execute();
-        String s=cs.getString(4);
+    public boolean newAuto(String plac, int yr, String chasis, String vin, String color, int trans, int id_mod) throws SQLException {
+        Connection conn= DriverManager.getConnection(JDBCUtil.getDatabaseUri());
+        CallableStatement cs=conn.prepareCall("{CALL sp_new_auto(?,?,?,?,?,?,?)}");
+        cs.setString(1, plac);
+        cs.setInt(2, yr);
+        cs.setString(3, chasis);
+        cs.setString(4, vin);
+        cs.setString(5, color);
+        cs.setInt(6, trans);
+        cs.setInt(7, id_mod);
+        boolean r=cs.execute();
         conn.close();
-        return s;
+        return r;
+    }
+    public void editAuto(int id, String plac, String col) throws SQLException {
+        Connection conn= DriverManager.getConnection(JDBCUtil.getDatabaseUri());
+        CallableStatement cs=conn.prepareCall("{call sp_edit_auto(?,?,?)}");
+        cs.setInt(1, id);
+        cs.setString(2, plac);
+        cs.setString(3,col);
+        cs.execute();
+        conn.close();
+    }
+    public void enable_disable(int id) throws SQLException {
+        Connection conn= DriverManager.getConnection(JDBCUtil.getDatabaseUri());
+        CallableStatement cs=conn.prepareCall("{call sp_enable_car(?)}");
+        cs.setInt(1,id);
+        cs.execute();
+        conn.close();
     }
 
-    public static void main(String[] args) {
-        try {
-            List<Auto> autos= new Test().getAllAutos();
-            List<Auto> autos_disp=new ArrayList<>();
-            for(Auto a : autos){
-                if(new Test().is_disponible(a.getIDAuto(), LocalDate.of(2019,8,1), LocalDate.of(2019,8,10)).equals("DISPONIBLE")){
-                    autos_disp.add(a);
-                }
-            }
-            for (Auto a : autos_disp){
-                System.out.printf("%s | %s | %d\n", a.getMarca(), a.getModelo(), a.getAnho());
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
 }

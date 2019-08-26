@@ -1,4 +1,4 @@
-package therent.model;
+package therent.model.auto;
 
 import therent.model.beans.Categoria;
 import therent.util.JDBCUtil;

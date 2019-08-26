@@ -10,12 +10,10 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.layout.BorderPane;
 import therent.Main;
-import therent.control.CCategoria;
-import therent.control.CModeloAuto;
+import therent.control.auto.CCategoria;
+import therent.control.auto.CModeloAuto;
 import therent.model.beans.Categoria;
 import therent.util.converters.CategoriaConverter;
-
-import javax.swing.border.Border;
 
 public class ModelSceneControl {
     @FXML

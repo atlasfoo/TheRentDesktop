@@ -1,4 +1,4 @@
-package therent.model;
+package therent.model.reservation;
 
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;

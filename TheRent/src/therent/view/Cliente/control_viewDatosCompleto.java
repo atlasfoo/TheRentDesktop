@@ -1,8 +1,6 @@
 package therent.view.Cliente;
 
 import com.jfoenix.controls.JFXButton;
-import javafx.beans.property.Property;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -10,9 +8,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 import therent.Main;
-import therent.control.CCliente;
+import therent.control.client.CCliente;
 import javafx.scene.control.TableView;
-import therent.model.Cliente;
+import therent.model.client.Cliente;
 
 import java.net.URL;
 import java.util.ResourceBundle;

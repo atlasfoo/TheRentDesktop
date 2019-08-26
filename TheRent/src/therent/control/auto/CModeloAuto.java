@@ -1,6 +1,6 @@
-package therent.control;
+package therent.control.auto;
 
-import therent.model.ModeloAutoModel;
+import therent.model.auto.ModeloAutoModel;
 import therent.model.beans.ModeloAuto;
 
 import java.util.List;

@@ -33,7 +33,6 @@ public class MainFrameControl {
     private AnchorPane anchorpane;
 
     private Main main;
-    private String role;
 
     //Evento auxx para poder probar la ventana cliente
     @FXML
@@ -43,18 +42,7 @@ public class MainFrameControl {
 
     public void setMain(Main main) {
         this.main = main;
-    }
-
-    //mostrar ventana principal para abrir reserva
-    @FXML
-    void JFXButttonReservation() {
-        main.ShowReservationFrame();
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-        //al modificar el rol
-        switch (this.role){
+        switch (this.main.getActive_session().getUser_role()){
             //en caso de vendedor, se deshabilita la adm de autos
             case "VENDEDOR":{
                 adminautobtn.setDisable(true);
@@ -69,6 +57,13 @@ public class MainFrameControl {
             }
         }
     }
+
+    //mostrar ventana principal para abrir reserva
+    @FXML
+    void JFXButttonReservation() {
+        main.ShowReservationFrame();
+    }
+
 
 
     @FXML

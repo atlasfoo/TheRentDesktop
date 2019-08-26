@@ -1,6 +1,6 @@
-package therent.control;
+package therent.control.auto;
 
-import therent.model.CategoriaModel;
+import therent.model.auto.CategoriaModel;
 import therent.model.beans.Categoria;
 
 import java.util.List;

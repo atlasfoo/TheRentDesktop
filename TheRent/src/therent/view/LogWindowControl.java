@@ -8,6 +8,7 @@ import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 import therent.Main;
 import therent.control.CLogin;
+import therent.model.beans.Empleado;
 
 public class LogWindowControl {
 
@@ -45,7 +46,7 @@ public class LogWindowControl {
     @FXML
     public void handleLogin(){
         //rol de usuario
-        String role=null;
+        Empleado role=null;
         //el metodo de modelo retornará el rol
         try {
             role=CLogin.Login(usrtxt.getText(), pswdtxt.getText());

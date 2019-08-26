@@ -7,7 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import therent.Main;
-import therent.control.CAuto;
+import therent.control.auto.CAuto;
 import therent.model.beans.Auto;
 
 import java.util.List;

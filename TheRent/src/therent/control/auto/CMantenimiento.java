@@ -1,6 +1,6 @@
-package therent.control;
+package therent.control.auto;
 
-import therent.model.MantenimientoModel;
+import therent.model.auto.MantenimientoModel;
 
 import java.time.LocalDate;
 

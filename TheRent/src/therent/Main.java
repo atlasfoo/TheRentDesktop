@@ -3,37 +3,42 @@ package therent;
 import com.jfoenix.controls.JFXButton;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import therent.model.beans.Auto;
+import therent.model.beans.Empleado;
 import therent.view.Cliente.control_MenuCliente;
 import therent.view.LogWindowControl;
 import therent.view.MainFrameControl;
-import therent.view.Reservation.MenuReservaWindowController;
 import therent.view.car.*;
 
 import java.io.IOException;
 
 public class Main extends Application {
     Stage primaryStage;
-    String session_role;
+    Empleado active_session;
+
+    public Empleado getActive_session() {
+        return active_session;
+    }
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
-        this.primaryStage=primaryStage;
+    public void start(Stage primaryStage) throws Exception {
+        this.primaryStage = primaryStage;
         primaryStage.setTitle("TheRent Link System");
+        //Limpiar sesion
+        active_session=null;
         showLogin();
     }
     // Redireccionar a Main teniendo la sesión abierta
     public void redirectMain(){
-        showMainFrame(this.session_role);
+        showMainFrame(this.active_session);
     }
     // Mostrar ventana principal
-    public void showMainFrame(String role){
+    public void showMainFrame(Empleado role){
         FXMLLoader loader=new FXMLLoader();
         loader.setLocation(Main.class.getResource("view/MainFrame.fxml"));
         try {
@@ -42,8 +47,7 @@ public class Main extends Application {
             primaryStage.setScene(new Scene(root));
             primaryStage.setMaximized(true);
             MainFrameControl ctrl=loader.getController();
-            this.session_role=role;
-            ctrl.setRole(role);
+            this.active_session=role;
             ctrl.setMain(this);
             primaryStage.show();
         } catch (IOException e) {
@@ -254,23 +258,6 @@ public class Main extends Application {
         stage.close();
     }
 
-    //mostrar ventana principal para abrir reserva
-    public void ShowReservationFrame(){
-        FXMLLoader loader=new FXMLLoader();
-        loader.setLocation(Main.class.getResource("view/Reservation/MenuReservaWindow.fxml"));
-        try {
-            AnchorPane root=loader.load();
-            MenuReservaWindowController ctrl=loader.getController();
-            ctrl.setMain(this);
-            primaryStage.setMaximized(false);
-            primaryStage.setScene(new Scene(root));
-            primaryStage.setMaximized(true);
-            primaryStage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-    }
 
     /*TODO:
        * Saul: rediseño de interfaz detalle_renta
