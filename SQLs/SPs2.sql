@@ -48,4 +48,17 @@ BEGIN
 	INSERT INTO Renta(Id_Cliente, Fecha, Estado, id_empleado) VALUES(idcliente, fecha, 'RESERVADO', idemp);
 END //
 
+/*Detalle*/
+
+delimiter //
+CREATE PROCEDURE sp_renta_detail(IN id_renta INT)
+BEGIN
+	SELECT dr.Id_Detalle_Renta,
+	CONCAT(ma.Marca, ' ', ma.Modelo) AS auto,
+	a.año, a.Color, a.Placa, dr.Fecha_Entrega, dr.Fecha_Recibo FROM Detalle_Renta dr
+	INNER JOIN Auto a ON a.Id_Auto=dr.Id_Auto
+	INNER JOIN Modelo_Auto ma ON a.Id_Modelo=ma.Id_Modelo
+	WHERE Id_Renta=id_renta;
+END //
+
 #procedimientos de entrega
