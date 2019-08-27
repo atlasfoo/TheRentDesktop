@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXListView?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="331.0" prefWidth="507.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="therent.view.client.control_viewTel">
+   <children>
+      <JFXListView fx:id="idLIst" layoutX="299.0" layoutY="65.0" prefHeight="192.0" prefWidth="200.0" showTooltip="true">
+         <effect>
+            <Blend />
+         </effect></JFXListView>
+      <JFXButton fx:id="idAdd" layoutX="222.0" layoutY="136.0" onMouseClicked="#Agregar" text="&gt;&gt;">
+         <effect>
+            <Blend />
+         </effect></JFXButton>
+      <JFXTextField fx:id="idTel" layoutX="14.0" layoutY="167.0" prefHeight="25.0" prefWidth="143.0" promptText="Número">
+         <effect>
+            <Blend />
+         </effect></JFXTextField>
+      <JFXButton fx:id="idDell" layoutX="222.0" layoutY="180.0" onAction="#borrar" text="&lt;&lt;">
+         <effect>
+            <Blend />
+         </effect></JFXButton>
+      <JFXButton fx:id="btnCancelar" layoutX="445.0" layoutY="305.0" onAction="#Cancelar" ripplerFill="WHITE" style="-fx-background-color: #2196F3;" text="Cancelar" textFill="WHITE">
+         <effect>
+            <Blend />
+         </effect></JFXButton>
+      <JFXButton fx:id="btnAceptar" layoutY="305.0" onAction="#Aceptar" ripplerFill="WHITE" style="-fx-background-color: #2196F3;" text="Aceptar" textFill="WHITE">
+         <effect>
+            <Blend />
+         </effect></JFXButton>
+      <Text layoutX="222.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Teléfono " wrappingWidth="95.13671875">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+         <effect>
+            <Blend />
+         </effect>
+      </Text>
+   </children>
+   <effect>
+      <DropShadow />
+   </effect>
+</AnchorPane>
