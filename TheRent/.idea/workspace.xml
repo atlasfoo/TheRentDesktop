@@ -3,16 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TheRent/therent/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TheRent/therent/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TheRent/therent/model/beans/DetalleRenta.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TheRent/therent/model/beans/DetalleRenta.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TheRent/therent/model/reservation/DetalleRentaModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TheRent/therent/model/reservation/DetalleRentaModel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TheRent/therent/view/Reservation/RentOverview.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TheRent/therent/view/Reservation/RentOverview.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TheRent/therent/view/Reservation/RentOverviewControl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TheRent/therent/view/Reservation/RentOverviewControl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/therent/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/therent/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/therent/model/beans/DetalleRenta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/therent/model/beans/DetalleRenta.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/therent/model/reservation/DetalleRentaModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/therent/model/reservation/DetalleRentaModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/therent/view/reservation/RentOverview.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/therent/view/reservation/RentOverview.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/therent/view/reservation/RentOverviewControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/therent/view/reservation/RentOverviewControl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TheRent/therent/view/Reservation/RentDetailOV.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TheRent/therent/view/Reservation/RentDetailOV.fxml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -355,7 +346,8 @@
       <workItem from="1565358619813" duration="3872000" />
       <workItem from="1565554200514" duration="2777000" />
       <workItem from="1566321336290" duration="564000" />
-      <workItem from="1566859656271" duration="17224000" />
+      <workItem from="1566859656271" duration="17390000" />
+      <workItem from="1566917341480" duration="639000" />
     </task>
     <servers />
   </component>
