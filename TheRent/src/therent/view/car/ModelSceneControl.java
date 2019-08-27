@@ -10,8 +10,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.layout.BorderPane;
 import therent.Main;
-import therent.control.auto.CCategoria;
-import therent.control.auto.CModeloAuto;
+import therent.control.car.CCategoria;
+import therent.control.car.CModeloAuto;
 import therent.model.beans.Categoria;
 import therent.util.converters.CategoriaConverter;
 

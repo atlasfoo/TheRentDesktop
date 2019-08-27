@@ -11,8 +11,8 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.BorderPane;
-import therent.control.auto.CAuto;
-import therent.control.auto.CMantenimiento;
+import therent.control.car.CAuto;
+import therent.control.car.CMantenimiento;
 import therent.model.beans.Auto;
 import therent.Main;
 public class AddMantControl {

@@ -6,8 +6,13 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import jdk.nashorn.internal.codegen.CompilerConstants;
+import jdk.nashorn.internal.scripts.JD;
+import therent.model.beans.ClientBean;
 import therent.util.JDBCUtil;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Cliente {
 
@@ -417,5 +422,24 @@ public class Cliente {
         cs.setString(2,c);
         cs.execute();
         conn.close();
+    }
+
+    //Vista general de cliente para formulario de ingreso de renta
+    public List<ClientBean> clientOverview() throws SQLException {
+       Connection conn=DriverManager.getConnection(JDBCUtil.getDatabaseUri());
+       CallableStatement cs=conn.prepareCall("{call sp_cliente_ov()}");
+       ResultSet rs=cs.executeQuery();
+       List<ClientBean> cl=new ArrayList<>();
+       while (rs.next()){
+           cl.add(
+                   new ClientBean(
+                           rs.getInt("Id_Cliente"),
+                           rs.getString("nombre"),
+                           rs.getString("Cedula")
+                   )
+           );
+       }
+       conn.close();
+       return cl;
     }
 }

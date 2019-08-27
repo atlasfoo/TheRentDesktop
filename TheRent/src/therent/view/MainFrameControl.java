@@ -1,19 +1,9 @@
 package therent.view;
 
 import com.jfoenix.controls.JFXButton;
-import javafx.embed.swing.JFXPanel;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import therent.Main;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-import therent.Main;
-import therent.view.Cliente.control_MenuCliente;
-
-import java.io.IOException;
 
 public class MainFrameControl {
 
@@ -60,8 +50,8 @@ public class MainFrameControl {
 
     //mostrar ventana principal para abrir reserva
     @FXML
-    void JFXButttonReservation() {
-        main.ShowReservationFrame();
+    public void handleReservation(){
+        main.showReservationMain();
     }
 
 

@@ -11,8 +11,8 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.layout.BorderPane;
 
 import therent.Main;
-import therent.control.auto.CAuto;
-import therent.control.auto.CModeloAuto;
+import therent.control.car.CAuto;
+import therent.control.car.CModeloAuto;
 import therent.model.beans.Auto;
 import therent.model.beans.ModeloAuto;
 import therent.util.converters.ModeloAutoConverter;

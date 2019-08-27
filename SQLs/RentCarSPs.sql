@@ -39,16 +39,16 @@ CREATE PROCEDURE sp_new_sysuser (in id_empleado int, in usrname varchar(50), in 
 	END    
 //
 
+DROP PROCEDURE sp_login_sysuser
 DELIMITER //
 CREATE PROCEDURE sp_login_sysuser(in usrname varchar(50), in ipswd varchar(100))
 begin
 	SELECT e.Id_Empleado, e.Primer_Nombre, e.Segundo_Nombre, e.Primer_Apellido,
 	e.Segundo_Apellido, s.rol
-	from sysuser s where user_name=usrname and pswd=aes_encrypt(ipswd, ipswd)
-	INNER JOIN Empleado e ON e.Id_Empleado=s.Id_Empleado;
-    if roln is null then
-		set roln='DENEGADO';
-	end if;
+	from sysuser s 
+	INNER JOIN Empleado e ON e.Id_Empleado=s.Id_Empleado
+	where user_name=usrname and pswd=aes_encrypt(ipswd, ipswd);
+	
 end //
 
 SELECT * FROM Empleado

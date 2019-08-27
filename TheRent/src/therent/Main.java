@@ -10,10 +10,12 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import therent.model.beans.Auto;
 import therent.model.beans.Empleado;
-import therent.view.Cliente.control_MenuCliente;
+import therent.view.client.control_MenuCliente;
 import therent.view.LogWindowControl;
 import therent.view.MainFrameControl;
 import therent.view.car.*;
+import therent.view.reservation.MainRentControl;
+import therent.view.reservation.RentOverviewControl;
 
 import java.io.IOException;
 
@@ -176,7 +178,7 @@ public class Main extends Application {
 
         FXMLLoader loader = new FXMLLoader();
 
-        loader.setLocation(Main.class.getResource("view/Cliente/MenuCliente.fxml"));
+        loader.setLocation(Main.class.getResource("view/client/MenuCliente.fxml"));
 
         try {
 
@@ -205,7 +207,7 @@ public class Main extends Application {
     public void showClienteTel()
     {
         FXMLLoader loader=new FXMLLoader();
-        loader.setLocation(Main.class.getResource("view/Cliente/viewTelefono.fxml"));
+        loader.setLocation(Main.class.getResource("view/client/viewTelefono.fxml"));
         try {
             AnchorPane root=loader.load();
             Stage dlgStage=new Stage();
@@ -222,7 +224,7 @@ public class Main extends Application {
     {
 
         FXMLLoader loader=new FXMLLoader();
-        loader.setLocation(Main.class.getResource("view/Cliente/viewCorreo.fxml"));
+        loader.setLocation(Main.class.getResource("view/client/viewCorreo.fxml"));
         try {
             AnchorPane root=loader.load();
             Stage dlgStage=new Stage();
@@ -239,7 +241,7 @@ public class Main extends Application {
     public  void showDatosCompleto()
     {
         FXMLLoader loader=new FXMLLoader();
-        loader.setLocation(Main.class.getResource("view/Cliente/viewDatosCompleto.fxml"));
+        loader.setLocation(Main.class.getResource("view/client/viewDatosCompleto.fxml"));
         try {
             AnchorPane root=loader.load();
             Stage dlgStage=new Stage();
@@ -258,11 +260,42 @@ public class Main extends Application {
         stage.close();
     }
 
+    public void showReservationMain(){
+        FXMLLoader loader=new FXMLLoader();
+        loader.setLocation(Main.class.getResource("view/reservation/MainRentView.fxml"));
+        try {
+            AnchorPane pane=loader.load();
+            MainRentControl ctrl=loader.getController();
+            ctrl.setMain(this);
+            primaryStage.setMaximized(false);
+            primaryStage.setScene(new Scene(pane));
+            primaryStage.setMaximized(true);
+            showRentOverview(ctrl.getParentPane());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void showRentOverview(BorderPane parent){
+        FXMLLoader loader=new FXMLLoader();
+        loader.setLocation(Main.class.getResource("view/reservation/RentOverview.fxml"));
+        try {
+            AnchorPane pane=loader.load();
+            RentOverviewControl ctrl=loader.getController();
+            ctrl.setMain(this);
+            ctrl.setParentPane(parent);
+            parent.setCenter(pane);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     /*TODO:
-       * Saul: rediseño de interfaz detalle_renta
-       * Fran: acomodo de interfaces g
-       * Yo: Rediseño de ventana principal
+       * REFACTOR RESERVATION
+       * Add Entrega
+       * Reporting
+       * Optional: Session overview
+       * Optional: InputValidators
        */
 
     public static void main(String[] args) {
