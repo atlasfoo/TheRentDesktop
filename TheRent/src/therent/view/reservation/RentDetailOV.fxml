@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="therent.view.reservation.RentDetailControl">
+   <children>
+      <BorderPane layoutX="185.0" layoutY="40.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <center>
+            <TableView fx:id="detTab" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+              <columns>
+                <TableColumn fx:id="autoCol" prefWidth="75.0" text="Auto" />
+                <TableColumn fx:id="yrCol" prefWidth="75.0" text="Año" />
+                  <TableColumn fx:id="colorCol" prefWidth="75.0" text="Color" />
+                  <TableColumn fx:id="placCol" prefWidth="83.0" text="Placa" />
+                  <TableColumn fx:id="f_inCol" prefWidth="116.0" text="Fecha de entrega" />
+                  <TableColumn fx:id="f_outCol" prefWidth="75.0" text="Fecha de recepción" />
+              </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+            </TableView>
+         </center>
+         <bottom>
+            <HBox alignment="CENTER" prefHeight="55.0" prefWidth="600.0" spacing="20.0" BorderPane.alignment="CENTER">
+               <children>
+                  <JFXButton fx:id="addBtn" buttonType="RAISED" style="-fx-background-color: #002f6c;" text="Añadir" textFill="WHITE" />
+                  <JFXButton fx:id="editBtn" buttonType="RAISED" style="-fx-background-color: #002f6c;" text="Editar" textFill="WHITE" />
+                  <JFXButton fx:id="borrBtn" buttonType="RAISED" style="-fx-background-color: #002f6c;" text="Borrar" textFill="WHITE" />
+                  <JFXButton fx:id="backBtn" buttonType="RAISED" style="-fx-background-color: #002f6c;" text="Atrás" textFill="WHITE" />
+               </children>
+            </HBox>
+         </bottom>
+      </BorderPane>
+   </children>
+</AnchorPane>

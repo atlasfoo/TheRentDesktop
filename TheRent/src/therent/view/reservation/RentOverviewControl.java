@@ -71,6 +71,15 @@ public class RentOverviewControl {
     }
 
     @FXML
+    public void handleRentDetail(){
+        if(rentTable.getSelectionModel().getSelectedItem()==null){
+            msgerr("Por favor seleccione una renta a detallar");
+            return;
+        }
+        main.showRentDetail(this.parentPane, rentTable.getSelectionModel().getSelectedItem());
+    }
+
+    @FXML
     public void msgerr(String msg){
         Alert al=new Alert(Alert.AlertType.ERROR);
         al.setTitle("TheRent Link System");

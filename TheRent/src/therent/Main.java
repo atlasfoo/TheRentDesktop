@@ -10,12 +10,14 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import therent.model.beans.Auto;
 import therent.model.beans.Empleado;
+import therent.model.beans.Renta;
 import therent.view.client.control_MenuCliente;
 import therent.view.LogWindowControl;
 import therent.view.MainFrameControl;
 import therent.view.car.*;
 import therent.view.reservation.AddRentControl;
 import therent.view.reservation.MainRentControl;
+import therent.view.reservation.RentDetailControl;
 import therent.view.reservation.RentOverviewControl;
 
 import java.io.IOException;
@@ -309,6 +311,22 @@ public class Main extends Application {
             e.printStackTrace();
         }
     }
+
+    public void showRentDetail(BorderPane parent, Renta r){
+        FXMLLoader loader=new FXMLLoader();
+        loader.setLocation(Main.class.getResource("view/reservation/RentDetailOV.fxml"));
+        try {
+            AnchorPane pane=loader.load();
+            RentDetailControl ctrl=loader.getController();
+            ctrl.setMain(this);
+            ctrl.setParentPane(parent);
+            ctrl.setR(r);
+            parent.setCenter(pane);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     /*TODO:
        * REFACTOR RESERVATION

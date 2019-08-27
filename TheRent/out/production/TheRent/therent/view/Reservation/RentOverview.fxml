@@ -27,7 +27,7 @@
          <bottom>
             <HBox alignment="CENTER" prefHeight="42.0" prefWidth="600.0" spacing="15.0" BorderPane.alignment="CENTER">
                <children>
-                  <JFXButton fx:id="detalleBtn" buttonType="RAISED" style="-fx-background-color: #01579b;" text="Ver Detalle" textFill="WHITE" />
+                  <JFXButton fx:id="detalleBtn" buttonType="RAISED" onAction="#handleRentDetail" style="-fx-background-color: #01579b;" text="Ver Detalle" textFill="WHITE" />
                   <JFXButton fx:id="statchangeBtn" buttonType="RAISED" style="-fx-background-color: #01579b;" text="Cambiar Estado" textFill="WHITE" />
                </children>
             </HBox>

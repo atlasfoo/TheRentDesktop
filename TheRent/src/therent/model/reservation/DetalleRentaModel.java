@@ -5,159 +5,19 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 import therent.model.beans.Auto;
+import therent.model.beans.DetalleRenta;
 import therent.util.JDBCUtil;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DetalleRentaModel {
-    private IntegerProperty Id_detalle_renta;
-    private IntegerProperty Id_Auto;
-    private StringProperty marca;
-    private StringProperty modelo;
-    private IntegerProperty Id_Empleado;
-    private ObjectProperty<Date> Fecha_Entrega;
-    private ObjectProperty<Date> Fecha_Recibo;
-    private DoubleProperty costo;
-
-    public DetalleRentaModel() {
-
-    }
-
-    public DetalleRentaModel(int idauto, Date fecha_entrega, Date fecha_recibo, Double costo) {
-        this.Id_Auto = new SimpleIntegerProperty(idauto);
-        this.Fecha_Entrega = new SimpleObjectProperty<>(fecha_entrega);
-        this.Fecha_Recibo = new SimpleObjectProperty<>(fecha_recibo);
-        this.costo = new SimpleDoubleProperty(costo);
-    }
-
-    public DetalleRentaModel(int id_detalle_renta, String marca, String modelo, Date fecha_entrega, Date fecha_recibo, Double costo) {
-        this.Id_detalle_renta = new SimpleIntegerProperty(id_detalle_renta);
-        this.marca = new SimpleStringProperty(marca);
-        this.modelo = new SimpleStringProperty(modelo);
-        this.Fecha_Entrega = new SimpleObjectProperty<>(fecha_entrega);
-        this.Fecha_Recibo = new SimpleObjectProperty<>(fecha_recibo);
-        this.costo = new SimpleDoubleProperty(costo);
-    }
-
-    public DetalleRentaModel(int id_detalle_renta) {
-        this.Id_detalle_renta = new SimpleIntegerProperty(id_detalle_renta);
-
-    }
-
-    //get y set id_detalle_renta
-    public int getId_Detalle_Renta() {
-        return Id_detalle_renta.get();
-    }
-
-    public IntegerProperty Id_Detalle_Renta_Property() {
-        return Id_detalle_renta;
-    }
-
-    public void setId_detalle_renta(int id_detalle_renta) {
-        this.Id_detalle_renta.set(id_detalle_renta);
-    }
-
-
-    //get y set empleado
-    public int getId_Cliente() {
-        return Id_Empleado.get();
-    }
-
-    public IntegerProperty Id_Cliente_Property() {
-        return Id_Empleado;
-    }
-
-    public void setId_Cliente(int id_empleado) {
-        this.Id_Empleado.set(id_empleado);
-    }
-
-    //get y set auto
-    public int getId_Auto() {
-        return Id_Auto.get();
-    }
-
-    public IntegerProperty Id_detalle_renta(){
-        return Id_Auto;
-    }
-
-    public void setId_Auto(int id_Auto) {
-        this.Id_Auto.set(id_Auto);
-    }
-
-    //get y set de marca
-    public String getMarca() {
-        return marca.get();
-    }
-
-    public StringProperty marcaProperty() {
-        return marca;
-    }
-
-    public void setMarca(String marca) {
-        this.marca.set(marca);
-    }
-
-    //get y set de modelo
-    public String getModelo() {
-        return modelo.get();
-    }
-
-    public StringProperty modeloProperty() {
-        return modelo;
-    }
-
-    public void setModelo(String modelo) {
-        this.modelo.set(modelo);
-    }
-
-
-    //get y set fecha entrega
-
-    public Date getfecha_entrega(){
-        return Fecha_Entrega.getValue();
-    }
-
-    public ObjectProperty<Date> fecha_EntregaProperty() {
-        return Fecha_Entrega;
-    }
-
-    public void setfecha_entrega(Date fechaentrega){
-        this.Fecha_Entrega.setValue(fechaentrega);
-    }
-
-    //get y set fecha_recibo
-
-    public Date getfecha_recibo(){
-        return Fecha_Recibo.getValue();
-    }
-
-    public ObjectProperty<Date> fecha_ReciboProperty() {
-        return Fecha_Recibo;
-    }
-
-    public void setfecha_Recibo(Date fecharecibo){
-        this.Fecha_Recibo.setValue(fecharecibo);
-    }
-
-    //get y set costo
-
-
-    public double getCosto() {
-        return costo.get();
-    }
-
-    public DoubleProperty costoProperty() {
-        return costo;
-    }
-
-    public void setCosto(double costo) {
-        this.costo.set(costo);
-    }
 
     //Metodo para ingresar cliente a la base de datos
     public void IngresarDetalleRenta(DetalleRentaModel modeloDetallerenta) throws  Exception
     {
-        Connection conn= DriverManager.getConnection(JDBCUtil.getDatabaseUri());
+        /*Connection conn= DriverManager.getConnection(JDBCUtil.getDatabaseUri());
         CallableStatement cs=conn.prepareCall("{call sp_new_detalle_renta(?, ?, ?, ?)}");
 
         cs.setInt(1,modeloDetallerenta.getId_Auto());
@@ -166,38 +26,10 @@ public class DetalleRentaModel {
         cs.setDouble(4,modeloDetallerenta.getCosto());
         cs.execute();
         msgerr("Correcto");
-        conn.close();
+        conn.close();*/
     }
 
-    //Metodo para EliminarRegistro
-    public ObservableList<DetalleRentaModel> eliminar_registro(Integer a)
-    {
-        //Declaracion de variables
-        ObservableList<DetalleRentaModel> listaReserva;
-        //Inicializando el observablelist
-        listaReserva = FXCollections.observableArrayList();
 
-        try {
-            Connection conn= DriverManager.getConnection(JDBCUtil.getDatabaseUri());
-            CallableStatement cs = conn.prepareCall("{CALL sp_delete_detalle_renta(?)}");
-            cs.setInt(1,a);
-            ResultSet resultado = cs.executeQuery();
-
-            while (resultado.next())
-            {
-                /*aqui se llena la coleccion con objetos de tipo cliente*/
-                /*el resultado.getSting(parametro) se captura el valor que general el proceso almacenado*/
-                listaReserva.add(new DetalleRentaModel
-                        (
-                                resultado.getInt("Id_Detalle_Renta")
-
-                        ));
-            }
-            conn.close();
-        }catch (Exception e){}
-
-        return  listaReserva;
-    }
 
 
     //Metodo para la dsiponibilidad del auto
@@ -244,45 +76,31 @@ public class DetalleRentaModel {
         return  listaAuto;
     }
 
-    public ObservableList<DetalleRentaModel> Mostrarlasreservas()
+    public List<DetalleRenta> Mostrarlasreservas(int id_renta) throws SQLException
     {
         //Declaracion de variables
-        ObservableList<DetalleRentaModel> ListaReserva;
+        List<DetalleRenta> ListaReserva=new ArrayList<>();
         //Inicializando el observablelist
-        ListaReserva = FXCollections.observableArrayList();
-
-        try {
             Connection conn= DriverManager.getConnection(JDBCUtil.getDatabaseUri());
-            CallableStatement cs = conn.prepareCall("{call sp_visualizacion_reservas}");
-            ResultSet resultado = cs.executeQuery();
+            CallableStatement cs = conn.prepareCall("{call sp_renta_detail(?)}");
+            cs.setInt(1, id_renta);
+            ResultSet res = cs.executeQuery();
 
-            while (resultado.next())
+            while (res.next())
             {
-                ListaReserva.add(new DetalleRentaModel
-                        (
-                                resultado.getInt("Id_Detalle_Renta"),
-                                resultado.getString("Marca"),
-                                resultado.getString("Modelo"),
-                                resultado.getDate("Fecha_Entrega"),
-                                resultado.getDate("Fecha_Recibo"),
-                                resultado.getDouble("Costo")
-                                ));
+                ListaReserva.add(
+                        new DetalleRenta(
+                                res.getInt("Id_Detalle_Renta"),
+                                res.getString("auto"),
+                                res.getInt("año"),
+                                res.getString("Color"),
+                                res.getString("Placa"),
+                                res.getDate("Fecha_Entrega").toLocalDate(),
+                                res.getDate("Fecha_Recibo").toLocalDate()
+                        )
+                );
             }
             conn.close();
-        }catch (Exception e){}
-
-        return  ListaReserva;
+            return  ListaReserva;
     }
-
-
-    //Metodo para mandar mensajes
-    public void msgerr(String msg){
-        Alert al=new Alert(Alert.AlertType.ERROR);
-        al.setTitle("TheRent Link System");
-        al.setHeaderText("ERROR");
-        al.setContentText(msg);
-        al.showAndWait();
-    }
-
-
 }
