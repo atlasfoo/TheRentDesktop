@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReporteRecibidoEntrega" language="groovy" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4cbcad96-6b70-46b1-8951-0fd3b6838314">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="id_auto" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select 
+concat(c.Primer_Nombre," ",c.Primer_Apellido) as Cliente,
+concat(em.Primer_Nombre," ",em.Primer_Apellido) as Empleado,
+ma.Marca,ma.Modelo,ma.Motorizacion,a.Placa, a.Transmisión,
+ee.fecha_reg, ee.kilometraje,ee.nivel_combustible,ee.descripcion_daño,ee.tipo_estado
+from Detalle_Renta dr inner join 
+Renta r on (dr.Id_Renta = r.Id_Renta)
+inner join Cliente c on (c.Id_Cliente = r.Id_Cliente)
+inner join Auto a on (a.Id_Auto = dr.Id_Auto) 
+inner join Modelo_Auto ma on (ma.Id_Modelo = a.Id_Modelo)
+inner join Estado_Entrega ee on (ee.Id_Detalle_Renta = dr.Id_Detalle_Renta)
+inner join Empleado em on (em.Id_Empleado = ee.id_empleado)
+where dr.Id_Auto = $P{id_auto}
+order by
+dr.Fecha_Entrega, 
+dr.Fecha_Recibo]]>
+	</queryString>
+	<field name="Cliente" class="java.lang.String"/>
+	<field name="Empleado" class="java.lang.String"/>
+	<field name="Marca" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Modelo" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Motorizacion" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Placa" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Transmisión" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fecha_reg" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="kilometraje" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nivel_combustible" class="java.lang.Float">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="descripcion_daño" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tipo_estado" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="18" width="345" height="49" uuid="5e114945-5737-40fb-a985-6a3f5cd84358"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="Times New Roman" size="24" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Reporte De Entrega Y Recibido ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="389" y="47" width="51" height="20" uuid="6585f460-96a2-4a08-afdd-5ceda821adc0"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[Fecha :]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="440" y="47" width="100" height="20" uuid="0c443cf7-1e2a-4f51-b839-09bc2e3c66cc"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="117" splitType="Stretch">
+			<rectangle>
+				<reportElement x="34" y="13" width="463" height="79" uuid="746a4200-f5c1-479d-b154-555dae58a473"/>
+			</rectangle>
+			<textField>
+				<reportElement x="145" y="13" width="100" height="20" uuid="3e55b97e-f423-4ea6-92cf-361decf92ab6"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Marca}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="145" y="33" width="100" height="20" uuid="51496ee5-1e27-437a-8930-bbb623b4a987"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Modelo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="45" y="53" width="93" height="20" uuid="008b6b56-0d79-4827-a26c-9c66fd09b01a"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[Motorización : ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="145" y="53" width="130" height="20" uuid="1d8d23f5-ffea-4b01-8b9d-d4295fe699ff"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Motorizacion}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="295" y="13" width="50" height="20" uuid="8505ac58-80a3-4fa8-8e1b-75f88b48c030"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[Placa :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="295" y="33" width="85" height="20" uuid="b4aec91b-5e5e-4799-8614-6212d9a19c3d"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[Transmisión :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="361" y="13" width="100" height="20" uuid="a6132c5c-22b3-4bd6-80d6-937bfe012045"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Placa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="380" y="33" width="100" height="20" uuid="e3e70c0a-8d27-449e-9666-6258a2b15ec1"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Transmisión}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="45" y="13" width="45" height="20" uuid="0747e213-8658-4251-9a8b-60bcf846e105"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[Marca :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="45" y="33" width="58" height="20" uuid="886486e8-7489-47fc-b648-807ee9df314a"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[Modelo :]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="39" splitType="Stretch">
+			<staticText>
+				<reportElement x="145" y="2" width="69" height="20" uuid="093cff9e-27b8-4458-b406-db7d85282fcc"/>
+				<textElement>
+					<font fontName="Times New Roman" size="9"/>
+				</textElement>
+				<text><![CDATA[Fecha De Regreso]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="238" y="2" width="52" height="20" uuid="3f82676c-b6c1-41e2-95cf-74f5287c7938"/>
+				<textElement>
+					<font fontName="Times New Roman" size="9"/>
+				</textElement>
+				<text><![CDATA[kilometraje]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="307" y="2" width="82" height="20" uuid="95c2cca4-18c6-4068-ac2c-a45541885f14"/>
+				<textElement>
+					<font fontName="Times New Roman" size="9"/>
+				</textElement>
+				<text><![CDATA[Nivel Combustible]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="408" y="2" width="72" height="20" uuid="d9d0c5dd-156d-4cd1-bfb2-07f5ba9a2f46"/>
+				<textElement>
+					<font fontName="Times New Roman" size="9"/>
+				</textElement>
+				<text><![CDATA[Descripción ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="527" y="2" width="45" height="20" uuid="2612ddef-28b0-492b-9b4b-be2304354094"/>
+				<textElement>
+					<font fontName="Times New Roman" size="9"/>
+				</textElement>
+				<text><![CDATA[Estado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="38" height="20" uuid="0c29c8bb-3692-435f-ae7b-289006290854"/>
+				<textElement>
+					<font fontName="Times New Roman" size="11"/>
+				</textElement>
+				<text><![CDATA[Cliente ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="65" y="2" width="52" height="20" uuid="6d4fa990-eef3-4c66-9138-ad5b0c9bb0bb"/>
+				<textElement>
+					<font fontName="Times New Roman" size="11"/>
+				</textElement>
+				<text><![CDATA[Empleado ]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="56" splitType="Stretch">
+			<textField>
+				<reportElement x="145" y="15" width="69" height="20" uuid="0ffd5e9d-9afe-4ee7-a448-361b92a974fd"/>
+				<textElement>
+					<font fontName="Times New Roman" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fecha_reg}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="231" y="15" width="64" height="20" uuid="fb2a4030-b972-494e-b705-15b25a3d3b0c"/>
+				<textElement>
+					<font fontName="Times New Roman" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{kilometraje}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="307" y="15" width="98" height="20" uuid="70956159-4f81-4f78-b06f-9289a602a957"/>
+				<textElement>
+					<font fontName="Times New Roman" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nivel_combustible}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="406" y="15" width="91" height="20" uuid="2b7b4ed0-0154-4ccc-9a54-5234ffeacf94"/>
+				<textElement>
+					<font fontName="Times New Roman" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{descripcion_daño}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="497" y="15" width="75" height="20" uuid="aefc0b58-a53c-44c1-8fc4-ab4f625b9792"/>
+				<textElement>
+					<font fontName="Times New Roman" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tipo_estado}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="15" width="65" height="20" uuid="84fc6d0e-0077-4d50-b08a-1c8bdeb9d862"/>
+				<textElement>
+					<font fontName="Times New Roman" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Cliente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="65" y="15" width="75" height="20" uuid="bf704e16-d835-41ed-bce5-8605fc63f2a9"/>
+				<textElement>
+					<font fontName="Times New Roman" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Empleado}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement x="472" y="34" width="100" height="20" uuid="1f4ff07d-5dd6-407c-8fb8-ce1a74bbb94f"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

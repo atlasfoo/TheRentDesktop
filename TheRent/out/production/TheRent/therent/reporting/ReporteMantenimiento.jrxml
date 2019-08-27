@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReporteMantenimiento" language="groovy" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2f7e8fa4-ae7f-4653-b248-b7bf609c9ae4">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="id_auto" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select ma.Marca,ma.Modelo,ma.Motorizacion,a.Placa, a.Transmisión,m.fecha_inicio,m.fecha_fin, m.descripcion from Mantenimiento m
+inner join Auto a
+on (a.id_auto = m.id_auto)
+inner join Modelo_Auto ma
+on (a.Id_Modelo = ma.Id_Modelo)
+where a.Id_Auto = $P{id_auto}]]>
+	</queryString>
+	<field name="Marca" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Modelo" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Motorizacion" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Placa" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Transmisión" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fecha_inicio" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fecha_fin" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="descripcion" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="102" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="11" width="322" height="42" uuid="c200efbb-ee1d-482e-a704-377e62aba2fd"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="Times New Roman" size="24" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Reporte De Mantenimiento]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="472" y="29" width="100" height="20" uuid="1147e515-3aba-441f-84b3-41a27fcfd643"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="421" y="29" width="51" height="20" uuid="87b6f9d2-d1cb-4232-8626-a575d42f63d2"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[Fecha :]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="106" splitType="Stretch">
+			<rectangle>
+				<reportElement x="53" y="12" width="455" height="60" uuid="5f914b45-3d30-4aee-9825-6f82830dc07c"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="53" y="12" width="45" height="20" uuid="965f9635-04d1-4b11-b954-1b3ecd0c7fbe"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[Marca :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="146" y="12" width="115" height="20" uuid="3a3c0043-c5f5-4b46-af87-181bbe618de7"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Marca}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="53" y="32" width="49" height="20" uuid="9048f5e6-36e4-4995-a2a2-40f725181b8f"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[Modelo :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="146" y="32" width="115" height="20" uuid="84de6159-59fc-4995-95ed-014bed744c38"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Modelo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="53" y="52" width="93" height="20" uuid="2bc3eeca-a042-4a06-909d-30fe477fc5f6"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[Motorización : ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="146" y="52" width="126" height="20" uuid="14d7d38e-5763-4aa3-af32-301719780cec"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Motorizacion}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="272" y="32" width="85" height="20" uuid="7d7fd7d1-a4f1-4883-8e0e-23755cec3522"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[Transmisión :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="357" y="32" width="100" height="20" uuid="36d70fa6-5318-4df7-a57b-559423257add"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Transmisión}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="272" y="12" width="50" height="20" uuid="e62d1be1-664a-4b25-aaa6-93c1fd932bd4"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[Placa :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="357" y="12" width="100" height="20" uuid="735984e9-37b5-46dc-be33-3a7f9656135b"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Placa}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="40" splitType="Stretch">
+			<staticText>
+				<reportElement x="59" y="2" width="100" height="20" uuid="5ce4c393-2159-4f98-bb42-d58fe0de7eba"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[Fecha De Inicio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="240" y="2" width="100" height="20" uuid="3b54ee76-cd27-47b6-96c5-9fb47f6ad400"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[Fecha De Fin]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="448" y="2" width="100" height="20" uuid="7130c6db-8aea-48b9-93b4-849f4ae0e49e"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[Descripción ]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="64" splitType="Stretch">
+			<textField>
+				<reportElement x="59" y="23" width="100" height="20" uuid="d0401194-ad54-46ad-ba5f-f42a59afe485"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fecha_inicio}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="240" y="23" width="100" height="20" uuid="00c4a089-d024-40b2-a0e0-22d4c9232e04"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fecha_fin}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="408" y="23" width="164" height="20" uuid="e1ddcf3d-7190-46e0-96ac-706af08fa46e"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{descripcion}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<textField>
+				<reportElement x="472" y="25" width="100" height="20" uuid="16833a8d-a6a9-4823-b3b9-7c56a7424b30"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="31" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="28" splitType="Stretch"/>
+	</summary>
+</jasperReport>

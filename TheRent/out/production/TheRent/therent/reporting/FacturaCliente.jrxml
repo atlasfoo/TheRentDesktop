@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="23f75361-6abf-4e71-a7c3-0b340d7e250a">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="id_renta" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select 
+concat(c.Primer_Nombre," ",c.Segundo_Nombre," ",c.Primer_Apellido," ",c.Segundo_Apellido) as Cliente,
+concat(ma.Marca," ",ma.Modelo," ",a.Placa) as DetalleVehiculo,
+dr.Costo as Total
+from Detalle_Renta dr
+inner join Renta r on (r.Id_Renta = dr.Id_Renta)
+inner join Cliente c on (c.Id_Cliente = r.Id_Cliente)
+inner join Auto a on (a.Id_Auto = dr.Id_Auto)
+inner join Modelo_Auto ma on (ma.Id_Modelo = a.Id_Modelo)
+where r.Id_Renta = $P{id_renta}]]>
+	</queryString>
+	<field name="Cliente" class="java.lang.String"/>
+	<field name="DetalleVehiculo" class="java.lang.String"/>
+	<field name="Total" class="java.lang.Double"/>
+	<variable name="Total" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{Total}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="94" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="5" width="121" height="46" forecolor="#000066" backcolor="#FFFFFF" uuid="0597991f-c793-49f0-987f-6f70a0a4c438"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font fontName="Times New Roman" size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FACTURA]]></text>
+			</staticText>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="405" y="14" width="137" height="20" uuid="38e25eea-5db5-4867-891d-2e980aa4bed2"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="359" y="14" width="46" height="20" uuid="9e885e18-7115-431e-a57e-b2cfe80201e2"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[Fecha:]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="148" splitType="Stretch">
+			<staticText>
+				<reportElement x="178" y="0" width="164" height="44" forecolor="#000066" uuid="5940be6b-2bc5-4386-b485-29cef86f64b7"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font fontName="Times New Roman" size="24" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[RENT-A-CAR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="56" y="59" width="65" height="20" uuid="50420935-9a77-4fa1-856d-e3b48c5cc70d"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Dirección:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="177" y="59" width="322" height="20" uuid="bc55a778-0457-4b66-8474-401e1b4bc5e5"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[Atlas st. 1574 NW, Managua, Nicaragua]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="56" y="79" width="65" height="20" uuid="f3fc0bdd-8fe0-41f3-9a49-755f6e1699a2"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[Teléfono :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="177" y="79" width="322" height="20" uuid="99614e30-4354-4e10-b82e-9cfb031b264e"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[78-43-62-00]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="170" splitType="Stretch">
+			<staticText>
+				<reportElement x="193" y="116" width="149" height="43" forecolor="#000066" uuid="1807e38e-a7c0-4b11-b3a1-7abeb989d517"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="Times New Roman" size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[          Detalle]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="11" y="30" width="531" height="75" forecolor="#000066" backcolor="#FFFFFF" uuid="3fb83eb1-637e-4634-98e6-e40a9b6d3a5b"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="39" y="56" width="49" height="20" uuid="91cfc0b4-5b2b-49b3-9512-14fd6e776f4a"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Cliente :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="142" y="56" width="200" height="20" uuid="204721bb-d495-440c-a1fc-b842a2fe4d31"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Cliente}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="68" splitType="Stretch">
+			<textField>
+				<reportElement x="21" y="22" width="293" height="20" uuid="7c44cea2-39cf-4099-813e-f13633adf96f"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DetalleVehiculo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="377" y="22" width="100" height="20" uuid="715850a7-6146-41c3-8a04-8e25b1975d75"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Total}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch">
+			<staticText>
+				<reportElement x="355" y="22" width="100" height="20" uuid="38dc02df-df09-4def-8e54-93a00f461c4d"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total  $]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="455" y="22" width="100" height="20" uuid="a7a5a771-4cb5-4279-ac6f-ba228806d1c3"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{Total}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

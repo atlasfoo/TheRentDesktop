@@ -329,9 +329,9 @@ public class Main extends Application {
 
 
     /*TODO:
-       * REFACTOR RESERVATION
+       * REFACTOR RESERVATION, model layer
        * Add Entrega
-       * Reporting
+       * Reporting connection
        * Optional: Session overview
        * Optional: InputValidators
        */
