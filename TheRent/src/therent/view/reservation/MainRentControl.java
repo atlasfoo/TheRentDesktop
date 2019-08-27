@@ -29,5 +29,11 @@ public class MainRentControl {
 
     public void initialize(){}
 
+    @FXML
+    public void handleReservation(){
+        main.showAddRent();
+        main.showRentOverview(parentPane);
+    }
+
 
 }

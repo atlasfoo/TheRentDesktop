@@ -1,9 +1,14 @@
 package therent.control.client;
 
+import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
+import therent.model.beans.ClientBean;
 import therent.model.client.Cliente;
+
+import java.sql.SQLException;
+import java.util.List;
 
 
 public class CCliente {
@@ -202,5 +207,10 @@ public class CCliente {
         Cliente c = new Cliente();
         return c.CorreonoRegistradoPorCliente(dat);
     }
+
+    public static List<ClientBean> ovClient(String dat) throws Exception {
+        return new Cliente().clientOverview(dat);
+    }
+
 }
 

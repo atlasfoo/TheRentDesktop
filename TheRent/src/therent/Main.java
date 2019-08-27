@@ -14,6 +14,7 @@ import therent.view.client.control_MenuCliente;
 import therent.view.LogWindowControl;
 import therent.view.MainFrameControl;
 import therent.view.car.*;
+import therent.view.reservation.AddRentControl;
 import therent.view.reservation.MainRentControl;
 import therent.view.reservation.RentOverviewControl;
 
@@ -285,6 +286,25 @@ public class Main extends Application {
             ctrl.setMain(this);
             ctrl.setParentPane(parent);
             parent.setCenter(pane);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void showAddRent(){
+        FXMLLoader loader=new FXMLLoader();
+        loader.setLocation(Main.class.getResource("view/reservation/AddRent.fxml"));
+        try {
+            AnchorPane pane=loader.load();
+            AddRentControl ctrl=loader.getController();
+            Stage dlgStage=new Stage();
+            dlgStage.setTitle("The Rent Link System");
+            dlgStage.setResizable(false);
+            dlgStage.initModality(Modality.WINDOW_MODAL);
+            ctrl.setMain(this);
+            ctrl.setDlgStage(dlgStage);
+            dlgStage.setScene(new Scene(pane));
+            dlgStage.showAndWait();
         } catch (IOException e) {
             e.printStackTrace();
         }

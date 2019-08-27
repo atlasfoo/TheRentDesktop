@@ -20,7 +20,7 @@
                            <children>
                               <VBox alignment="TOP_CENTER" layoutX="14.0" layoutY="51.0" prefHeight="372.0" prefWidth="173.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
-                                    <JFXButton fx:id="reservaBtn" buttonType="RAISED" text="Reservar" />
+                                    <JFXButton fx:id="reservaBtn" buttonType="RAISED" text="Reservar" onAction="#handleReservation" />
                                     <JFXButton fx:id="backBtn" buttonType="RAISED" text="Atrás" />
                                  </children>
                               </VBox>

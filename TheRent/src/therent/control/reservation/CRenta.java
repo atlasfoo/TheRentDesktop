@@ -9,4 +9,8 @@ public class CRenta {
     public static List<Renta> getRentas() throws Exception{
         return new RentaModel().AllRenta();
     }
+    public static void addRenta(int id_cliente, int id_empleado) throws Exception {
+        new RentaModel().IngresarRenta(id_cliente, id_empleado);
+    }
+
 }

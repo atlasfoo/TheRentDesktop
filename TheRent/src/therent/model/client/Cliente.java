@@ -425,9 +425,10 @@ public class Cliente {
     }
 
     //Vista general de cliente para formulario de ingreso de renta
-    public List<ClientBean> clientOverview() throws SQLException {
+    public List<ClientBean> clientOverview(String dato) throws SQLException {
        Connection conn=DriverManager.getConnection(JDBCUtil.getDatabaseUri());
-       CallableStatement cs=conn.prepareCall("{call sp_cliente_ov()}");
+       CallableStatement cs=conn.prepareCall("{call sp_cliente_ov(?)}");
+       cs.setString(1, dato);
        ResultSet rs=cs.executeQuery();
        List<ClientBean> cl=new ArrayList<>();
        while (rs.next()){

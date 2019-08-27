@@ -4,16 +4,20 @@ import therent.model.beans.Renta;
 import therent.util.JDBCUtil;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 public class RentaModel {
 
 
-    public void IngresarRenta(RentaModel modelorenta) throws  Exception
+    public void IngresarRenta(int id_cl, int id_emp) throws  Exception
     {
         Connection conn= DriverManager.getConnection(JDBCUtil.getDatabaseUri());
-        CallableStatement cs=conn.prepareCall("{call sp_new_renta_view(?, ?)}");
+        CallableStatement cs=conn.prepareCall("{call sp_new_renta(?, ?, ?)}");
+        cs.setInt(1, id_cl);
+        cs.setDate(2, Date.valueOf(LocalDate.now()));
+        cs.setInt(3, id_emp);
         cs.execute();
         conn.close();
     }
