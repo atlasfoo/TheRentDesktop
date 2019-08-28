@@ -15,6 +15,8 @@ alter table sysuser
 add column pswd varbinary(100);
 
 #usuario de sistema
+CALL sp_new_sysuser(2, 'smiranda', 'asdfg', 3, @roln);
+SELECT @roln;
 DELIMITER //
 CREATE PROCEDURE sp_new_sysuser (in id_empleado int, in usrname varchar(50), in pswd varchar(100), in rol int, out roln varchar(15))
 	begin

@@ -113,7 +113,8 @@ call sp_auto_search('Mazda');
 call sp_renta_all();
 call sp_auto_all();
 
-
-
+DELETE FROM Estado_Entrega WHERE Id_Estado_Entrega>-1;
+DELETE FROM Detalle_Renta WHERE Id_Detalle_Renta>-1;
+DELETE FROM Renta WHERE Id_Renta>-1;
 
 
