@@ -13,6 +13,7 @@ import therent.Main;
 import therent.control.car.CCategoria;
 import therent.control.car.CModeloAuto;
 import therent.model.beans.Categoria;
+import therent.util.Validators;
 import therent.util.converters.CategoriaConverter;
 
 public class ModelSceneControl {
@@ -65,6 +66,11 @@ public class ModelSceneControl {
             this.categorias= FXCollections.observableArrayList(CCategoria.getAll());
             catCmb.setConverter(new CategoriaConverter());
             catCmb.setItems(this.categorias);
+            // Validators
+            Validators.ValidarCampos(marcaTxt,"Letra");
+            Validators.ValidarCampos(modeloTxt,"Letra");
+            Validators.ValidarCampos(motorTxt,"Letra");
+            //-------------------------------------------
         } catch (Exception e) {
             msgerr(e.getMessage());
         }

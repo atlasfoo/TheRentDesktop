@@ -15,6 +15,7 @@ import therent.control.car.CAuto;
 import therent.control.car.CModeloAuto;
 import therent.model.beans.Auto;
 import therent.model.beans.ModeloAuto;
+import therent.util.Validators;
 import therent.util.converters.ModeloAutoConverter;
 
 public class CarAddEditControl {
@@ -98,6 +99,14 @@ public class CarAddEditControl {
             modelos= FXCollections.observableArrayList(CModeloAuto.getAllModelos());
             ModCmb.setConverter(new ModeloAutoConverter());
             ModCmb.setItems(modelos);
+
+            /*validators*/
+            Validators.ValidarCampos(placaTxt,"Letra");
+            Validators.ValidarCampos(chasisTxt,"Letra");
+            Validators.ValidarCampos(vinTxt,"Letra");
+            Validators.ValidarCampos(colorTxt,"Letra");
+            Validators.ValidarCampos(yrTxt,"Numero");
+            //--------------------------
         } catch (Exception e) {
             msgerr(e.getMessage());
         }

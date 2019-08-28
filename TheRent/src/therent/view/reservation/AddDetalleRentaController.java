@@ -95,7 +95,7 @@ public class AddDetalleRentaController {
 
     public void setEdit(boolean edit) {
         this.edit = edit;
-        buscarBtn.setDisable(true);
+        buscarBtn.setDisable(this.edit);
     }
 
     public void setParentPane(BorderPane parentPane) {

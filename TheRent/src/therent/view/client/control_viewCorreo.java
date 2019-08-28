@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import therent.Main;
+import therent.util.Validators;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -97,6 +98,7 @@ public class control_viewCorreo implements Initializable {
     public void initialize(URL location, ResourceBundle resources)
     {
         idLIst.setItems(tele);
+        Validators.ValidarCampos(idCorr,"Letra");
     }
 
 }

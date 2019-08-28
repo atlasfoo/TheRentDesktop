@@ -10,6 +10,7 @@ import javafx.stage.Stage;
 import therent.Main;
 import therent.control.deliver.CDeliver;
 import therent.model.beans.DetalleEntrega;
+import therent.util.Validators;
 
 public class GasWindowController {
 
@@ -51,6 +52,9 @@ public class GasWindowController {
     }
 
     public void initialize(){
+        //validators
+        Validators.ValidarCampos(kmTxt,"Numero");
+        //-----------------------------
 
    }
 

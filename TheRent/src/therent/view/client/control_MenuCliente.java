@@ -21,6 +21,7 @@ import javafx.scene.layout.HBox;
 import therent.Main;
 import therent.control.client.CCliente;
 import therent.model.client.Cliente;
+import therent.util.Validators;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -112,6 +113,15 @@ public class control_MenuCliente implements Initializable {
             MostrandoDatos();
 
             GestionEvento();
+
+            //validator
+            Validators.ValidarCampos(idPNombre,"Letra");
+            Validators.ValidarCampos(idSNombre,"Letra");
+            Validators.ValidarCampos(idPApellido,"Letra");
+            Validators.ValidarCampos(idSApellido,"Letra");
+            Validators.ValidarCampos(idCedula,"Letra");
+            Validators.ValidarCampos(idDireccion,"Letra");
+            //---------------------
 
         }catch (Exception e){msgerr(e.getMessage());}
         ObservableList<String> lis = FXCollections.observableArrayList();
