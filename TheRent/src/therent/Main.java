@@ -360,9 +360,26 @@ public class Main extends Application {
         }
     }
 
+    public void showChangeStatRent(Renta r){
+        FXMLLoader loader=new FXMLLoader();
+        loader.setLocation(Main.class.getResource("view/reservation/RentChange.fxml"));
+        try {
+            AnchorPane pane=loader.load();
+            RentChangeControl ctrl=loader.getController();
+            Stage dlgStage=new Stage();
+            dlgStage.setTitle("The Rent Link System");
+            dlgStage.setResizable(false);
+            dlgStage.initModality(Modality.WINDOW_MODAL);
+            ctrl.setDlgStage(dlgStage);
+            ctrl.setR(r);
+            dlgStage.setScene(new Scene(pane));
+            dlgStage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     /*TODO:
-       * REFACTOR RESERVATION, model layer
        * Add Entrega
        * Reporting connection
        * Optional: Session overview

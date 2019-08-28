@@ -29,4 +29,10 @@ public class CDetalleRenta {
         }
         return new DetalleRentaModel().editDetail(id_det, id_aut, f_in, f_out);
     }
+    public static void deleteDetail(int id_det) throws Exception {
+        if(id_det<1){
+            throw new Exception("Opción Invalida");
+        }
+        new DetalleRentaModel().deleteDetail(id_det);
+    }
 }

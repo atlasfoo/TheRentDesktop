@@ -71,4 +71,12 @@ public class DetalleRentaModel {
         conn.close();
         return res.equals("VALIDO");
     }
+
+    public void deleteDetail(int id_det) throws SQLException {
+        Connection conn=DriverManager.getConnection(JDBCUtil.getDatabaseUri());
+        CallableStatement cs=conn.prepareCall("{CALL sp_rentdetail_delete(?)}");
+        cs.setInt(1, id_det);
+        cs.execute();
+        conn.close();
+    }
 }

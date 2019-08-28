@@ -30,7 +30,7 @@
                <children>
                   <JFXButton fx:id="addBtn" buttonType="RAISED" onAction="#handleAdd" style="-fx-background-color: #002f6c;" text="Añadir" textFill="WHITE" />
                   <JFXButton fx:id="editBtn" buttonType="RAISED" onAction="#handleEdit" style="-fx-background-color: #002f6c;" text="Editar" textFill="WHITE" />
-                  <JFXButton fx:id="borrBtn" buttonType="RAISED" style="-fx-background-color: #002f6c;" text="Borrar" textFill="WHITE" />
+                  <JFXButton fx:id="borrBtn" buttonType="RAISED" onAction="#handleDelete" style="-fx-background-color: #002f6c;" text="Borrar" textFill="WHITE" />
                   <JFXButton fx:id="backBtn" buttonType="RAISED" onAction="#handleBack" style="-fx-background-color: #002f6c;" text="Atrás" textFill="WHITE" />
                </children>
             </HBox>

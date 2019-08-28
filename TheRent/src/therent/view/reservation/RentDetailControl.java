@@ -97,7 +97,6 @@ public class RentDetailControl {
 
     @FXML
     public void handleAdd(){
-
         main.showNewRentDetail(r, parentPane);
     }
 
@@ -111,6 +110,21 @@ public class RentDetailControl {
         main.showEditRentDetail(r, dr, parentPane);
     }
 
+    @FXML
+    public void handleDelete(){
+        DetalleRenta dr=detTab.getSelectionModel().getSelectedItem();
+        if(dr==null){
+            msgerr("Seleccione un detalle a eliminar");
+            return;
+        }
+        try {
+            CDetalleRenta.deleteDetail(dr.getId());
+        } catch (Exception e) {
+            msgerr(e.getMessage());
+        } finally {
+            refreshDetail();
+        }
+    }
 
     //Metodo para mandar mensajes
     public void msgerr(String msg){

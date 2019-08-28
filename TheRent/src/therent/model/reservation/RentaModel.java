@@ -46,4 +46,13 @@ public class RentaModel {
         conn.close();
         return  listaRenta;
     }
+
+    public void changeStat(int id_rent, int stat) throws SQLException {
+        Connection conn= DriverManager.getConnection(JDBCUtil.getDatabaseUri());
+        CallableStatement cs=conn.prepareCall("{call sp_rent_stat_change(?, ?)}");
+        cs.setInt(1, id_rent);
+        cs.setInt(2, stat);
+        cs.execute();
+        conn.close();
+    }
 }

@@ -129,23 +129,9 @@ BEGIN
 	DROP TEMPORARY TABLE autos_ocupados;
 END //
 
-CALL sp_disponibilidad_auto('20190831', '20190910');
-CALL sp_auto_all();
-select * FROM Cliente WHERE Id_Cliente=30;
-SELECT * FROM Renta WHERE Id_Renta=35;
-SELECT * FROM Detalle_Renta;
 
-DECLARE sa;
-CALL sp_edit_rentdetail(28, 11, '20190831', '20190910', @sa);
 
-SELECT @sa;
 
-SELECT * FROM Auto
-
-SELECT * FROM Auto;
-
-SELECT * FROM Renta;
-	
 #auxiliar de auto
 delimiter //
 CREATE procedure sp_auto_byplaca(IN plac VARCHAR(20))
@@ -176,6 +162,30 @@ CALL sp_auto_all();
 CALL sp_auto_byplaca('M289877');
 
 CALL sp_login_sysuser('asdasdas','aa');
+
+#SI es seguro borrar detalle renta
+delimiter //
+CREATE PROCEDURE sp_rentdetail_delete(IN id_det INT)
+BEGIN
+	DELETE FROM Detalle_Renta WHERE Id_Detalle_Renta=id_det;
+END //
+
+delimiter //
+CREATE PROCEDURE sp_rent_stat_change(IN id_rent INT,IN stat INT)
+BEGIN
+	DECLARE statn VARCHAR(15);
+	SET statn='RESERVADO';
+	if stat=1 then
+		SET statn='RESERVADO';
+	ELSEIF stat=2 then
+		SET statn='PAGADO';
+	ELSEIF stat=3 then
+		SET statn='CANCELADO';
+	else
+		SET statn='RESERVADO';
+	END if;
+	UPDATE Renta SET Estado=statn WHERE Id_Renta=id_rent;
+END //		
 
 #procedimientos de entrega
 

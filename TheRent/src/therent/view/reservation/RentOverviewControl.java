@@ -79,6 +79,15 @@ public class RentOverviewControl {
         main.showRentDetail(this.parentPane, rentTable.getSelectionModel().getSelectedItem());
     }
 
+    public void handleRentStat(){
+        if(rentTable.getSelectionModel().getSelectedItem()==null){
+            msgerr("Por favor seleccione una renta a detallar");
+            return;
+        }
+        main.showChangeStatRent(rentTable.getSelectionModel().getSelectedItem());
+        refreshTable();
+    }
+
     @FXML
     public void msgerr(String msg){
         Alert al=new Alert(Alert.AlertType.ERROR);
