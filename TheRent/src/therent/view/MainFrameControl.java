@@ -65,5 +65,6 @@ public class MainFrameControl {
         main.showCar();
     }
 
-
+    @FXML
+    public void handleDeliver(){main.showDeliverMain();}
 }

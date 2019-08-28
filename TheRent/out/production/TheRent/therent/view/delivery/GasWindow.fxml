@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="300.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="therent.view.delivery.DeliveryWindowController">
+<AnchorPane prefHeight="362.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="therent.view.delivery.GasWindowController">
     <children>
-        <Label layoutX="50.0" layoutY="26.0" prefHeight="28.0" prefWidth="91.0" text="Combustible" />
-        <Slider fx:id="fx_slider_gas" layoutX="64.0" layoutY="68.0" prefHeight="36.0" prefWidth="269.0" />
-        <Label layoutX="50.0" layoutY="112.0" prefHeight="28.0" prefWidth="91.0" text="Detalles" />
-        <ListView fx:id="fx_list_descr" layoutX="50.0" layoutY="140.0" prefHeight="97.0" prefWidth="319.0" />
-        <JFXButton fx:id="fx_button_ok" layoutX="200.0" layoutY="250.0" prefHeight="19.0" prefWidth="91.0" text="OK" />
+        <Label layoutX="41.0" layoutY="90.0" prefHeight="28.0" prefWidth="91.0" text="Combustible" />
+        <Slider fx:id="fx_slider_gas" blockIncrement="4.0" layoutX="55.0" layoutY="118.0" majorTickUnit="0.25" max="1.0" minorTickCount="4" prefHeight="36.0" prefWidth="221.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
+        <JFXButton fx:id="fx_button_ok" buttonType="RAISED" layoutX="155.0" layoutY="315.0" prefHeight="19.0" prefWidth="91.0" style="-fx-background-color: #002f6c;" text="OK" textFill="#fffefe" />
+      <JFXTextField fx:id="kmTxt" focusColor="#002f6c" labelFloat="true" layoutX="87.0" layoutY="43.0" prefHeight="25.0" prefWidth="205.0" promptText="Kilometraje" />
+      <JFXTextArea fx:id="detTxta" focusColor="#002f6c" labelFloat="true" layoutX="21.0" layoutY="191.0" prefHeight="114.0" prefWidth="359.0" promptText="Detalles" text="Todo correctamente" />
+      <Label fx:id="combLbl" layoutX="312.0" layoutY="128.0" text="---" />
     </children>
 </AnchorPane>

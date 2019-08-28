@@ -189,4 +189,37 @@ END //
 
 #procedimientos de entrega
 
-SELECT * FROM Detalle_Renta
+DROP PROCEDURE sp_entrega_today;
+DROP PROCEDURE sp_recibido_today;
+
+delimiter //
+CREATE PROCEDURE sp_entrega_today(IN fec DATE)
+BEGIN
+	SELECT dr.Id_Detalle_Renta,
+	CONCAT(ma.Marca, ' ', ma.Modelo) AS auto,
+	a.año, a.Color, a.Placa, CONCAT(c.Primer_Nombre, ' ' , c.Primer_Apellido) AS cliente
+	FROM Detalle_Renta dr
+	INNER JOIN Auto a ON a.Id_Auto=dr.Id_Auto
+	INNER JOIN Modelo_Auto ma ON a.Id_Modelo=ma.Id_Modelo
+	INNER JOIN Renta r ON r.Id_Renta=dr.Id_Renta
+	INNER JOIN Cliente c ON c.Id_Cliente=r.Id_Cliente
+	WHERE dr.Fecha_Entrega=fec;
+END //
+
+SELECT * FROM Estado_Entrega ee INNER JOIN Detalle_Renta dr ON e 
+
+delimiter //
+CREATE PROCEDURE sp_recibido_today(IN fec DATE)
+BEGIN
+	SELECT dr.Id_Detalle_Renta,
+	CONCAT(ma.Marca, ' ', ma.Modelo) AS auto,
+	a.año, a.Color, a.Placa, CONCAT(c.Primer_Nombre, ' ' , c.Primer_Apellido) AS cliente
+	FROM Detalle_Renta dr
+	INNER JOIN Auto a ON a.Id_Auto=dr.Id_Auto
+	INNER JOIN Modelo_Auto ma ON a.Id_Modelo=ma.Id_Modelo
+	INNER JOIN Renta r ON r.Id_Renta=dr.Id_Renta
+	INNER JOIN Cliente c ON c.Id_Cliente=r.Id_Cliente
+	WHERE dr.Fecha_Recibo=fec;
+END //
+
+	

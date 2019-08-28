@@ -88,7 +88,7 @@
             </BorderPane>
             <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <bottom>
-                  <JFXButton fx:id="deliverbtn" alignment="CENTER" buttonType="RAISED" style="-fx-background-color: #002f6c;" text="Sistema de Entregas" textFill="WHITE" BorderPane.alignment="CENTER">
+                  <JFXButton fx:id="deliverbtn" alignment="CENTER" buttonType="RAISED" style="-fx-background-color: #002f6c;" onAction="#handleDeliver" text="Sistema de Entregas" textFill="WHITE" BorderPane.alignment="CENTER">
                      <font>
                         <Font name="Segoe UI Italic" size="14.0" />
                      </font>

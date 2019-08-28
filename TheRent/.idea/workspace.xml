@@ -2,29 +2,30 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/out/production/TheRent/therent/control/deliver/CDeliver.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/TheRent/therent/model/beans/DetalleEntrega.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/TheRent/therent/model/deliver/EntregaModel.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/TheRent/therent/view/delivery/GasWindowController$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/therent/control/deliver/CDeliver.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/therent/model/beans/DetalleEntrega.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/therent/model/deliver/EntregaModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SQLs/SPs2.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../SQLs/SPs2.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TheRent/META-INF/TheRent.kotlin_module" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TheRent/META-INF/TheRent.kotlin_module" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/TheRent/therent/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TheRent/therent/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TheRent/therent/control/reservation/CDetalleRenta.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TheRent/therent/control/reservation/CDetalleRenta.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TheRent/therent/control/reservation/CRenta.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TheRent/therent/control/reservation/CRenta.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TheRent/therent/model/reservation/DetalleRentaModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TheRent/therent/model/reservation/DetalleRentaModel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TheRent/therent/model/reservation/RentaModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TheRent/therent/model/reservation/RentaModel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TheRent/therent/model/reservation/TablaVistaC.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TheRent/therent/view/Reservation/AddDetalleRentaController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TheRent/therent/view/Reservation/AddDetalleRentaController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TheRent/therent/view/Reservation/RentDetailControl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TheRent/therent/view/Reservation/RentDetailControl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TheRent/therent/view/Reservation/RentDetailOV.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TheRent/therent/view/Reservation/RentDetailOV.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TheRent/therent/view/Reservation/RentOverview.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TheRent/therent/view/Reservation/RentOverview.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TheRent/therent/view/Reservation/RentOverviewControl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TheRent/therent/view/Reservation/RentOverviewControl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TheRent/therent/view/MainFrame.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TheRent/therent/view/MainFrame.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TheRent/therent/view/MainFrameControl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TheRent/therent/view/MainFrameControl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TheRent/therent/view/Reservation/RentChange.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TheRent/therent/view/Reservation/RentChange.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TheRent/therent/view/delivery/DeliveryWindow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TheRent/therent/view/delivery/DeliveryWindow.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TheRent/therent/view/delivery/DeliveryWindowController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TheRent/therent/view/delivery/DeliveryWindowController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TheRent/therent/view/delivery/GasWindow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TheRent/therent/view/delivery/GasWindow.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TheRent/therent/view/delivery/GasWindowController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TheRent/therent/view/delivery/GasWindowController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/therent/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/therent/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/therent/control/reservation/CDetalleRenta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/therent/control/reservation/CDetalleRenta.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/therent/control/reservation/CRenta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/therent/control/reservation/CRenta.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/therent/model/reservation/DetalleRentaModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/therent/model/reservation/DetalleRentaModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/therent/model/reservation/RentaModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/therent/model/reservation/RentaModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/therent/model/reservation/TablaVistaC.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/therent/view/reservation/RentDetailControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/therent/view/reservation/RentDetailControl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/therent/view/reservation/RentDetailOV.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/therent/view/reservation/RentDetailOV.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/therent/view/reservation/RentOverview.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/therent/view/reservation/RentOverview.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/therent/view/reservation/RentOverviewControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/therent/view/reservation/RentOverviewControl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/therent/view/MainFrame.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/therent/view/MainFrame.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/therent/view/MainFrameControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/therent/view/MainFrameControl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/therent/view/delivery/DeliveryWindow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/therent/view/delivery/DeliveryWindow.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/therent/view/delivery/DeliveryWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/therent/view/delivery/DeliveryWindowController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/therent/view/delivery/GasWindow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/therent/view/delivery/GasWindow.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/therent/view/delivery/GasWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/therent/view/delivery/GasWindowController.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -309,22 +310,12 @@
           <expand>
             <path>
               <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@33e1de56" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@30161fa7" type="7427dc5b:ServiceModel$ServiceGroupNode" />
             </path>
             <path>
               <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@33e1de56" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceNode@1659343a" type="9fbbdea:ServiceModel$ServiceNode" />
-            </path>
-            <path>
-              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@33e1de56" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceNode@5bc0541a" type="9fbbdea:ServiceModel$ServiceNode" />
-            </path>
-            <path>
-              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@33e1de56" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceNode@6ab395" type="9fbbdea:ServiceModel$ServiceNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@30161fa7" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceNode@47e0566a" type="9fbbdea:ServiceModel$ServiceNode" />
             </path>
           </expand>
           <select />
@@ -369,7 +360,7 @@
       <workItem from="1566859656271" duration="17390000" />
       <workItem from="1566917341480" duration="2159000" />
       <workItem from="1566925362311" duration="1171000" />
-      <workItem from="1566950491665" duration="15479000" />
+      <workItem from="1566950491665" duration="21612000" />
     </task>
     <servers />
   </component>

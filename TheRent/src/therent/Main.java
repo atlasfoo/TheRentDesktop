@@ -17,6 +17,8 @@ import therent.view.client.control_MenuCliente;
 import therent.view.LogWindowControl;
 import therent.view.MainFrameControl;
 import therent.view.car.*;
+import therent.view.delivery.DeliveryWindowController;
+import therent.view.delivery.GasWindowController;
 import therent.view.reservation.*;
 
 import java.io.IOException;
@@ -379,11 +381,46 @@ public class Main extends Application {
         }
     }
 
+    public void showDeliverMain(){
+        FXMLLoader loader=new FXMLLoader();
+        loader.setLocation(Main.class.getResource("view/delivery/DeliveryWindow.fxml"));
+        try {
+            AnchorPane pane = loader.load();
+            DeliveryWindowController ctrl=loader.getController();
+            ctrl.setMain(this);
+            primaryStage.setMaximized(false);
+            primaryStage.setScene(new Scene(pane));
+            primaryStage.setMaximized(true);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void showEntregar(boolean isRecibo){
+        FXMLLoader loader=new FXMLLoader();
+        loader.setLocation(Main.class.getResource("view/delivery/GasWindow.fxml"));
+        try {
+            AnchorPane pane=loader.load();
+            Stage dlgStage=new Stage();
+            GasWindowController ctrl=loader.getController();
+            ctrl.setMain(this);
+            ctrl.setRecibo(isRecibo);
+            dlgStage.setTitle("The Rent Link System");
+            dlgStage.setResizable(false);
+            dlgStage.initModality(Modality.WINDOW_MODAL);
+            dlgStage.initOwner(primaryStage);
+            dlgStage.setScene(new Scene(pane));
+            dlgStage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     /*TODO:
-       * Add Entrega
+       * Model for Entrega
        * Reporting connection
-       * Optional: Session overview
        * Optional: InputValidators
+       * SUPER OPTIONAL: loading screen
        */
 
     public static void main(String[] args) {
