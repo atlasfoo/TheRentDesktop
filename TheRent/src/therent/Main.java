@@ -2,6 +2,7 @@ package therent;
 
 import com.jfoenix.controls.JFXButton;
 import javafx.application.Application;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
@@ -9,16 +10,14 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import therent.model.beans.Auto;
+import therent.model.beans.DetalleRenta;
 import therent.model.beans.Empleado;
 import therent.model.beans.Renta;
 import therent.view.client.control_MenuCliente;
 import therent.view.LogWindowControl;
 import therent.view.MainFrameControl;
 import therent.view.car.*;
-import therent.view.reservation.AddRentControl;
-import therent.view.reservation.MainRentControl;
-import therent.view.reservation.RentDetailControl;
-import therent.view.reservation.RentOverviewControl;
+import therent.view.reservation.*;
 
 import java.io.IOException;
 
@@ -321,6 +320,40 @@ public class Main extends Application {
             ctrl.setMain(this);
             ctrl.setParentPane(parent);
             ctrl.setR(r);
+            parent.setCenter(pane);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void showNewRentDetail(Renta r, BorderPane parent){
+        FXMLLoader loader=new FXMLLoader();
+        loader.setLocation(Main.class.getResource("view/reservation/AddDetalleRenta.fxml"));
+        try {
+            AnchorPane pane=loader.load();
+            AddDetalleRentaController ctrl= loader.getController();
+            ctrl.setMain(this);
+            ctrl.setEdit(false);
+            ctrl.setParentPane(parent);
+            ctrl.setR(r);
+            ctrl.setDr(null);
+            parent.setCenter(pane);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void showEditRentDetail(Renta r, DetalleRenta dr, BorderPane parent){
+        FXMLLoader loader=new FXMLLoader();
+        loader.setLocation(Main.class.getResource("view/reservation/AddDetalleRenta.fxml"));
+        try {
+            AnchorPane pane=loader.load();
+            AddDetalleRentaController ctrl= loader.getController();
+            ctrl.setMain(this);
+            ctrl.setEdit(true);
+            ctrl.setParentPane(parent);
+            ctrl.setR(r);
+            ctrl.setDr(dr);
             parent.setCenter(pane);
         } catch (IOException e) {
             e.printStackTrace();

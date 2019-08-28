@@ -20,8 +20,10 @@ public class LoginModel {
         cs.setString(1, usr);
         cs.setString(2, pswd);
         ResultSet rs=cs.executeQuery();
-        if(rs==null){
+        if(!rs.next()){
             return null;
+        }else{
+            rs.beforeFirst();
         }
         Empleado session=new Empleado();
         while(rs.next()){

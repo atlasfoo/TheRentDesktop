@@ -28,10 +28,10 @@
          <bottom>
             <HBox alignment="CENTER" prefHeight="55.0" prefWidth="600.0" spacing="20.0" BorderPane.alignment="CENTER">
                <children>
-                  <JFXButton fx:id="addBtn" buttonType="RAISED" style="-fx-background-color: #002f6c;" text="Añadir" textFill="WHITE" />
-                  <JFXButton fx:id="editBtn" buttonType="RAISED" style="-fx-background-color: #002f6c;" text="Editar" textFill="WHITE" />
+                  <JFXButton fx:id="addBtn" buttonType="RAISED" onAction="#handleAdd" style="-fx-background-color: #002f6c;" text="Añadir" textFill="WHITE" />
+                  <JFXButton fx:id="editBtn" buttonType="RAISED" onAction="#handleEdit" style="-fx-background-color: #002f6c;" text="Editar" textFill="WHITE" />
                   <JFXButton fx:id="borrBtn" buttonType="RAISED" style="-fx-background-color: #002f6c;" text="Borrar" textFill="WHITE" />
-                  <JFXButton fx:id="backBtn" buttonType="RAISED" style="-fx-background-color: #002f6c;" text="Atrás" textFill="WHITE" />
+                  <JFXButton fx:id="backBtn" buttonType="RAISED" onAction="#handleBack" style="-fx-background-color: #002f6c;" text="Atrás" textFill="WHITE" />
                </children>
             </HBox>
          </bottom>

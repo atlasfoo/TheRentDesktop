@@ -3,6 +3,7 @@ package therent.control.car;
 import therent.model.car.AutoModel;
 import therent.model.beans.Auto;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class CAuto {
@@ -31,4 +32,22 @@ public class CAuto {
         new AutoModel().enable_disable(id);
     }
 
+    public static List<Auto> getDisponibility(LocalDate f_in, LocalDate f_out) throws Exception {
+        if(f_in == null || f_out == null){
+            throw new Exception("Por favor rellene todos los campos");
+        }
+
+        if(f_out.isBefore(f_in) || f_out.isBefore(LocalDate.now()) || f_in.isBefore(LocalDate.now())){
+            throw new Exception("Fechas ingresadas incorrectamente");
+        }
+
+        return new AutoModel().disponibilidad_auto(f_in,f_out);
+    }
+
+    public static Auto getbyPlaca(String placa) throws Exception {
+        if(placa.isEmpty() || placa==null){
+            throw new Exception("Internal error type in method getbyPlaca");
+        }
+        return new AutoModel().getbyPlaca(placa);
+    }
 }

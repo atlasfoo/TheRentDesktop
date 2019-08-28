@@ -39,7 +39,7 @@ public class RentaModel {
                          res.getInt("Id_Renta"),
                          res.getString("cliente"),
                          res.getString("empleado"),
-                         res.getDate("Fecha").toLocalDate(),
+                         res.getDate("Fecha").toLocalDate().plusDays(1),
                          res.getString("Estado")
                     ));
         }

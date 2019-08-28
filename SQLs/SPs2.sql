@@ -50,6 +50,8 @@ END //
 
 /*Detalle*/
 
+DROP procedure sp_renta_detail;
+
 delimiter //
 CREATE PROCEDURE sp_renta_detail(IN id_renta INT)
 BEGIN
@@ -58,7 +60,123 @@ BEGIN
 	a.año, a.Color, a.Placa, dr.Fecha_Entrega, dr.Fecha_Recibo FROM Detalle_Renta dr
 	INNER JOIN Auto a ON a.Id_Auto=dr.Id_Auto
 	INNER JOIN Modelo_Auto ma ON a.Id_Modelo=ma.Id_Modelo
-	WHERE Id_Renta=id_renta;
+	WHERE dr.Id_Renta=id_renta;
 END //
 
+
+CALL sp_renta_detail(39);
+
+DROP PROCEDURE sp_disponibilidad_auto;
+
+delimiter //
+
+CREATE PROCEDURE sp_disponibilidad_auto(IN f_in DATE, IN f_out date)
+BEGIN
+	CREATE TEMPORARY TABLE autos_ocupados
+		SELECT dr.Id_Auto AS id_auto FROM Detalle_Renta dr WHERE (dr.Fecha_Recibo>=f_in AND dr.Fecha_Entrega<f_out);
+	
+	insert into autos_ocupados(id_auto) SELECT m.id_auto FROM Mantenimiento m WHERE (m.fecha_fin>=f_in AND m.fecha_inicio<f_out);
+	
+	SELECT a.Id_Auto as Id_Auto,
+	ma.Marca as Marca,
+	ma.Modelo as Modelo,
+   a.Color as Color,
+   a.año AS Año,
+	a.Transmisión as Transmisión,
+	ma.Tipo_Carroceria as Carrocería,
+	ma.Combustible as Combustible,
+	a.Placa as Placa,
+	a.Vin as VIN,
+	a.No_Chasis AS Chasis,
+	c.Descripcion as Categoría,
+	c.Costo_dia as Precio,
+	c.Deposito AS Depósito,
+	a.is_enabled AS Habilitado,
+	a.Estado as Estado FROM Auto a 
+	INNER JOIN Modelo_Auto ma ON a.Id_Modelo=ma.Id_Modelo
+	INNER JOIN Categoria c ON c.Id_Categoria=ma.Id_Categoria
+	WHERE a.Id_Auto NOT IN(SELECT id_auto FROM autos_ocupados);
+	DROP TEMPORARY TABLE autos_ocupados;
+END //
+
+
+delimiter //
+CREATE PROCEDURE sp_insert_rentdetail(IN id_renta INT, IN id_auto INT, IN f_in DATE, IN f_out DATE)
+BEGIN
+	SELECT @cost:=c.Costo_dia FROM Auto a INNER JOIN Modelo_Auto ma ON a.Id_Modelo=ma.Id_Modelo 
+	INNER JOIN Categoria c ON c.Id_Categoria=ma.Id_Categoria WHERE a.Id_Auto=id_auto; 
+	INSERT INTO Detalle_Renta(Id_Renta, Id_Auto, Fecha_Entrega, Fecha_Recibo, Costo) VALUES(id_renta, id_auto, f_in, f_out, @cost);
+END //
+
+CALL sp_insert_rentdetail(39, 19, '20190830', '20190905');
+
+DROP PROCEDURE sp_edit_rentdetail;
+
+delimiter //
+CREATE PROCEDURE sp_edit_rentdetail(IN id_det_rent int, IN id_auto int, IN f_in DATE, IN f_out DATE, OUT valida VARCHAR(20))
+BEGIN
+	CREATE TEMPORARY TABLE autos_ocupados
+		SELECT dr.Id_Auto AS id_auto FROM Detalle_Renta dr WHERE (dr.Fecha_Recibo>=f_in AND dr.Fecha_Entrega<f_out);
+	
+	insert into autos_ocupados(id_auto) SELECT m.id_auto FROM Mantenimiento m WHERE (m.fecha_fin>=f_in AND m.fecha_inicio<f_out);
+	
+	if id_auto IN(SELECT * FROM autos_ocupados) then
+		SET valida='INVALIDO';
+	else
+		UPDATE Detalle_Renta SET Fecha_Entrega=f_in, Fecha_Recibo=f_out WHERE Id_Detalle_Renta=id_det_rent;
+		SET valida='VALIDO';
+	END if;
+	DROP TEMPORARY TABLE autos_ocupados;
+END //
+
+CALL sp_disponibilidad_auto('20190831', '20190910');
+CALL sp_auto_all();
+select * FROM Cliente WHERE Id_Cliente=30;
+SELECT * FROM Renta WHERE Id_Renta=35;
+SELECT * FROM Detalle_Renta;
+
+DECLARE sa;
+CALL sp_edit_rentdetail(28, 11, '20190831', '20190910', @sa);
+
+SELECT @sa;
+
+SELECT * FROM Auto
+
+SELECT * FROM Auto;
+
+SELECT * FROM Renta;
+	
+#auxiliar de auto
+delimiter //
+CREATE procedure sp_auto_byplaca(IN plac VARCHAR(20))
+begin
+	SELECT a.Id_Auto as IDAuto,
+	ma.Marca as Marca,
+	ma.Modelo as Modelo,
+   a.Color as Color,
+   a.año AS Año,
+	a.Transmisión as Transmisión,
+	ma.Tipo_Carroceria as Carrocería,
+	ma.Combustible as Combustible,
+	a.Placa as Placa,
+	a.Vin as VIN,
+	a.No_Chasis AS Chasis,
+	c.Descripcion as Categoría,
+	c.Costo_dia as Precio,
+	c.Deposito AS Depsósito,
+	a.is_enabled AS Habilitado,
+	a.Estado as Estado FROM Auto a 
+	INNER JOIN Modelo_Auto ma ON a.Id_Modelo=ma.Id_Modelo
+	INNER JOIN Categoria c ON c.Id_Categoria=ma.Id_Categoria
+	WHERE a.Placa=plac;
+END //
+
+CALL sp_auto_all();
+
+CALL sp_auto_byplaca('M289877');
+
+CALL sp_login_sysuser('asdasdas','aa');
+
 #procedimientos de entrega
+
+SELECT * FROM Detalle_Renta

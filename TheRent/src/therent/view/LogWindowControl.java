@@ -55,7 +55,7 @@ public class LogWindowControl {
             return;
         }
         //si el rol no se obtuvo o fue denegado
-        if(role==null || role.equals("DENEGADO")) {
+        if(role==null) {
             msgerr("El usuario o la contraseña son incorrectos");
             usrtxt.setText("");
             pswdtxt.setText("");

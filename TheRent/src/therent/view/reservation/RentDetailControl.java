@@ -90,6 +90,28 @@ public class RentDetailControl {
             detTab.setItems(this.dr);
         }
     }
+    @FXML
+    public void handleBack(){
+        main.showRentOverview(parentPane);
+    }
+
+    @FXML
+    public void handleAdd(){
+
+        main.showNewRentDetail(r, parentPane);
+    }
+
+    @FXML
+    public void handleEdit(){
+        DetalleRenta dr=detTab.getSelectionModel().getSelectedItem();
+        if (dr==null){
+            msgerr("Seleccione un detalle a modificar!");
+            return;
+        }
+        main.showEditRentDetail(r, dr, parentPane);
+    }
+
+
     //Metodo para mandar mensajes
     public void msgerr(String msg){
         Alert al=new Alert(Alert.AlertType.ERROR);
