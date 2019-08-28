@@ -44,6 +44,7 @@ public class LogWindowControl {
     public void initialize(){
         //nada para inicializar
         Validators.ValidarCampos(usrtxt,"Letra");
+
     }
     @FXML
     public void handleLogin(){

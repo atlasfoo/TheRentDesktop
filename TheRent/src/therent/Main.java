@@ -5,6 +5,7 @@ import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
@@ -34,6 +35,7 @@ public class Main extends Application {
         primaryStage.setTitle("TheRent Link System");
         //Limpiar sesion
         active_session=null;
+        this.primaryStage.getIcons().add(new Image("file:media/img/rental.png"));
         showLogin();
     }
     // Redireccionar a Main teniendo la sesión abierta
@@ -69,6 +71,7 @@ public class Main extends Application {
             dlgStage.initModality(Modality.WINDOW_MODAL);
             dlgStage.setResizable(false);
             dlgStage.setScene(new Scene(root));
+            dlgStage.getIcons().add(new Image("file:media/img/rental.png"));
             LogWindowControl ctrl=loader.getController();
             ctrl.setDlgStage(dlgStage);
             ctrl.setMain(this);
@@ -213,6 +216,7 @@ public class Main extends Application {
             AnchorPane root=loader.load();
             Stage dlgStage=new Stage();
             dlgStage.initModality(Modality.APPLICATION_MODAL);
+            dlgStage.getIcons().add(new Image("file:media/img/rental.png"));
             dlgStage.setScene(new Scene(root));
             dlgStage.setResizable(false);
             dlgStage.showAndWait();
@@ -231,6 +235,7 @@ public class Main extends Application {
             Stage dlgStage=new Stage();
             dlgStage.initModality(Modality.APPLICATION_MODAL);
             dlgStage.setScene(new Scene(root));
+            dlgStage.getIcons().add(new Image("file:media/img/rental.png"));
             dlgStage.setResizable(false);
             dlgStage.showAndWait();
         } catch (IOException e) {
@@ -247,6 +252,7 @@ public class Main extends Application {
             AnchorPane root=loader.load();
             Stage dlgStage=new Stage();
             dlgStage.initModality(Modality.APPLICATION_MODAL);
+            dlgStage.getIcons().add(new Image("file:media/img/rental.png"));
             dlgStage.setScene(new Scene(root));
             dlgStage.setResizable(false);
             dlgStage.showAndWait();
@@ -304,6 +310,7 @@ public class Main extends Application {
             dlgStage.initOwner(this.primaryStage);
             ctrl.setMain(this);
             ctrl.setDlgStage(dlgStage);
+            dlgStage.getIcons().add(new Image("file:media/img/rental.png"));
             dlgStage.setScene(new Scene(pane));
             dlgStage.showAndWait();
         } catch (IOException e) {
@@ -372,6 +379,7 @@ public class Main extends Application {
             dlgStage.initModality(Modality.WINDOW_MODAL);
             ctrl.setDlgStage(dlgStage);
             ctrl.setR(r);
+            dlgStage.getIcons().add(new Image("file:media/img/rental.png"));
             dlgStage.setScene(new Scene(pane));
             dlgStage.showAndWait();
         } catch (IOException e) {
@@ -409,6 +417,7 @@ public class Main extends Application {
             dlgStage.initModality(Modality.WINDOW_MODAL);
             dlgStage.initOwner(primaryStage);
             dlgStage.setScene(new Scene(pane));
+            dlgStage.getIcons().add(new Image("file:media/img/rental.png"));
             dlgStage.showAndWait();
         } catch (IOException e) {
             e.printStackTrace();
