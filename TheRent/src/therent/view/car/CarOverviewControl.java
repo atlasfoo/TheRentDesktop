@@ -6,10 +6,13 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
+import net.sf.jasperreports.engine.JRException;
 import therent.Main;
 import therent.control.car.CAuto;
 import therent.model.beans.Auto;
+import therent.reporting.invocator.ReportInvocator;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public class CarOverviewControl {
@@ -181,6 +184,34 @@ public class CarOverviewControl {
         }
         msgconf("Hecho");
 
+    }
+
+    @FXML
+    public void handleMants(){
+        Auto a=carTable.getSelectionModel().getSelectedItem();
+        if(a==null){
+            msgerr("Seleccione un auto de la tabla");
+            return;
+        }
+        try {
+            ReportInvocator.mantReport(a.getIDAuto());
+        } catch (JRException | SQLException e) {
+            msgerr(e.getMessage());
+        }
+    }
+
+    @FXML
+    private void handleHistorial(){
+        Auto a=carTable.getSelectionModel().getSelectedItem();
+        if(a==null){
+            msgerr("Seleccione un auto de la tabla");
+            return;
+        }
+        try {
+            ReportInvocator.historialReport(a.getIDAuto());
+        } catch (JRException | SQLException e) {
+            msgerr(e.getMessage());
+        }
     }
 
     @FXML

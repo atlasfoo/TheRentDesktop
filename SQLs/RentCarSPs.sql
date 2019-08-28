@@ -407,3 +407,21 @@ end //
 
 DROP procedure sp_disponibilidad_auto
 
+ALTER TABLE Modelo_Auto
+ADD COLUMN cap_combustible INT;
+
+UPDATE Modelo_Auto SET cap_combustible=26 WHERE Id_Modelo>1;
+
+DROP PROCEDURE sp_generar_entrega;
+delimiter //
+
+CREATE PROCEDURE sp_generar_entrega(IN id_det INT, IN fec DATE, IN kil MEDIUMTEXT, IN niv FLOAT, IN descr VARCHAR(100), IN tipo_entrega VARCHAR(20), IN id_emp INT)
+BEGIN
+	INSERT INTO Estado_Entrega(Id_Detalle_Renta, fecha_reg, kilometraje, nivel_combustible, `descripcion_daño`, tipo_estado, id_empleado) VALUES(32, NOW(), 54787, 0.5, 'Todo correcto', 'RECIBO', 1);
+END //
+SELECT * FROM Empleado;
+CALL sp_generar_entrega(34, NOW(), 54787, 0.5, 'Todo correcto', 'RECIBO', 1);
+
+DELETE FROM Estado_Entrega WHERE Id_Estado_Entrega>0;
+
+CALL sp_recibido_today(NOW());

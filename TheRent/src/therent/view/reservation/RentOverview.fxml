@@ -7,7 +7,6 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="therent.view.reservation.RentOverviewControl">
    <children>
       <BorderPane layoutX="220.0" layoutY="87.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -29,6 +28,7 @@
                <children>
                   <JFXButton fx:id="detalleBtn" buttonType="RAISED" onAction="#handleRentDetail" style="-fx-background-color: #01579b;" text="Ver Detalle" textFill="WHITE" />
                   <JFXButton fx:id="statchangeBtn" buttonType="RAISED" onAction="#handleRentStat" style="-fx-background-color: #01579b;" text="Cambiar Estado" textFill="WHITE" />
+                  <JFXButton buttonType="RAISED" onAction="#handleFactura" style="-fx-background-color: #01579b;" text="Generar Factura" textFill="WHITE" />
                </children>
             </HBox>
          </bottom>

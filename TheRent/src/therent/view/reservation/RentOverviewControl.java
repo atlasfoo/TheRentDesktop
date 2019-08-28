@@ -9,10 +9,13 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.BorderPane;
+import net.sf.jasperreports.engine.JRException;
 import therent.Main;
 import therent.control.reservation.CRenta;
 import therent.model.beans.Renta;
+import therent.reporting.invocator.ReportInvocator;
 
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.Observable;
 
@@ -86,6 +89,20 @@ public class RentOverviewControl {
         }
         main.showChangeStatRent(rentTable.getSelectionModel().getSelectedItem());
         refreshTable();
+    }
+
+    @FXML
+    public void handleFactura() {
+        Renta ren = rentTable.getSelectionModel().getSelectedItem();
+        if (ren == null) {
+            msgerr("Seleccione una renta de la tabla");
+            return;
+        }
+        try {
+            ReportInvocator.facturaReport(ren.getId());
+        } catch (SQLException | JRException e) {
+            msgerr(e.getMessage());
+        }
     }
 
     @FXML
