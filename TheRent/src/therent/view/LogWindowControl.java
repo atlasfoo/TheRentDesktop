@@ -9,6 +9,7 @@ import javafx.stage.Stage;
 import therent.Main;
 import therent.control.CLogin;
 import therent.model.beans.Empleado;
+import therent.util.Validators;
 
 public class LogWindowControl {
 
@@ -42,6 +43,7 @@ public class LogWindowControl {
     @FXML
     public void initialize(){
         //nada para inicializar
+        Validators.ValidarCampos(usrtxt,"Letra");
     }
     @FXML
     public void handleLogin(){

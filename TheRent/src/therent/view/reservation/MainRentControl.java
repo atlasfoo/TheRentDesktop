@@ -34,6 +34,10 @@ public class MainRentControl {
         main.showAddRent();
         main.showRentOverview(parentPane);
     }
+    @FXML
+    public void handleBack(){
+        main.redirectMain();
+    }
 
 
 }

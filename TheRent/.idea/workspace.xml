@@ -3,15 +3,29 @@
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TheRent/therent/view/Reservation/RentOverview.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TheRent/therent/view/Reservation/RentOverview.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TheRent/META-INF/TheRent.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TheRent/therent/view/LogWindowControl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TheRent/therent/view/LogWindowControl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TheRent/therent/view/Reservation/RentChangeControl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TheRent/therent/view/Reservation/RentChangeControl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TheRent/therent/view/Reservation/RentDetailControl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TheRent/therent/view/Reservation/RentDetailControl.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/TheRent/therent/view/Reservation/RentOverviewControl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TheRent/therent/view/Reservation/RentOverviewControl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TheRent/therent/view/car/CarOverview.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TheRent/therent/view/car/CarOverview.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TheRent/therent/view/car/CarAddEditControl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TheRent/therent/view/car/CarAddEditControl.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/TheRent/therent/view/car/CarOverviewControl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TheRent/therent/view/car/CarOverviewControl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TheRent/therent/view/car/ModelSceneControl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TheRent/therent/view/car/ModelSceneControl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TheRent/therent/view/client/control_MenuCliente$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TheRent/therent/view/client/control_MenuCliente$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TheRent/therent/view/client/control_MenuCliente.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TheRent/therent/view/client/control_MenuCliente.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TheRent/therent/view/client/control_viewCorreo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TheRent/therent/view/client/control_viewCorreo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TheRent/therent/view/client/control_viewTel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TheRent/therent/view/client/control_viewTel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TheRent/therent/view/delivery/DeliveryWindowController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TheRent/therent/view/delivery/DeliveryWindowController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/TheRent/therent/view/delivery/GasWindowController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TheRent/therent/view/delivery/GasWindowController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/therent/view/car/CarOverview.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/therent/view/car/CarOverview.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/therent/view/car/CarOverviewControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/therent/view/car/CarOverviewControl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/therent/view/reservation/RentOverview.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/therent/view/reservation/RentOverview.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/therent/view/reservation/RentOverviewControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/therent/view/reservation/RentOverviewControl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/therent/view/LogWindowControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/therent/view/LogWindowControl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/therent/view/car/CarAddEditControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/therent/view/car/CarAddEditControl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/therent/view/car/ModelSceneControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/therent/view/car/ModelSceneControl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/therent/view/client/control_MenuCliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/therent/view/client/control_MenuCliente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/therent/view/client/control_viewCorreo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/therent/view/client/control_viewCorreo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/therent/view/client/control_viewTel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/therent/view/client/control_viewTel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/therent/view/delivery/GasWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/therent/view/delivery/GasWindowController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/therent/view/reservation/MainRentControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/therent/view/reservation/MainRentControl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/therent/view/reservation/MainRentView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/therent/view/reservation/MainRentView.fxml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -133,7 +147,7 @@
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1565571735596" />
     <property name="database.console.LAST_STATE" value="false" />
     <property name="dynamic.classpath" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../lib/poi-3.7-20101029.jar!/" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
