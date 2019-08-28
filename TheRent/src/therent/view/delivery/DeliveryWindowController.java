@@ -4,12 +4,14 @@ import com.jfoenix.controls.JFXButton;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import therent.Main;
 import therent.control.deliver.CDeliver;
 import therent.model.beans.DetalleEntrega;
+import therent.model.beans.DetalleRenta;
 
 import java.sql.SQLException;
 
@@ -104,18 +106,39 @@ public class DeliveryWindowController{
 
     @FXML
     public void handleEntrega(){
-        main.showEntregar(false);
+        DetalleEntrega det=tabla_entrega.getSelectionModel().getSelectedItem();
+        if (det==null){
+            msgerr("Por favor seleccione un elemento de la tabla");
+            return;
+        }
+        main.showEntregar(det, false);
+        refreshTables();
     }
 
     @FXML
     public void handleRecibo(){
-        main.showEntregar(true);
+        DetalleEntrega det=tabla_recepcion.getSelectionModel().getSelectedItem();
+        if (det==null){
+            msgerr("Por favor seleccione un elemento de la tabla");
+            return;
+        }
+        main.showEntregar(det,true);
+        refreshTables();
     }
+
 
     @FXML
     public void handleBack(){
         main.redirectMain();
     }
 
+    @FXML
+    public void msgerr(String msg){
+        Alert al=new Alert(Alert.AlertType.ERROR);
+        al.setTitle("TheRent Link System");
+        al.setHeaderText("ERROR");
+        al.setContentText(msg);
+        al.showAndWait();
+    }
 }
 

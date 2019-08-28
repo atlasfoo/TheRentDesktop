@@ -9,10 +9,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import therent.model.beans.Auto;
-import therent.model.beans.DetalleRenta;
-import therent.model.beans.Empleado;
-import therent.model.beans.Renta;
+import therent.model.beans.*;
 import therent.view.client.control_MenuCliente;
 import therent.view.LogWindowControl;
 import therent.view.MainFrameControl;
@@ -304,6 +301,7 @@ public class Main extends Application {
             dlgStage.setTitle("The Rent Link System");
             dlgStage.setResizable(false);
             dlgStage.initModality(Modality.WINDOW_MODAL);
+            dlgStage.initOwner(this.primaryStage);
             ctrl.setMain(this);
             ctrl.setDlgStage(dlgStage);
             dlgStage.setScene(new Scene(pane));
@@ -396,7 +394,7 @@ public class Main extends Application {
         }
     }
 
-    public void showEntregar(boolean isRecibo){
+    public void showEntregar(DetalleEntrega de, boolean isRecibo){
         FXMLLoader loader=new FXMLLoader();
         loader.setLocation(Main.class.getResource("view/delivery/GasWindow.fxml"));
         try {
@@ -405,6 +403,7 @@ public class Main extends Application {
             GasWindowController ctrl=loader.getController();
             ctrl.setMain(this);
             ctrl.setRecibo(isRecibo);
+            ctrl.setDr(de);
             dlgStage.setTitle("The Rent Link System");
             dlgStage.setResizable(false);
             dlgStage.initModality(Modality.WINDOW_MODAL);

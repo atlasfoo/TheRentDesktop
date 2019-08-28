@@ -10,10 +10,9 @@
 <AnchorPane prefHeight="362.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="therent.view.delivery.GasWindowController">
     <children>
         <Label layoutX="41.0" layoutY="90.0" prefHeight="28.0" prefWidth="91.0" text="Combustible" />
-        <Slider fx:id="fx_slider_gas" blockIncrement="4.0" layoutX="55.0" layoutY="118.0" majorTickUnit="0.25" max="1.0" minorTickCount="4" prefHeight="36.0" prefWidth="221.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
-        <JFXButton fx:id="fx_button_ok" buttonType="RAISED" layoutX="155.0" layoutY="315.0" prefHeight="19.0" prefWidth="91.0" style="-fx-background-color: #002f6c;" text="OK" textFill="#fffefe" />
+        <Slider fx:id="fx_slider_gas" blockIncrement="4.0" layoutX="55.0" layoutY="118.0" majorTickUnit="0.25" max="1.0" minorTickCount="4" prefHeight="38.0" prefWidth="296.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
+        <JFXButton fx:id="fx_button_ok" buttonType="RAISED" layoutX="155.0" layoutY="315.0" onAction="#handleSav" prefHeight="19.0" prefWidth="91.0" style="-fx-background-color: #002f6c;" text="OK" textFill="#fffefe" />
       <JFXTextField fx:id="kmTxt" focusColor="#002f6c" labelFloat="true" layoutX="87.0" layoutY="43.0" prefHeight="25.0" prefWidth="205.0" promptText="Kilometraje" />
       <JFXTextArea fx:id="detTxta" focusColor="#002f6c" labelFloat="true" layoutX="21.0" layoutY="191.0" prefHeight="114.0" prefWidth="359.0" promptText="Detalles" text="Todo correctamente" />
-      <Label fx:id="combLbl" layoutX="312.0" layoutY="128.0" text="---" />
     </children>
 </AnchorPane>

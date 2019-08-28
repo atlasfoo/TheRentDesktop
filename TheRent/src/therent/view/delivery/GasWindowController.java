@@ -3,14 +3,13 @@ package therent.view.delivery;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Slider;
 import javafx.stage.Stage;
 import therent.Main;
+import therent.control.deliver.CDeliver;
+import therent.model.beans.DetalleEntrega;
 
 public class GasWindowController {
 
@@ -26,14 +25,14 @@ public class GasWindowController {
     @FXML
     private JFXTextArea detTxta;
 
-    @FXML
-    private Label combLbl;
 
     private Main main;
 
     private Stage dlgStage;
 
     private boolean isRecibo;
+
+    private DetalleEntrega dr;
 
     public void setMain(Main main) {
         this.main = main;
@@ -47,15 +46,30 @@ public class GasWindowController {
         isRecibo = recibo;
     }
 
+    public void setDr(DetalleEntrega dr) {
+        this.dr = dr;
+    }
+
     public void initialize(){
-        fx_slider_gas.valueChangingProperty().addListener(new ChangeListener<Boolean>() {
-            @Override
-            public void changed(ObservableValue<? extends Boolean> source, Boolean oldValue, Boolean newValue) {
-                combLbl.textProperty().setValue(String.valueOf((float)fx_slider_gas.getValue()));
-            } });
+
    }
 
-    public void labelSet(String s){
-        combLbl.setText(s);
+   public void handleSav(){
+        String tipo = (isRecibo)? "RECIBO": "ENTREGA";
+       try {
+           CDeliver.addEntrega(dr.getId(),Long.parseLong(kmTxt.getText()),(float)fx_slider_gas.getValue(), detTxta.getText(),tipo,main.getActive_session().getId());
+       } catch (Exception e) {
+           msgerr(e.getMessage());
+       }finally {
+           dlgStage.close();
+       }
+   }
+    @FXML
+    public void msgerr(String msg){
+        Alert al=new Alert(Alert.AlertType.ERROR);
+        al.setTitle("TheRent Link System");
+        al.setHeaderText("ERROR");
+        al.setContentText(msg);
+        al.showAndWait();
     }
 }
