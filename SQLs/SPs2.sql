@@ -113,8 +113,15 @@ call sp_auto_search('Mazda');
 call sp_renta_all();
 call sp_auto_all();
 
-DELETE FROM Estado_Entrega WHERE Id_Estado_Entrega>-1;
-DELETE FROM Detalle_Renta WHERE Id_Detalle_Renta>-1;
-DELETE FROM Renta WHERE Id_Renta>-1;
+SELECT * FROM Detalle_Renta;
+
+CALL sp_insert_rentdetail(42, 18, '20190825', '20190828');
+SELECT @a;
+
+SELECT * FROM Estado_Entrega
+
+SELECT ee.Id_Detalle_Renta FROM Estado_Entrega ee INNER JOIN Detalle_Renta dr ON ee.Id_Detalle_Renta=dr.Id_Detalle_Renta WHERE tipo_estado='RECIBO';
+
+CALL sp_auto_all();
 
 
